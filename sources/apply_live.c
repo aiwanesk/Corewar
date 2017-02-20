@@ -2,7 +2,7 @@
 
 void				apply_live(t_process **process)
 {
-	if ((*process)->live)
+	if ((*process)->alive)
 	{
 		ft_putstr("un proccessus dit que le joueur ");
 		ft_putstr((*process)->name);

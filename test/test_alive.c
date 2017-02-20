@@ -3,7 +3,7 @@
 static void		fill_process(struct s_process **p, int pc, int live){
 	(*p)->name = ft_strdup("pandaContent");
 	(*p)->pc = pc;
-	(*p)->live = live;
+	(*p)->alive = live;
 }
 
 static void		test_alive_ok(struct s_process **p){
@@ -40,5 +40,4 @@ void			launcher_test_alive(){
 	test_alive_ok(&p);
 	fill_process(&p, 1, 0);
 	test_alive_not_ok(&p);
-	
 }
