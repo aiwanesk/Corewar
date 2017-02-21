@@ -35,5 +35,12 @@ void				apply_add(t_process *process, uint32_t v1, uint32_t v2, int addr);
 void				apply_sub(t_process *process, uint32_t v1, uint32_t v2, int addr);
 void				apply_st(t_process *process, int source, int addr);
 void				apply_zjmp(t_process *process, uint32_t dest);
+void				apply_ldi(t_process *process, uint32_t v1, uint32_t v2, int addr);
+void				apply_sti(t_process *process, uint32_t v1, uint32_t v2, int addr);
+void				apply_fork(t_process *process, uint32_t dest);
+void				apply_lld(t_process *process, uint32_t value, int registre);
+void				apply_lfork(t_process *process, uint32_t dest);
+void				apply_lldi(t_process *process, uint32_t v1, uint32_t v2, int addr);
+void				apply_aff(t_process *process, uint32_t v1);
 
 #endif

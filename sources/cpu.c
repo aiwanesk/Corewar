@@ -20,5 +20,19 @@ t_process				cpu(t_process process)
 		apply_xor(&process, process.reg[0], process.reg[1], process.reg[2]);
 	else if (process.pc == 9)
 		apply_zjmp(&process, process.reg[0]);
+	else if (process.pc == 10)
+		apply_ldi(&process, process.reg[0], process.reg[1], process.reg[2]);
+	else if (process.pc == 11)
+		apply_sti(&process, process.reg[0], process.reg[1], process.reg[2]);
+	else if (process.pc == 12)
+		apply_fork(&process, process.reg[0]);
+	else if (process.pc == 13)
+		apply_lld(&process, process.reg[0], process.reg[1]);
+	else if (process.pc == 14)
+		apply_lldi(&process, process.reg[0], process.reg[1], process.reg[2]);
+	else if (process.pc == 15)
+		apply_lfork(&process, process.reg[0]);
+	else if (process.pc == 16)
+		apply_aff(&process, process.reg[0]);
 	return (process);
 }
