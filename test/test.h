@@ -9,5 +9,6 @@
 void logWriter(char *test, int success);
 
 void launcher_test_alive();
+void launcher_test_ld();
 
 #endif

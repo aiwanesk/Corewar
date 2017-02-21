@@ -1,12 +1,12 @@
 #include "test.h"
 
-static void		fill_process(struct s_process **p, int pc, int live){
-	(*p)->name = ft_strdup("pandaContent");
-	(*p)->pc = pc;
-	(*p)->alive = live;
+static void		fill_process(struct s_process *p, int pc, int live){
+	p->name = ft_strdup("pandaContent");
+	p->pc = pc;
+	p->alive = live;
 }
 
-static void		test_alive_ok(struct s_process **p){
+static void		test_alive_ok(struct s_process *p){
 	char	toCompare[1000];
 	char	std[1000];
 
@@ -19,7 +19,7 @@ static void		test_alive_ok(struct s_process **p){
 		logWriter("test_alive_ok", FAILURE);
 }
 
-static void		test_alive_not_ok(struct s_process **p){
+static void		test_alive_not_ok(struct s_process *p){
 	char	toCompare[1000];
 	char	std[1000];
 
@@ -33,9 +33,8 @@ static void		test_alive_not_ok(struct s_process **p){
 }
 
 void			launcher_test_alive(){
-	struct s_process *p;
+	struct s_process p;
 
-	p = (struct s_process *)malloc(sizeof(struct s_process));
 	fill_process(&p, 1, 1);
 	test_alive_ok(&p);
 	fill_process(&p, 1, 0);

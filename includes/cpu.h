@@ -2,7 +2,7 @@
 # define CPU_H
 
 # include "../libs/libft/include/libft.h"
-# include "../op.h"
+# include "op.h"
 
 #include <stdio.h> //for debug purpose only
 #define CGREEN "\033[32m"
@@ -15,14 +15,17 @@ typedef struct		s_process{
 	uint32_t		id;
 	uint32_t		alive;
 	unsigned char	carry;
-//	int				live;
 	char			*name;
 	uint32_t		nb_cycle;
 	char			memory[MEM_SIZE];
 }					t_process;
 
-void				apply_function(t_process **process);
+t_process			cpu(t_process process);
 
-void				apply_live(t_process **process);
+void				apply_function(t_process *process);
+
+void				apply_live(t_process *process);
+void				apply_ld(t_process *process, uint32_t value, int registre);
+
 
 #endif
