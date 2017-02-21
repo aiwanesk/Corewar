@@ -14,5 +14,9 @@ t_process				cpu(t_process process)
 		apply_sub(&process, process.reg[0], process.reg[1], process.reg[2]);
 	else if (process.pc == 6)
 		apply_and(&process, process.reg[0], process.reg[1], process.reg[2]);
+	else if (process.pc == 7)
+		apply_or(&process, process.reg[0], process.reg[1], process.reg[2]);
+	else if (process.pc == 8)
+		apply_xor(&process, process.reg[0], process.reg[1], process.reg[2]);
 	return (process);
 }

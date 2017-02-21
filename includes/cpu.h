@@ -30,5 +30,7 @@ void				apply_st(t_process *process, int source, int addr);
 void				apply_add(t_process *process, uint32_t v1, uint32_t v2, int addr);
 void				apply_sub(t_process *process, uint32_t v1, uint32_t v2, int addr);
 void				apply_and(t_process *process, uint32_t v1, uint32_t v2, int addr);
+void				apply_or(t_process *process, uint32_t v1, uint32_t v2, int addr);
+void				apply_xor(t_process *process, uint32_t v1, uint32_t v2, int addr);
 
 #endif
