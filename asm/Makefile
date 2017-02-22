@@ -1,4 +1,5 @@
-SRC_NAME = main.c
+SRC_NAME = main.c \
+			buffer.c
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 
