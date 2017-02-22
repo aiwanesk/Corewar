@@ -6,3 +6,5 @@ si oui lire le bon nombre d'octet + 1 pour changer le pc
 	-faire le parsing de ces octets pour mettre les choses au bon endroit
 modifier la structure
 la retourner
+
+%dereferencement ? -> %24 valeur a l'adresse 24
