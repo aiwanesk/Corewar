@@ -6,7 +6,7 @@
 #    By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/04/07 16:55:33 by mbarbari          #+#    #+#              #
-#    Updated: 2017/02/20 16:13:58 by barbare          ###   ########.fr        #
+#    Updated: 2017/02/22 11:36:19 by barbare          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,12 +21,13 @@ SOURCES_FILES = ./sources
 HEADERS_FILES = ./includes
 OBJECTS_FILES = ./objects
 
-LIBS = -Llibs/libft/ -lft
-LIBSDIR = ./libs/libft/
+LIBSDIR = ../libs/libft
+LIBS = -L$(LIBSDIR) -lft
 LIBSNAME = libft.a
-LIBFT = $(LIBSDIR)$(LIBSNAME)
+LIBFT = $(LIBSDIR)/$(LIBSNAME)
+COREDIR=../core
 
-INC = -I./includes -Ilibs/libft/include
+INC = -I./includes -I$(LIBSDIR)/include -I$(COREDIR)/
 
 CLI_SRCS = 	$(SOURCES_FILES)/virtual_machine.c \
 

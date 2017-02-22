@@ -1,0 +1,1 @@
+gcc -g -Wno-unused-variable -Wall -Wno-unused-but-set-variable -Werror -Wextra -I../..//includes -I../..// -I../..//libs/libft/include -L../..//libs/libft -DWRITE_MEMORY -DARRAY_CASE=200  exec_memory_print -o ../..//sources/memory.c ./src_test/memory.c -lft
