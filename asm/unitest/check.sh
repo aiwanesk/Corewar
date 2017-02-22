@@ -7,11 +7,11 @@ DEBUGCOMP=$PWD/compilation.log
 DEBUGCHECK=$PWD/check.log
 
 TEST=(
-""
+"test_buffer.c"
 )
 
 SRC=(
-""
+"buffer.c"
 )
 
 SRCPATH=$PWD/sources/
