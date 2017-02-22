@@ -8,10 +8,14 @@
 # define VIRTUAL_MACHINE_H
 
 # include <unistd.h>
+# include <stdint.h>
+# include "op.h"
 
 # ifndef STDERR
 #  define STDERR STDERR_FILENO
 # endif
+
+# define BASE_16 "0123456789ABCDEF" //TODO del it if not use !
 
 typedef struct s_options	t_options;
 typedef struct s_process	t_process;
@@ -33,20 +37,23 @@ struct					s_process
 	uint32_t		alive;
 	uint32_t		nb_cycle;
 	char			*name;
-	char			memory[MEM_SIZE];
+	uint32_t		memory[MEM_SIZE];
 	unsigned char	carry;
 };
 
 struct					s_env
 {
+	uint32_t		virtual_memory[MEM_SIZE];
+	unsigned int	cycle_total;
 };
 
 void					virtual_machine(t_env env);
 t_options				parse_options(const char **data, t_options opt);
 
-void					write_memory(char memory[MEM_SIZE], uint32_t addr, uint32_t val);
-uint32_t				read_memory(char memory[MEM_SIZE], uint32_t addr);
-char					*cpy_memory(char memory[MEM_SIZE], char cpy[MEM_SIZE]);
+void					write_memory(uint32_t memory[MEM_SIZE], uint32_t addr, uint32_t val);
+uint32_t				read_memory(uint32_t memory[MEM_SIZE], uint32_t addr);
+uint32_t					*cpy_memory(uint32_t memory[MEM_SIZE], uint32_t cpy[MEM_SIZE]);
+void					print_memory(uint32_t memory[MEM_SIZE]);
 
 t_process				cpu(t_process process);
 
