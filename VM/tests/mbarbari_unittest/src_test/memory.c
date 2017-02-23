@@ -41,29 +41,38 @@ void	memory_read(uint32_t memory[])
 	int			i;
 	uint32_t	addr;
 
+	#ifdef MEMORY_START_READ
+	i = MEMORY_START_READ;;
+	#else
 	i = 0;
-	#ifdef MEMORY_MEM_SAVE
-		while (i < MEMORY_MEM_SAVE)
+	#endif
+	memory_rand(memory);
+	#ifdef MEMORY_END_READ
+		while (i < MEMORY_END_READ)
 		{
-			addr = rand() % MEMORY_MEM_SAVE;
-			dprintf(1, "%2X ", read_memory(memory, addr));
+			if (i > 0 && i % MEM_SIZE > 0 && (i % 64) == 0)
+				write(1, "\n", 1);
+			//addr = rand() % MEMORY_END_READ;
+			dprintf(1, "%.2X ", read_memory(memory, i));
 			++i;
 		}
 	#else
 		(void)memory;
-		dprintf(1, "MEMORY_MEM_SAVE dont exists");
+		dprintf(1, "MEMORY_END_READ dont exists");
 	#endif
 }
 
 int		main(void)
 {
 	int				i;
+	int				print;
 	uint32_t		memory[MEM_SIZE];
+	uint32_t		cpy[MEM_SIZE];
 
+	print = 1;
 	bzero(memory, sizeof(uint32_t) * MEM_SIZE);
 	#ifdef WRITE_MEMORY
 		memory_write(memory, 0, 0);
-		print_memory(memory);
 	#elif WRITE_MEMORY_RAND
 		memory_rand(memory);
 	#elif WRITE_MEMORY_RAND_BO
@@ -72,7 +81,15 @@ int		main(void)
 	#elif READ_MEMORY_RAND
 		memory_rand(memory);
 		memory_read(memory);
+		print = 0;
+	#elif CPY_MEMORY_RAND
+		memory_rand(memory);
+		memory_rand(cpy);
+		cpy_memory(cpy, memory);
+		print_memory(cpy);
+		print = 0;
 	#endif
-	print_memory(memory);
+	if (print == 1)
+		print_memory(memory);
 	return (0);
 }
