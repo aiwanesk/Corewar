@@ -1,0 +1,8 @@
+#include "cpu.h"
+
+int				main(){
+	t_process			p;
+
+	apply_function(&p);
+	return (0);
+}

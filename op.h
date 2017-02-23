@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   op.h                                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: zaz <marvin@42.fr>                         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
+/*   Updated: 2013/11/06 14:21:46 by zaz              ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 /*
 ** Toutes les tailles sont en octets.
 ** On part du principe qu'un int fait 32 bits. Est-ce vrai chez vous ?
@@ -62,23 +74,3 @@ typedef struct		header_s
   unsigned int		prog_size;
   char				comment[COMMENT_LENGTH + 1];
 }					header_t;
-
-typedef struct	s_dict		t_dict;
-
-struct		s_dict{
-	int		op;
-	int		cycle;
-};
-
-/*
-typedef struct s_op			t_op;
-
-struct		s_op{
-	char		*name;
-	int			i;
-	int			arg;
-	int			cycle;
-	char		*complete;
-	int			a;
-	int			b;
-};*/
