@@ -1,5 +1,4 @@
 [0;35;40mTest Normal -dump 200 -n 4 champion.c ... champion3.cor[0m
-ON RENTRE ICI 4
 opt ERROR : 0
 opt -dump : 200
 opt -n : 4
@@ -9,7 +8,6 @@ Champion[2] : champion2.cor
 Champion[3] : champion3.cor
 [0;35;40m
 Test 200 -n 4 champion.c ... champion2.cor[0m
-ON RENTRE ICI 4
 opt ERROR : 1
 opt -dump : 0
 opt -n : 0
@@ -25,7 +23,6 @@ opt -dump : 0
 opt -n : 0
 [0;35;40m
 Test -n 4 champion.c ... champion4.cor[0m
-ON RENTRE ICI 4
 opt ERROR : 0
 opt -dump : 0
 opt -n : 4
@@ -33,3 +30,8 @@ Champion[0] : champion.cor
 Champion[1] : champion1.cor
 Champion[2] : champion2.cor
 Champion[3] : champion3.cor
+[0;35;40m
+Test -n 6 champion.c ... champion4.cor[0m
+opt ERROR : 1
+opt -dump : 0
+opt -n : 0

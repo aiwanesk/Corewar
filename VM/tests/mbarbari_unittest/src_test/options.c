@@ -76,6 +76,22 @@ t_options test5(void)
 	return (parse_options(data, (t_options){.dumpcycle = 0}));
 }
 
+t_options test6(void)
+{
+	char		*data[] = {
+		"-n",
+		"6",
+		"champion.cor",
+		"champion1.cor",
+		"champion2.cor",
+		"champion3.cor",
+		"champion5.cor",
+		NULL
+	};
+
+	return (parse_options(data, (t_options){.dumpcycle = 0}));
+}
+
 void	options_read(t_options opt)
 {
 	unsigned int		i;
@@ -101,4 +117,6 @@ int		main(void)
 	options_read(test4());
 	dprintf(1, C_MAGENTA"\nTest -n 4 champion.c ... champion4.cor%s\n", C_NONE);
 	options_read(test5());
+	dprintf(1, C_MAGENTA"\nTest -n 6 champion.c ... champion4.cor%s\n", C_NONE);
+	options_read(test6());
 }
