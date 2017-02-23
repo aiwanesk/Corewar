@@ -23,7 +23,7 @@ struct s_arg			parsing_request(t_process *p, char memory[MEM_SIZE])
 	struct s_arg	ret;
 	char			*tmp;
 
-	if ((op_code = memory[p->pc]) < 17 && op_code >= 0 && g_tab[op_code].cycle <= p->cycle)
+	if ((op_code = memory[p->pc]) < 17 && op_code >= 0 && g_tab[op_code].cycle <= p->nb_cycle)
 	{
 		//read_arg
 		if (op_code == 1 || op_code == 9 || op_code == 12)
@@ -45,7 +45,7 @@ struct s_arg			parsing_request(t_process *p, char memory[MEM_SIZE])
 		}
 		else
 		{
-			//TODO voir si il y a pas moyen de generaliser le cas par cas
+			//TODO je pense que les args sont toujours valide je me trompe?
 			//check_arg_validity(p, );
 			tmp = ft_strdup(get_data_from_hex(memory[p->pc + 1]).val);
 			int i = 0;
@@ -57,6 +57,6 @@ struct s_arg			parsing_request(t_process *p, char memory[MEM_SIZE])
 		}
 	}
 	else
-		p->cycle = 0;
+		p->nb_cycle = 0;
 	return (ret);
 }

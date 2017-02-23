@@ -1,9 +1,11 @@
 #ifndef CPU_H
 # define CPU_H
 
-# include "../libs/libft/include/libft.h"
+//# include "../libs/libft/include/libft.h"
 # include "op.h"
+# include "parsing_request.h"
 
+#include <stdint.h>
 #include <stdio.h> //for debug purpose only
 #define CGREEN "\033[32m"
 #define CRED "\033[31m"
@@ -20,17 +22,18 @@ typedef struct		s_process{
 	char			memory[MEM_SIZE];
 }					t_process;
 
-t_process			cpu(t_process process);
+#define PCANDARG (process->pc + 2)
 
 void				apply_function(t_process *process);
 
-void				apply_live(t_process *process);
-void				apply_ld(t_process *process, uint32_t value, int registre);
-void				apply_and(t_process *process, uint32_t v1, uint32_t v2, int addr);
+//TODO this test
+void				apply_live(t_process *process, char memory[MEM_SIZE]);
+void				apply_ld(t_process *process, char memory[MEM_SIZE], struct s_arg arg);
+void				apply_st(t_process *process, char *memory[MEM_SIZE], struct s_arg arg);
+void				apply_and(t_process *process, char memory[MEM_SIZE], struct s_arg arg);
+//REPRENDRE LES MODIFS DEPUIS ICI
 void				apply_or(t_process *process, uint32_t v1, uint32_t v2, int addr);
 void				apply_xor(t_process *process, uint32_t v1, uint32_t v2, int addr);
-
-//TODO this test
 void				apply_add(t_process *process, uint32_t v1, uint32_t v2, int addr);
 void				apply_sub(t_process *process, uint32_t v1, uint32_t v2, int addr);
 void				apply_st(t_process *process, int source, int addr);

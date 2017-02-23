@@ -1,13 +1,17 @@
 #include "cpu.h"
 
-t_process				cpu(t_process process)
+t_process				cpu(t_process process, char memory[MEM_SIZE])
 {
-	if (process.pc == 1)
-		apply_live(&process);
+	struct s_arg		arg;
+
+	arg = parsing_request(&process, memory);
+	//TODO faire une globale avec les datas de references dedans plutot que de tout hardcoder
+	if (process.pc == 1 && process.nb_cycle >= 10)
+		apply_live(&process, memory);
 	else if (process.pc == 2)
-		apply_ld(&process, process.reg[0], process.reg[1]);
+		apply_ld(&process, memory, arg);
 	else if (process.pc == 3)
-		apply_st(&process, process.reg[0], process.reg[1]);
+		apply_st(&process, &memory, arg);
 	else if (process.pc == 4)
 		apply_add(&process, process.reg[0], process.reg[1], process.reg[2]);
 	else if (process.pc == 5)
