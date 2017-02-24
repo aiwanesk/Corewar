@@ -12,8 +12,13 @@ DIFF_OK=./diff_ok
 TEST=" > /dev/null && printf $OK || printf $ERROR"
 EXEC_DIR="./exec_test/"
 
-memory_file="../../sources/memory.c ./src_test/memory.c"
-options_file="../../sources/set_options.c ./src_test/options.c"
+source_file="../../sources/memory.c "
+source_file+="../../sources/set_options.c "
+source_file+="../../sources/process.c "
+source_file+="../../sources/random.c"
+
+memory_file="$source_file ./src_test/memory.c"
+options_file="$source_file ./src_test/options.c"
 
 declare -a instruction=(
 	"$memory_file:Test memory - print memory null::exec_memory_print"
@@ -25,6 +30,7 @@ declare -a instruction=(
 	"$memory_file:Test memory - random read memory with BO:-DREAD_MEMORY_RAND -DMEMORY_START_READ=4096 -DMEMORY_END_READ=8192 -DMEMORY_MEM_SAVE=4096:exec_memory_read_rand_bo"
 	"$memory_file:Test memory - cpy memory:-DWRITE_MEMORY_RAND -DCPY_MEMORY_RAND -DMEMORY_MEM_SAVE=4096:exec_memory_cpy_rand"
 	"$options_file:Test options - normal test \"-dump 200 -n 4 champion.cor champion1.cor ... champion3.cor\"::exec_options_normaltest"
+	"$options_file:Test options - normal test \"-dump 200 -n 4 champion.cor champion1.cor ... champion3.cor\":-DPROCESS:exec_options_processtest"
 )
 
 cflags="-g -Wno-unused-variable -Wall -Wno-unused-but-set-variable -Werror -Wextra"

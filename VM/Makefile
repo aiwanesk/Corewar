@@ -30,6 +30,9 @@ COREDIR=../core
 INC = -I./includes -I$(LIBSDIR)/include -I$(COREDIR)/
 
 CLI_SRCS = 	$(SOURCES_FILES)/virtual_machine.c \
+			$(SOURCES_FILES)/process.c \
+			$(SOURCES_FILES)/random.c \
+			$(SOURCES_FILES)/set_options.c \
 
 CLI_OBJS = $(patsubst $(SOURCES_FILES)/%.c,$(OBJECTS_FILES)/%.o,$(CLI_SRCS))
 
@@ -37,8 +40,12 @@ SRC_INCLUDE = $(HEADERS_FILES)/virtual_machine.h \
 
 RM ?= rm -f
 MKDIR ?= mkdir
+CD ?= cd
 
 all: $(NAME)
+
+check:
+	$(CD) ./tests/mbarbari_unittest/ && ./unit_test.sh
 
 print-% : ; $(info $* is $(flavor $*) variable set to [$($*)]) @true
 

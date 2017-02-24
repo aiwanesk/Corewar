@@ -107,16 +107,58 @@ void	options_read(t_options opt)
 
 int		main(void)
 {
+	int			i;
+	int			b;
+	int			a;
+	int			c;
+	t_process	process[10];
+	t_options	opt[10];
+
 	dprintf(1, C_MAGENTA"Test Normal -dump 200 -n 4 champion.c ... champion3.cor%s\n", C_NONE);
-	options_read(test1());
+	opt[0] = test1();
+	options_read(opt[0]);
 	dprintf(1, C_MAGENTA"\nTest 200 -n 4 champion.c ... champion2.cor%s\n", C_NONE);
-	options_read(test2());
+	opt[1] = test2();
+	options_read(opt[1]);
 	dprintf(1, C_MAGENTA"\nTest champion.c ... champion3.cor%s\n", C_NONE);
-	options_read(test3());
+	opt[2] = test3();
+	options_read(opt[2]);
 	dprintf(1, C_MAGENTA"\nTest NULL%s\n", C_NONE);
-	options_read(test4());
+	opt[3] = test4();
+	options_read(opt[3]);
 	dprintf(1, C_MAGENTA"\nTest -n 4 champion.c ... champion4.cor%s\n", C_NONE);
-	options_read(test5());
+	opt[4] = test5();
+	options_read(opt[4]);
 	dprintf(1, C_MAGENTA"\nTest -n 6 champion.c ... champion4.cor%s\n", C_NONE);
-	options_read(test6());
+	opt[5] = test6();
+	options_read(opt[5]);
+	#ifdef PROCESS
+		dprintf(1, "\n");
+		c = -1;
+		while (++c < 6)
+		{
+			i = -1;
+			while (++i < (int)opt[c].nbchampions)
+			{
+				process[i] = new_process(opt[c], i);
+				dprintf(1, "process.id = %s\nprocess.pc = %u\nprocess.reg[0] = %s\n",
+						process[i].id > 1000 ? "STRONG" : "WEAK", process[i].pc,
+						process[i].reg[0] == process[i].id ? "OK" : "KO");
+				dprintf(1, "process.alive = %u\nprocess.nb_cycle = %u\nprocess.carry = %u\n\n\n",
+						process[i].alive, process[i].nb_cycle, process[i].carry);
+				++i;
+			}
+			check_random(process, opt[c].nbchampions);
+			b = -1;
+			while (++b < (int)opt[c].nbchampions)
+			{
+				a = -1;
+				while (++a < (int)opt[c].nbchampions)
+				{
+					if (a != b && process[a].id == process[b].id)
+						dprintf(1, "KO CHECK RANdom");
+				}
+			}
+		}
+	#endif
 }
