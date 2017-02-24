@@ -36,7 +36,6 @@ t_options		parse_options(char **data, t_options opt)
 	{
 		if ((opt.nbchampions = ft_atoi(*(++data))) > MAX_PLAYERS)
 			return ((t_options) {.error = 1});
-		dprintf(1, "ON RENTRE ICI %d\n", opt.nbchampions);
 		opt.champions[(champ = opt.nbchampions)] = NULL;
 		while (--champ > -1)
 		{
