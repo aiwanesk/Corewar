@@ -10,6 +10,12 @@
 #define CRED "\033[31m"
 #define CWHITE  "\033[37m"
 
+typedef struct s_data t_data;
+typedef struct s_process t_process;
+typedef struct s_arg t_arg;
+
+struct s_dict g_tab[2];
+
 typedef struct		s_process{
 	uint32_t		reg[16];
 	uint32_t		pc;
@@ -21,11 +27,6 @@ typedef struct		s_process{
 	char			memory[MEM_SIZE];
 }					t_process;
 
-typedef struct s_data t_data;
-typedef struct s_process t_process;
-typedef struct s_arg t_arg;
-
-struct s_dict g_tab[2];
 
 struct	s_data{
 	char val[8];
@@ -34,7 +35,6 @@ struct	s_data{
 struct s_arg{
 	int total_to_read[4];
 };
-
 
 struct s_arg parsing_request(t_process *p, char memory[MEM_SIZE]);
 
