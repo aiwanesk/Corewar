@@ -34,6 +34,7 @@ IFS=""
 
 for i in ${instruction[*]}
 do
+	mkdir -p $EXEC_DIR
 	IFS=":" read -ra ELEM <<< "$i"
 	eval "gcc $cflags $libs  -o $EXEC_DIR/${ELEM[3]} ${ELEM[2]} ${ELEM[0]} -lft"
 	$EXEC_DIR/"${ELEM[3]}" > $DIFF_FILE/"${ELEM[3]}".diff

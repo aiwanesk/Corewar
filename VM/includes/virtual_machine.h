@@ -48,12 +48,12 @@ struct					s_env
 };
 
 void					virtual_machine(t_env env);
-t_options				parse_options(const char **data, t_options opt);
+t_options				parse_options(char **data, t_options opt);
 
-void					write_memory(uint32_t memory[MEM_SIZE], uint32_t addr, uint32_t val);
-uint32_t				read_memory(uint32_t memory[MEM_SIZE], uint32_t addr);
-uint32_t					*cpy_memory(uint32_t memory[MEM_SIZE], uint32_t cpy[MEM_SIZE]);
-void					print_memory(uint32_t memory[MEM_SIZE]);
+void					write_memory(uint32_t *memory, uint32_t addr, uint32_t val);
+uint32_t				read_memory(uint32_t *memory, uint32_t addr);
+void					cpy_memory(uint32_t *memory, uint32_t *cpy);
+void					print_memory(uint32_t *memory);
 
 t_process				cpu(t_process process);
 
