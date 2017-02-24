@@ -3,8 +3,8 @@
 t_process				cpu(t_process process, char memory[MEM_SIZE])
 {
 	struct s_arg		arg;
+	int					read_arg[4];
 
-	arg = parsing_request(&process, memory);
 	//TODO faire une globale avec les datas de references dedans plutot que de tout hardcoder
 	if (process.pc == 1 && process.nb_cycle >= 10)
 		apply_live(&process, memory);
@@ -13,17 +13,17 @@ t_process				cpu(t_process process, char memory[MEM_SIZE])
 	else if (process.pc == 3)
 		apply_st(&process, &memory, arg);
 	else if (process.pc == 4)
-		apply_add(&process, process.reg[0], process.reg[1], process.reg[2]);
+		apply_add(&process, memory, arg);
 	else if (process.pc == 5)
-		apply_sub(&process, process.reg[0], process.reg[1], process.reg[2]);
+		apply_and(&process, memory, arg);
 	else if (process.pc == 6)
-		apply_and(&process, process.reg[0], process.reg[1], process.reg[2]);
+		apply_and(&process, memory, arg);
 	else if (process.pc == 7)
-		apply_or(&process, process.reg[0], process.reg[1], process.reg[2]);
+		apply_or(&process, memory, arg);
 	else if (process.pc == 8)
-		apply_xor(&process, process.reg[0], process.reg[1], process.reg[2]);
+		apply_xor(&process, memory, arg);
 	else if (process.pc == 9)
-		apply_zjmp(&process, process.reg[0]);
+		apply_zjmp(&process, memory, arg);
 	else if (process.pc == 10)
 		apply_ldi(&process, process.reg[0], process.reg[1], process.reg[2]);
 	else if (process.pc == 11)

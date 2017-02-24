@@ -30,6 +30,6 @@ void				apply_and(t_process *process, char mem[MEM_SIZE], struct s_arg arg)
 		dest += mem[PCANDARG + i];
 		i++;
 	}
-	process->reg[dest] = (first ^ second);
+	process->reg[dest] = (first & second);
 	process->carry = 1;
 }
