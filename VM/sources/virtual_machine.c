@@ -8,48 +8,36 @@
 #include "libft.h"
 
 
-static t_env	init_virtual_machine(t_options opt)
+t_env	init_virtual_machine(t_options opt)
 {
 	t_env		env;
 
 	ft_bzero(&env, sizeof(t_env));
 	if (opt.dumpcycle > 0)
 		env.isdump = TRUE;
+	env.nb_process = opt.nbchampions;
 	return (env);
 }
 
 int				winner(int		id)
 {
+	//TODO : need to change
 	return (id);
 }
 
 int				virtual_machine(t_env env)
 {
 	uint32_t		id;
+	int				process;
 
 	if ((id = process_alive(env)) < 1)
 		return (winner(id));
-	//env.nb_cycle++;
+	process = 0;
+	while (process < env.nb_process)
+	{
+		env.process[process].nb_cycle++;
+		env.process[process].memory = env.memory;
+		//cpu(env.process[process]);
+	}
 	return (virtual_machine(env));
-}
-
-int				main(int argc, char **argv)
-{
-	t_options		opts;
-
-	if (argc > MAX_ARGS_NUMBER + 1)
-	{
-		ft_putstr_fd("Too much argument", STDERR);
-		ft_putendl_fd(" [[-n number] champion1.cor]", STDERR);
-		return (-1);
-	}
-	opts = parse_options(&argv[1], (t_options){.error = 0, .dumpcycle = -1});
-	if (opts.error == 1)
-	{
-		ft_putstr_fd("Please check option : ", STDERR);
-		ft_putendl_fd("[-dump nbr_cycles] [[-n number] champion1.cor]", STDERR);
-	}
-	else
-		virtual_machine(init_virtual_machine(opts));
-	return (0);
 }

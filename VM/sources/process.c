@@ -10,6 +10,12 @@
 #include "virtual_machine.h"
 #include "libft.h"
 
+uint32_t	convert_endianness(unsigned int val)
+{
+	val = ((val << 8) & 0xFF00FF00 ) | ((val >> 8) & 0xFF00FF );
+	return (val << 16) | (val >> 16);
+}
+
 int			process_alive(t_env env)
 {
 	(void)env;
@@ -21,13 +27,13 @@ t_env		load_champion(t_env env, t_options opt, int id)
 	int			fd;
 	t_header	head;
 
-	if ((fd = open(opt.champions[id], O_RDONLY)) != -1)
-		env = (t_env){.error = 1};
-	else if (read(fd, &head, sizeof(t_header)) != sizeof(t_header))
-		env = (t_env){.error = 1};
-	else if (read(fd, &env.memory[env.process[id].pc], head.prog_size) !=
-																head.prog_size)
-		env = (t_env){.error = 1};
+	if ((fd = open(opt.champions[id], O_RDONLY)) < 0)
+		env = (t_env){.error = 1, .s_error = "File not exists"};
+	else if ((read(fd, &head, sizeof(t_header))) != sizeof(t_header))
+		env = (t_env){.error = 1, .s_error = "Cannot get header binary"};
+	else if ((read(fd, &env.memory[env.process[id].pc],
+		convert_endianness(head.prog_size))) !=	convert_endianness(head.prog_size))
+		env = (t_env){.error = 1, .s_error = "Size of program doesn't match"};
 	else
 		ft_strcpy(env.process[id].name, head.prog_name);
 	close(fd);

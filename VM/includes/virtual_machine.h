@@ -38,6 +38,7 @@ struct					s_process
 	uint32_t		nb_cycle;
 	char			name[PROG_NAME_LENGTH + 1];
 	unsigned char	carry;
+	char			*memory;
 };
 
 struct					s_env
@@ -47,9 +48,11 @@ struct					s_env
 	unsigned int	cycle_total;
 	t_process		process[255];
 	int				error;
+	char			*s_error;
 };
 
 int						virtual_machine(t_env env);
+t_env					init_virtual_machine(t_options opt);
 t_options				parse_options(char **data, t_options opt);
 
 void					write_memory(uint32_t *memory, uint32_t addr, uint32_t val);
