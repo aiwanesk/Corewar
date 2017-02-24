@@ -1,4 +1,4 @@
-#include "../includes/parsing_request.h"
+#include "cpu.h"
 
 unsigned int			int_to_bin(unsigned int k)
 {
