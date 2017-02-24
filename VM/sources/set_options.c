@@ -4,7 +4,9 @@
 ** ****************
 */
 
+#include <stdio.h>
 #include "libft.h"
+#include "virtual_machine.h"
 
 static int		test_integer(char *str)
 {
@@ -15,35 +17,34 @@ static int		test_integer(char *str)
 	{
 		if (!ft_isdigit(str[i]))
 			return (FALSE);
+		++i;
 	}
 	return (TRUE);
 }
 
-t_options		parse_options(const char **data, t_options opt)
+t_options		parse_options(char **data, t_options opt)
 {
-	int		i;
 	int		champ;
 
-	i = -1;
-	opt = (t_options) {.nbcycle = };
-	while (data != NULL)
+	if (*data && ft_strcmp(*data, "-dump") == 0)
 	{
-		if (ft_strcmp(data, "-dump") == 0)
-		{
-			if (test_integer(++data))
-				opt.nbcycle = ft_atoi(data);
-			else
-				return ((t_opt) {.error = 1});
-		}
-		else if (ft_strcmp(data, "-n"))
-		{
-			if ((opt.nbchampions = ft_atoi(++data)) > 255)
-				return ((t_opt) {.error = 1});
-			champions[(champ = opt.nbchampions)] = NULL;
-			while (--champ > -1)
-				champions[champ] = *(++data);
-		}
-		++data;
+		if (!test_integer(*(++data)))
+			return ((t_options) {.error = 1});
+		opt.dumpcycle = ft_atoi(*data);
 	}
+	else if (*data && ft_strcmp(*data, "-n") == 0 && test_integer(*(data + 1)))
+	{
+		if ((opt.nbchampions = ft_atoi(*(++data))) > MAX_PLAYERS)
+			return ((t_options) {.error = 1});
+		opt.champions[(champ = opt.nbchampions)] = NULL;
+		while (--champ > -1)
+		{
+			if (!*(data + 1))
+				return ((t_options) {.error = 1});
+			opt.champions[(opt.nbchampions - 1) - champ] = *(++data);
+		}
+	}
+	if (*(data + 1))
+		return (parse_options(data + 1, opt));
 	return (opt);
 }
