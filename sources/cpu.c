@@ -25,18 +25,18 @@ t_process				cpu(t_process process, char memory[MEM_SIZE])
 	else if (process.pc == 9)
 		apply_zjmp(&process, memory, arg);
 	else if (process.pc == 10)
-		apply_ldi(&process, process.reg[0], process.reg[1], process.reg[2]);
+		apply_ldi(&process, memory, arg);
 	else if (process.pc == 11)
-		apply_sti(&process, process.reg[0], process.reg[1], process.reg[2]);
+		apply_sti(&process, &memory, arg);
 	else if (process.pc == 12)
-		apply_fork(&process, process.reg[0]);
+		apply_fork(&process, &memory, arg);
 	else if (process.pc == 13)
-		apply_lld(&process, process.reg[0], process.reg[1]);
+		apply_lld(&process, memory, arg);
 	else if (process.pc == 14)
-		apply_lldi(&process, process.reg[0], process.reg[1], process.reg[2]);
+		apply_lldi(&process, memory, arg);
 	else if (process.pc == 15)
-		apply_lfork(&process, process.reg[0]);
+		apply_lfork(&process, &memory, arg);
 	else if (process.pc == 16)
-		apply_aff(&process, process.reg[0]);
+		apply_aff(&process, memory, arg);
 	return (process);
 }

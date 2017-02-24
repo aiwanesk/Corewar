@@ -24,6 +24,6 @@ void					apply_ld(t_process *process, char memory[MEM_SIZE], struct s_arg arg)
 		reg += memory[PCANDARG + i];
 		i++;
 	}
-	process->reg[reg] = first;
+	process->reg[reg] = first % IDX_MOD;
 	process->carry = 1;
 }
