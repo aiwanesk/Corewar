@@ -18,6 +18,7 @@ source_file+="../../sources/process.c "
 source_file+="../../sources/random.c "
 source_file+="../../sources/core.c "
 source_file+="../../sources/tools.c "
+source_file+="../../sources/map.c "
 
 memory_file="$source_file ./src_test/memory.c"
 options_file="$source_file ./src_test/options.c"
