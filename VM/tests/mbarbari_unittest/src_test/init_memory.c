@@ -1,4 +1,4 @@
-#include "virtual_machine.h"
+#include "core.h"
 #include "op.h"
 #include <stdio.h>
 
@@ -90,7 +90,7 @@ int		main(void)
 	t_env		env;
 	
 	opt = test0();
-	env= init_virtual_machine(opt);
+	env= init_core(opt);
 	env = create_process(env, opt);
 	if (env.error)
 		dprintf(1, "ERROR IN ENV\n");
@@ -98,7 +98,7 @@ int		main(void)
 		print_memory(env.memory);
 	dprintf(1, "\n\n");
 	opt = test1();
-	env= init_virtual_machine(opt);
+	env= init_core(opt);
 	env = create_process(env, opt);
 	if (env.error)
 		dprintf(1, "ERROR IN ENV\n");
@@ -106,7 +106,7 @@ int		main(void)
 		print_memory(env.memory);
 	dprintf(1, "\n\n");
 	opt = test2();
-	env= init_virtual_machine(opt);
+	env= init_core(opt);
 	env = create_process(env, opt);
 	if (env.error)
 		dprintf(1, "ERROR IN ENV : %s\n", env.s_error);
@@ -115,7 +115,7 @@ int		main(void)
 	dprintf(1, "\n\n");
 
 	opt = test3();
-	env= init_virtual_machine(opt);
+	env= init_core(opt);
 	env = create_process(env, opt);
 	if (env.error)
 		dprintf(1, "ERROR IN ENV : %s\n", env.s_error);
@@ -124,7 +124,7 @@ int		main(void)
 	dprintf(1, "\n\n");
 
 	opt = test4();
-	env= init_virtual_machine(opt);
+	env= init_core(opt);
 	env = create_process(env, opt);
 	if (env.error)
 		dprintf(1, "ERROR IN ENV : %s\n", env.s_error);

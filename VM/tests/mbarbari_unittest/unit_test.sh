@@ -13,10 +13,11 @@ TEST=" > /dev/null && printf $OK || printf $ERROR"
 EXEC_DIR="./exec_test/"
 
 source_file="../../sources/memory.c "
-source_file+="../../sources/set_options.c "
+source_file+="../../sources/options.c "
 source_file+="../../sources/process.c "
 source_file+="../../sources/random.c "
-source_file+="../../sources/virtual_machine.c "
+source_file+="../../sources/core.c "
+source_file+="../../sources/tools.c "
 
 memory_file="$source_file ./src_test/memory.c"
 options_file="$source_file ./src_test/options.c"

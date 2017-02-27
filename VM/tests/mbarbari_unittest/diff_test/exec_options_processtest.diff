@@ -39,7 +39,7 @@ opt -n : 0
 process.id = STRONG
 process.pc = 0
 process.reg[0] = OK
-process.alive = 21
+process.alive = 0
 process.nb_cycle = 0
 process.carry = 0
 
@@ -47,7 +47,7 @@ process.carry = 0
 process.id = STRONG
 process.pc = 2048
 process.reg[0] = OK
-process.alive = 21
+process.alive = 0
 process.nb_cycle = 0
 process.carry = 0
 
@@ -55,7 +55,7 @@ process.carry = 0
 process.id = STRONG
 process.pc = 0
 process.reg[0] = OK
-process.alive = 21
+process.alive = 0
 process.nb_cycle = 0
 process.carry = 0
 
@@ -63,7 +63,7 @@ process.carry = 0
 process.id = STRONG
 process.pc = 2048
 process.reg[0] = OK
-process.alive = 21
+process.alive = 0
 process.nb_cycle = 0
 process.carry = 0
 

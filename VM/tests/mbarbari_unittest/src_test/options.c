@@ -1,4 +1,4 @@
-#include "virtual_machine.h"
+#include "core.h"
 #include "op.h"
 #include "libft.h"
 #include <string.h>
