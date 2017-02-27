@@ -1,5 +1,10 @@
 SRC_NAME = main.c \
-			buffer.c
+			buffer.c \
+			lexical_analyser.c \
+			struct_lex.c \
+			lex_cmd.c \
+			lex_label.c \
+			lex_opcode.c
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 
