@@ -16,6 +16,6 @@ void						apply_lfork(t_process *p, t_arg arg)
 		f += p->memory[p->pc + 1 + i];
 		i++;
 	}
-	//TODO help please
 	p->pc = p->pc + (f);
+	//fill le fork du pc avec le pc calculer la
 }

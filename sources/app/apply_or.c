@@ -30,6 +30,6 @@ void                apply_or(t_process *process, char memory[MEM_SIZE], struct s
 		reg += memory[PCANDARG + i];
 		i++;
 	}
-	process->reg[reg] = (first | second);
+	process->reg[reg  % MEM_SIZE] = (first | second);
 	process->carry = 1;
 }

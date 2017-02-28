@@ -1,6 +1,6 @@
 #include "cpu.h"
 
-t_process				cpu(t_process process, char memory[MEM_SIZE])
+t_process				cpu(t_process process)
 {
 	struct s_arg		arg;
 	int					read_arg[4];

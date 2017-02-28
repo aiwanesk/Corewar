@@ -13,8 +13,15 @@
 typedef struct s_data t_data;
 typedef struct s_process t_process;
 typedef struct s_arg t_arg;
+typedef struct s_fork t_fork;
 
 struct s_dict g_tab[2];
+
+struct	s_fork{
+	//_Bool		isfork;
+	uint32_t	pc;
+};
+
 
 typedef struct		s_process{
 	uint32_t		reg[16];
@@ -25,8 +32,8 @@ typedef struct		s_process{
 	char			*name;
 	uint32_t		nb_cycle;
 	char			memory[MEM_SIZE];
+	//_Bool			isdead;
 }					t_process;
-
 
 struct	s_data{
 	char val[8];
@@ -43,7 +50,7 @@ unsigned int int_to_bin(unsigned int k);
 
 void exit_error(char *s);
 
-t_process cpu(t_process p, char memory[MEM_SIZE]);
+t_process cpu(t_process p);
 
 #define PCANDARG (process->pc + 2)
 
