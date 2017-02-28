@@ -14,7 +14,7 @@ static void		st_label(t_lex *lex)
 			ft_strchr(LABEL_CHARS, lex->code[i]) != 0x00)
 		++i;
 	if (lex->code[i] != LABEL_CHAR)
-		syntax_error(lex, "Name label, not supported caracter");
+		syntax_error(lex, i, "Name label, not supported caracter");
 }
 
 static void		st_cmd(t_lex *lex)
@@ -27,7 +27,7 @@ static void		st_cmd(t_lex *lex)
 	while (lex->code[i] && !ft_isspace(lex->code[i]))
 		++i;
 	if (!lex_is_cmd(lex->code, i))
-		syntax_error(lex, "Command name not found");
+		syntax_error(lex, i, "Command name not found");
 	while (lex->code[i] && guil < 2)
 	{
 		if (lex->code[i] == '"')
@@ -37,18 +37,20 @@ static void		st_cmd(t_lex *lex)
 	while (lex->code[i] && ft_isspace(lex->code[i]))
 		++i;
 	if (guil != 2)
-		syntax_error(lex, "Bad string delimiter");
+		syntax_error(lex, i, "Bad string delimiter");
 	if (lex->code[i])
-		syntax_error(lex, "");
+		syntax_error(lex, i, "Bad delimiter");
 }
 
-static void		st_check_arg(t_lex *lex, t_op op, char *code)
+static void		st_check_arg(t_lex *lex, t_op op, int pos)
 {
 	unsigned int	i;
 	unsigned int	nbr;
+	char			*code;
 
 	i = 0;
 	nbr = 0;
+	code = &lex->code[pos];
 	while (code[i])
 	{
 		if (i == 0 || code[i - 1] == SEPARATOR_CHAR)
@@ -56,7 +58,7 @@ static void		st_check_arg(t_lex *lex, t_op op, char *code)
 			if (!(code[i] == DIRECT_CHAR && (op.arg[nbr] & T_DIR)) && \
 				!(code[i] == 'r' && (op.arg[nbr] & T_REG)) && \
 				!(ft_isdigit(code[i]) && (op.arg[nbr] & T_IND)))
-				syntax_error(lex, "Bad argument");
+				syntax_error(lex, pos + i, "Bad argument");
 			++nbr;
 		}
 		++i;
@@ -77,7 +79,7 @@ static void		st_opcode(t_lex *lex, unsigned int j)
 	op = get_by_name(lex->code);
 	lex->code[i] = ' ';
 	if (op.code == 0x00)
-		syntax_error(lex, "Bad instruction");
+		syntax_error(lex, 0, "Bad instruction");
 	j = i;
 	while (lex->code[i])
 	{
@@ -86,10 +88,10 @@ static void		st_opcode(t_lex *lex, unsigned int j)
 		++i;
 	}
 	if (op.nbrarg != nbr)
-		syntax_error(lex, "Bad number argument instruction");
+		syntax_error(lex, 0, "Bad number argument instruction");
 	while (lex->code[j] && ft_isspace(lex->code[j]))
 		++j;
-	st_check_arg(lex, op, &lex->code[j]);
+	st_check_arg(lex, op, j);
 }
 
 void			syn_analyser(t_lex *lex)
