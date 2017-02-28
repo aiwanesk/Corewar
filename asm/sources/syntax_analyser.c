@@ -59,6 +59,8 @@ static void		st_check_arg(t_lex *lex, t_op op, int pos)
 				!(code[i] == 'r' && (op.arg[nbr] & T_REG)) && \
 				!(ft_isdigit(code[i]) && (op.arg[nbr] & T_IND)))
 				syntax_error(lex, pos + i, "Bad argument");
+			if (!syn_is_valid(&code[i]))
+				syntax_error(lex, pos + i, "Bad argument");
 			++nbr;
 		}
 		++i;

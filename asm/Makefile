@@ -7,6 +7,7 @@ SRC_NAME = main.c \
 			lex_opcode.c \
 			syntax_analyser.c \
 			syntax_error.c \
+			syntax_argument.c \
 			djb2.c \
 			opcode.c
 

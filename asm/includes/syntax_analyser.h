@@ -12,4 +12,9 @@ void			syn_analyser(t_lex *lex);
 char			*syn_err_name(char *namefile);
 void			syntax_error(t_lex *lex, int pos, char *strerr);
 
+/*
+** syntax_argument.c
+*/
+int				syn_is_valid(char *arg);
+
 #endif
