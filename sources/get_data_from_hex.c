@@ -8,6 +8,7 @@ static void				normalize_len(struct s_data *d, int val)
 
 	tmp = ft_itoa(val);
 	size = 8 - ft_strlen(tmp);
+	i = 0;
 	while (i != size)
 	{
 		d->val[i] = '0';

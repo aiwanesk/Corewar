@@ -43,7 +43,7 @@ struct s_arg{
 	int total_to_read[4];
 };
 
-struct s_arg parsing_request(t_process *p, char memory[MEM_SIZE]);
+t_arg parsing_request(t_process *p, char memory[MEM_SIZE]);
 
 struct s_data get_data_from_hex(int val);
 unsigned int int_to_bin(unsigned int k);

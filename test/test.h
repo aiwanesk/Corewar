@@ -8,10 +8,8 @@
 
 void logWriter(char *test, int success);
 
-void launcher_test_alive();
-void launcher_test_ld();
-void launcher_test_and();
-void launcher_test_or();
-void launcher_test_xor();
+void test_or();
+
+t_process create_process();
 
 #endif
