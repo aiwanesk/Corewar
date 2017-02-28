@@ -15,7 +15,7 @@ CX ?= clang++
 
 NAME = corewar
 
-CFLAGS += -g -Wall -Wextra -Werror
+CFLAGS += -O3 -g -Wall -Wextra -Werror #Don't remove -O3, tail recursive need it
 
 SOURCES_FILES = ./sources
 HEADERS_FILES = ./includes
@@ -29,14 +29,18 @@ COREDIR=../core
 
 INC = -I./includes -I$(LIBSDIR)/include -I$(COREDIR)/
 
-CLI_SRCS = 	$(SOURCES_FILES)/virtual_machine.c \
+CLI_SRCS = 	$(SOURCES_FILES)/core.c \
+			$(SOURCES_FILES)/main.c \
+			$(SOURCES_FILES)/memory.c \
+			$(SOURCES_FILES)/options.c \
 			$(SOURCES_FILES)/process.c \
 			$(SOURCES_FILES)/random.c \
-			$(SOURCES_FILES)/set_options.c \
+			$(SOURCES_FILES)/tools.c \
+			$(SOURCES_FILES)/map.c \
 
 CLI_OBJS = $(patsubst $(SOURCES_FILES)/%.c,$(OBJECTS_FILES)/%.o,$(CLI_SRCS))
 
-SRC_INCLUDE = $(HEADERS_FILES)/virtual_machine.h \
+SRC_INCLUDE = $(HEADERS_FILES)/core.h \
 
 RM ?= rm -f
 MKDIR ?= mkdir

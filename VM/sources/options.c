@@ -6,7 +6,7 @@
 
 #include <stdio.h>
 #include "libft.h"
-#include "virtual_machine.h"
+#include "core.h"
 
 static int		test_integer(char *str)
 {
@@ -46,5 +46,6 @@ t_options		parse_options(char **data, t_options opt)
 	}
 	if (*(data + 1))
 		return (parse_options(data + 1, opt));
-	return (opt);
+	else
+		return (opt);
 }

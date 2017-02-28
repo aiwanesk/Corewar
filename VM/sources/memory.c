@@ -5,7 +5,7 @@
 */
 
 
-#include "virtual_machine.h"
+#include "core.h"
 #include "libft.h"
 
 //TODO : A del if it useless
@@ -13,12 +13,10 @@
 void		print_hex(uintmax_t hex, char *base)
 {
 	int			cmp;
-	uintmax_t	x;
 	char		str[3];
 	int			len;
 
 	cmp = 0;
-	x = hex;
 	len = ft_strlen(base);
 	cmp = 2;
 	str[cmp--] = '\0';

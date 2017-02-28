@@ -7,7 +7,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <unistd.h>
-#include "virtual_machine.h"
+#include "core.h"
 #include "libft.h"
 
 void				check_random(t_process process[], int n)
@@ -29,6 +29,13 @@ void				check_random(t_process process[], int n)
 			}
 		}
 	}
+}
+
+void			ft_putnbr_uint32(uint32_t nbr)
+{
+	if (nbr / 10 != 0)
+		ft_putnbr(nbr / 10);
+	ft_putchar('0' + (nbr % 10));
 }
 
 uint32_t		djb2(const char *str)
