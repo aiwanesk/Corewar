@@ -7,8 +7,8 @@ void test_or(){
 	p.memory[100] = 7;
 	p.memory[101] = 120;
 	p.memory[102] = 10;
-	p.memory[103] = 150;
-	p.memory[104] = 150;
+	p.memory[103] = 100;
+	p.memory[104] = 120;
 	p.memory[105] = 150;
 	p.memory[106] = 10;
 	p.memory[107] = 10;

@@ -26,6 +26,7 @@ void                apply_or(t_process *process, char memory[MEM_SIZE], struct s
 	while (i < arg.total_to_read[0] + arg.total_to_read[1])
 	{
 		second += memory[PCANDARG + i];
+		printf("pc = %d memory[%u]\n", PCANDARG + i, memory[PCANDARG + i]);
 		i++;
 	}
 	reg = 0;
@@ -35,6 +36,6 @@ void                apply_or(t_process *process, char memory[MEM_SIZE], struct s
 		i++;
 	}
 	printf("debug = f[%d] s[%d] reg[%d]\n", first,second,reg);
-	process->reg[reg % REG_SIZE] = (first | second);
+	process->reg[reg % REG_NUMBER] = (first | second);
 	process->carry = 1;
 }
