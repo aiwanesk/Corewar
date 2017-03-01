@@ -41,7 +41,15 @@ t_env		load_champion(t_env env, t_options opt, int id)
 		convert_endianness(head.prog_size))) !=	convert_endianness(head.prog_size))
 		env = (t_env){.error = 1, .s_error = "Size of program doesn't match"};
 	else
-		ft_strcpy(env.process[id].name, head.prog_name);
+	{
+		ft_strncpy(env.process[id].name, head.prog_name, PROG_NAME_LENGTH);
+		ft_strncpy(env.process[id].comment, head.comment, COMMENT_LENGTH);
+	}
+	ft_putstr(C_GREEN"Load champion : ");
+	ft_putstr(env.process[id].name);
+	ft_putstr(" - ");
+	ft_putendl(env.process[id].comment);
+	ft_putstr(C_NONE);
 	close(fd);
 	return (env);
 }
