@@ -1,42 +1,68 @@
-[0;35;40mTest Normal -dump 200 -n 4 champion.c ... champion3.cor[0m
+[0;35;40mTest[0] Normal -dump 200 -n 4 champion.c ... champion3.cor[0m
+JUST A Test : champion.cor - 4
+JUST A Test : champion1.cor - 5
+JUST A Test : champion2.cor - 6
+JUST A Test : champion3.cor - 7
 opt ERROR : 0
 opt -dump : 200
 opt -n : 4
-Champion[0] : champion.cor
-Champion[1] : champion1.cor
-Champion[2] : champion2.cor
-Champion[3] : champion3.cor
+Champion[0] : champion.cor - id : 4
+Champion[1] : champion1.cor - id : 5
+Champion[2] : champion2.cor - id : 6
+Champion[3] : champion3.cor - id : 7
 [0;35;40m
-Test 200 -n 4 champion.c ... champion2.cor[0m
-opt ERROR : 1
-opt -dump : 0
-opt -n : 0
-[0;35;40m
-Test champion.c ... champion3.cor[0m
-opt ERROR : 0
-opt -dump : 0
-opt -n : 0
-[0;35;40m
-Test NULL[0m
-opt ERROR : 0
-opt -dump : 0
-opt -n : 0
-[0;35;40m
-Test -n 4 champion.c ... champion4.cor[0m
+Test[1] 200 -n 4 champion.c ... champion2.cor[0m
+JUST A Test : champion.cor - 4
+JUST A Test : champion1.cor - 5
+JUST A Test : champion2.cor - 6
 opt ERROR : 0
 opt -dump : 0
 opt -n : 4
-Champion[0] : champion.cor
-Champion[1] : champion1.cor
-Champion[2] : champion2.cor
-Champion[3] : champion3.cor
+Champion[0] : champion.cor - id : 4
+Champion[1] : champion1.cor - id : 5
+Champion[2] : champion2.cor - id : 6
 [0;35;40m
-Test -n 6 champion.c ... champion4.cor[0m
-opt ERROR : 1
+Test[2] champion.c ... champion3.cor[0m
+opt ERROR : 0
 opt -dump : 0
 opt -n : 0
+[0;35;40m
+Test[3] NULL[0m
+opt ERROR : 0
+opt -dump : 0
+opt -n : 0
+[0;35;40m
+Test[4] -n 4 champion.c ... champion4.cor[0m
+JUST A Test : champion.cor - 4
+JUST A Test : champion1.cor - 5
+JUST A Test : champion2.cor - 6
+JUST A Test : champion3.cor - 7
+JUST A Test : champion5.cor - 8
+opt ERROR : 0
+opt -dump : 0
+opt -n : 4
+Champion[0] : champion.cor - id : 4
+Champion[1] : champion1.cor - id : 5
+Champion[2] : champion2.cor - id : 6
+Champion[3] : champion3.cor - id : 7
+Champion[4] : champion5.cor - id : 8
+[0;35;40m
+Test[5] -n 6 champion.c ... champion4.cor[0m
+JUST A Test : champion.cor - 6
+JUST A Test : champion1.cor - 7
+JUST A Test : champion2.cor - 8
+JUST A Test : champion3.cor - 9
+JUST A Test : champion5.cor - 10
+opt ERROR : 0
+opt -dump : 0
+opt -n : 6
+Champion[0] : champion.cor - id : 6
+Champion[1] : champion1.cor - id : 7
+Champion[2] : champion2.cor - id : 8
+Champion[3] : champion3.cor - id : 9
+Champion[4] : champion5.cor - id : 10
 
-process.id = STRONG
+process.id = 4
 process.pc = 0
 process.reg[0] = OK
 process.alive = 0
@@ -44,7 +70,7 @@ process.nb_cycle = 0
 process.carry = 0
 
 
-process.id = STRONG
+process.id = 6
 process.pc = 2048
 process.reg[0] = OK
 process.alive = 0
@@ -52,7 +78,7 @@ process.nb_cycle = 0
 process.carry = 0
 
 
-process.id = STRONG
+process.id = 4
 process.pc = 0
 process.reg[0] = OK
 process.alive = 0
@@ -60,8 +86,56 @@ process.nb_cycle = 0
 process.carry = 0
 
 
-process.id = STRONG
-process.pc = 2048
+process.id = 6
+process.pc = 2730
+process.reg[0] = OK
+process.alive = 0
+process.nb_cycle = 0
+process.carry = 0
+
+
+process.id = 4
+process.pc = 0
+process.reg[0] = OK
+process.alive = 0
+process.nb_cycle = 0
+process.carry = 0
+
+
+process.id = 6
+process.pc = 1638
+process.reg[0] = OK
+process.alive = 0
+process.nb_cycle = 0
+process.carry = 0
+
+
+process.id = 8
+process.pc = 3276
+process.reg[0] = OK
+process.alive = 0
+process.nb_cycle = 0
+process.carry = 0
+
+
+process.id = 6
+process.pc = 0
+process.reg[0] = OK
+process.alive = 0
+process.nb_cycle = 0
+process.carry = 0
+
+
+process.id = 8
+process.pc = 1638
+process.reg[0] = OK
+process.alive = 0
+process.nb_cycle = 0
+process.carry = 0
+
+
+process.id = 10
+process.pc = 3276
 process.reg[0] = OK
 process.alive = 0
 process.nb_cycle = 0
