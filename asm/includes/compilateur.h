@@ -6,4 +6,9 @@
 */
 char			*bufferise(char *namefile);
 
+/*
+** main.c
+*/
+void			exit_main(void);
+
 #endif
