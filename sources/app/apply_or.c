@@ -14,28 +14,30 @@ void                apply_or(t_process *process, char memory[MEM_SIZE], struct s
 	//TODO CHECK les overflows sur la taille de la memoire 
 	i = 0;
 	first = 0;
-	printf("arg[0] = %d\n", arg.total_to_read[0]);
-	printf("arg[1] = %d\n", arg.total_to_read[1]);
-	printf("arg[2] = %d\n", arg.total_to_read[2]);
+//	printf("arg[0] = %d\n", arg.total_to_read[0]);
+//	printf("arg[1] = %d\n", arg.total_to_read[1]);
+//	printf("arg[2] = %d\n", arg.total_to_read[2]);
 	while (i < arg.total_to_read[0])
 	{
-		first += memory[PCANDARG + i];
+		first += memory[(PCANDARG + i) % MEM_SIZE];
+	//	printf("pc = %d memory[%u]\n", (PCANDARG + i) % MEM_SIZE, memory[(PCANDARG + i) % MEM_SIZE]);
 		i++;
 	}
 	second = 0;
 	while (i < arg.total_to_read[0] + arg.total_to_read[1])
 	{
-		second += memory[PCANDARG + i];
-		printf("pc = %d memory[%u]\n", PCANDARG + i, memory[PCANDARG + i]);
+		second += memory[(PCANDARG + i) % MEM_SIZE];
+//		printf("pc = %d memory[%u]\n", (PCANDARG + i) % MEM_SIZE, memory[(PCANDARG + i) % MEM_SIZE]);
 		i++;
 	}
 	reg = 0;
 	while (i < arg.total_to_read[0] + arg.total_to_read[1] + arg.total_to_read[2])
 	{
-		reg += memory[PCANDARG + i];
+		reg += memory[(PCANDARG + i) % MEM_SIZE];
+//		printf("pc = %d memory[%u]\n", (PCANDARG + i) % MEM_SIZE, memory[(PCANDARG + i) % MEM_SIZE]);
 		i++;
 	}
-	printf("debug = f[%d] s[%d] reg[%d]\n", first,second,reg);
+//	printf("debug = f[%d] s[%d] reg[%d]\n", first,second,reg);
 	process->reg[reg % REG_NUMBER] = (first | second);
 	process->carry = 1;
 }

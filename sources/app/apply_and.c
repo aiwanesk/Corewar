@@ -16,20 +16,20 @@ void				apply_and(t_process *process, char mem[MEM_SIZE], struct s_arg arg)
 	first = 0;
 	while (i < arg.total_to_read[0])
 	{
-		first += mem[PCANDARG + i];
+		first += mem[(PCANDARG + i) % MEM_SIZE];
 		i++;
 	}
 	second = 0;
 	while (i < arg.total_to_read[0] + arg.total_to_read[1])
 	{
-		second += mem[PCANDARG + i];
+		second += mem[(PCANDARG + i) % MEM_SIZE];
 		i++;
 	}
 	while (i < arg.total_to_read[0] + arg.total_to_read[1] + arg.total_to_read[2])
 	{
-		dest += mem[PCANDARG + i];
+		dest += mem[(PCANDARG + i) % MEM_SIZE];
 		i++;
 	}
-	process->reg[dest] = (first & second);
+	process->reg[dest % REG_NUMBER] = (first & second);
 	process->carry = 1;
 }

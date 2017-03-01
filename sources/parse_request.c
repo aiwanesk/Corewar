@@ -29,9 +29,11 @@ struct s_arg			parsing_request(t_process *p, char memory[MEM_SIZE])
 	struct s_arg	ret;
 	char			*tmp;
 
-	op_code = memory[p->pc];//FOR DEBUG ONLY
-	//	printf("op code == [%d]\n", op_code);
-	if ((op_code = memory[p->pc]) < 17 && op_code >= 0 && g_tab[op_code].cycle <= p->nb_cycle)
+	op_code = memory[p->pc % MEM_SIZE];//FOR DEBUG ONLY
+	printf("op code == [%d]\n", op_code);
+	printf("pc  == [%d]\n", p->pc);
+
+	if (op_code < 17 && op_code >= 0 && g_tab[op_code].cycle <= p->nb_cycle)
 	{
 		//read_arg
 		if (op_code == 1 || op_code == 9 || op_code == 12)
@@ -55,8 +57,8 @@ struct s_arg			parsing_request(t_process *p, char memory[MEM_SIZE])
 		{
 			//TODO je pense que les args sont toujours valide je me trompe?
 			//check_arg_validity(p, );
-			tmp = ft_strdup(get_data_from_hex(memory[p->pc + 1]).val);
-	//		printf("val = [%s]\n", tmp);
+			tmp = ft_strdup(get_data_from_hex(memory[(p->pc + 1) % MEM_SIZE]).val);
+			printf("val = [%s]\n", tmp);
 			int i = 0;
 			for (; i < 8; i += 2)
 			{

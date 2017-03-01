@@ -15,21 +15,21 @@ void                apply_xor(t_process *process, char memory[MEM_SIZE], struct 
 	first = 0;
 	while (i < arg.total_to_read[0])
 	{
-		first += memory[PCANDARG + i];
+		first += memory[(PCANDARG + i) % MEM_SIZE];
 		i++;
 	}
 	second = 0;
 	while (i < arg.total_to_read[0] + arg.total_to_read[1])
 	{
-		second += memory[PCANDARG + i];
+		second += memory[(PCANDARG + i) % MEM_SIZE];
 		i++;
 	}
 	reg = 0;
 	while (i < arg.total_to_read[0] + arg.total_to_read[1] + arg.total_to_read[2])
 	{
-		reg += memory[PCANDARG + i];
+		reg += memory[(PCANDARG + i) % MEM_SIZE];
 		i++;
 	}
-	process->reg[reg] = (first ^ second);
+	process->reg[reg % REG_NUMBER] = (first ^ second);
 	process->carry = 1;
 }
