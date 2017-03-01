@@ -13,6 +13,8 @@ void test_and();
 void test_xor();
 void test_add();
 void test_sub();
+void test_ld();
+void test_st();
 void test_data_from_hex();
 
 t_process create_process();

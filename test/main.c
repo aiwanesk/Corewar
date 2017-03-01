@@ -6,5 +6,7 @@ int main(){
 	test_and();
 	test_xor();
 	test_add();
+	test_st();
+	test_ld();
 	return (0);
 }

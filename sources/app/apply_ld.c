@@ -1,10 +1,5 @@
 #include "../../includes/cpu.h"
 
-/*
- * fill process->reg[registre] with value v;
- * technically i don't have to check the <registre> value , because it's send by the vm.
- */
-
 void					apply_ld(t_process *process, char memory[MEM_SIZE], struct s_arg arg)
 {
 	int				i;
@@ -24,6 +19,10 @@ void					apply_ld(t_process *process, char memory[MEM_SIZE], struct s_arg arg)
 		reg += memory[PCANDARG + i];
 		i++;
 	}
-	process->reg[reg] = first % IDX_MOD;
+	if (arg.total_to_read[0] == 1)
+		first = process->reg[reg % REG_NUMBER];
+	if (arg.total_to_read[1] == 1)
+		first = process->reg[first % REG_NUMBER];
+	process->memory[reg % REG_NUMBER] = process->memory[(process->pc + (first % IDX_MOD))  % MEM_SIZE];
 	process->carry = 1;
 }

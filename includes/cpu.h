@@ -62,10 +62,12 @@ void				apply_xor(t_process *process, char memory[MEM_SIZE], t_arg arg);
 
 void				apply_add(t_process *process, char memory[MEM_SIZE], t_arg arg);
 void				apply_sub(t_process *process, char memory[MEM_SIZE], t_arg arg);
-//TODO this test
-void				apply_live(t_process *process, char memory[MEM_SIZE]);
+
 void				apply_ld(t_process *process, char memory[MEM_SIZE], t_arg arg);
 void				apply_st(t_process *process, t_arg arg);
+//TODO this test
+
+void				apply_live(t_process *process, char memory[MEM_SIZE]);
 void				apply_zjmp(t_process *process, char memory[MEM_SIZE], t_arg arg);
 void				apply_ldi(t_process *process, char memory[MEM_SIZE], t_arg arg);
 void				apply_sti(t_process *process, t_arg arg);

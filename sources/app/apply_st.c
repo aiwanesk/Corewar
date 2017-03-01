@@ -16,13 +16,18 @@ void				apply_st(t_process *process, struct s_arg arg)
 	reg = 0;
 	while (i < arg.total_to_read[0])
 	{
-		reg += process->memory[PCANDARG + i];
+		reg += process->memory[(PCANDARG + i) % MEM_SIZE];
 		i++;
 	}
+	second = 0;
 	while (i < arg.total_to_read[0] + arg.total_to_read[1])
 	{
-		second += process->memory[PCANDARG + i];
+		second += process->memory[(PCANDARG + i) % MEM_SIZE];
 		i++;
 	}
-	process->memory[process->pc + (second % IDX_MOD)] = process->reg[reg];
+	if (arg.total_to_read[0] == 1)
+		reg = process->reg[reg % REG_NUMBER];
+	if (arg.total_to_read[1] == 1)
+		second = process->reg[second % REG_NUMBER];
+	process->memory[(process->pc + (second % IDX_MOD)) % MEM_SIZE] = process->reg[reg % REG_NUMBER];
 }
