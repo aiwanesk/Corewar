@@ -2,19 +2,25 @@
 
 int						int_to_read(char *t, int i, int op)
 {
-	char	tmp[2];
+	char	tmp[3];
+	int		ret;
 
 	tmp[0] = t[i];
 	tmp[1] = t[i + 1];
+	tmp[2] = '\0';
+	ret = 0;
+	//printf("entree = [%s]\n", tmp);
+
 	if (ft_strcmp(tmp, "11") == 0)
-		return (2);
+		ret = 2;
 	else if (ft_strcmp(tmp, "01") == 0)
-		return (1);
+		ret = 1;
 	else if (ft_strcmp(tmp, "10") == 0 && op >= 10 && op != 13)
-		return (2);
+		ret = (2);
 	else if (ft_strcmp(tmp, "10") == 0 && op < 10)
-		return (4);
-	return (0);
+		ret =  (4);
+	//printf("int_to_read [%d]\n", ret);
+	return (ret);
 }
 
 struct s_arg			parsing_request(t_process *p, char memory[MEM_SIZE])
@@ -23,6 +29,8 @@ struct s_arg			parsing_request(t_process *p, char memory[MEM_SIZE])
 	struct s_arg	ret;
 	char			*tmp;
 
+	op_code = memory[p->pc];//FOR DEBUG ONLY
+	//	printf("op code == [%d]\n", op_code);
 	if ((op_code = memory[p->pc]) < 17 && op_code >= 0 && g_tab[op_code].cycle <= p->nb_cycle)
 	{
 		//read_arg
@@ -48,10 +56,12 @@ struct s_arg			parsing_request(t_process *p, char memory[MEM_SIZE])
 			//TODO je pense que les args sont toujours valide je me trompe?
 			//check_arg_validity(p, );
 			tmp = ft_strdup(get_data_from_hex(memory[p->pc + 1]).val);
+	//		printf("val = [%s]\n", tmp);
 			int i = 0;
-			for (; i < 7; i += 2)
+			for (; i < 8; i += 2)
 			{
 				ret.total_to_read[i / 2] = int_to_read(tmp, i, op_code);
+				printf("debug = %d\n", ret.total_to_read[i / 2]);
 			}
 			free(tmp);
 		}

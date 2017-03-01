@@ -1,11 +1,11 @@
 #include "../includes/cpu.h"
 
 static void display(t_process p){
-	printf("pc = %d\n", p.pc);
+//	printf("pc = %d\n", p.pc);
 	int i = 0;
-	for (i = 0; i < 16; i++){
-		printf("pc.reg[%d] = %d\n", i, p.reg[i]);
-	}
+//	for (i = 0; i < 16; i++){
+//		printf("pc.reg[%d] = %d\n", i, p.reg[i]);
+//	}
 }
 
 t_process				cpu(t_process process)
@@ -13,7 +13,7 @@ t_process				cpu(t_process process)
 	t_arg		arg;
 
 	arg = parsing_request(&process, process.memory);
-	printf("db cycle = [%d]\n", process.nb_cycle);
+//	printf("db cycle = [%d]\n", process.nb_cycle);
 	//printf("memory[process.pc] = %d\n", proess.memory[process.pc]);
 	if (process.memory[process.pc] == 1 && process.nb_cycle >= 10)
 		apply_live(&process, process.memory);

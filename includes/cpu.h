@@ -36,7 +36,7 @@ typedef struct		s_process{
 }					t_process;
 
 struct	s_data{
-	char val[8];
+	char val[9];
 };
 
 struct s_arg{
@@ -73,5 +73,7 @@ void				apply_lld(t_process *process, char memory[MEM_SIZE], t_arg arg);
 void				apply_lldi(t_process *process, char memory[MEM_SIZE], t_arg arg);
 void				apply_lfork(t_process *process, t_arg arg);
 void				apply_aff(t_process *process, char memory[MEM_SIZE], t_arg arg);
+
+int					int_to_read(char *t, int i, int op);
 
 #endif

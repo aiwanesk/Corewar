@@ -12,7 +12,11 @@ t_process		create_process(){
 	ret.carry = 0;
 	ret.name = strdup("salut");
 	ret.nb_cycle = 0;
-	for (i = 0; i < MEM_SIZE; i++)
-		ret.memory[i] =  100;
+	for (i = 0; i < MEM_SIZE; i++){
+		ret.memory[i] =  i % MEM_SIZE;
+//		printf("%d", ret.memory[i]);
+//		if (i + 1 % 100 == 0)
+//			printf("\n");
+	}
 	return ret;
 }

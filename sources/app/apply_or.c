@@ -11,8 +11,12 @@ void                apply_or(t_process *process, char memory[MEM_SIZE], struct s
 	uint32_t		second;
 	uint32_t		reg;
 
+	//TODO CHECK les overflows sur la taille de la memoire 
 	i = 0;
 	first = 0;
+	printf("arg[0] = %d\n", arg.total_to_read[0]);
+	printf("arg[1] = %d\n", arg.total_to_read[1]);
+	printf("arg[2] = %d\n", arg.total_to_read[2]);
 	while (i < arg.total_to_read[0])
 	{
 		first += memory[PCANDARG + i];
@@ -31,6 +35,6 @@ void                apply_or(t_process *process, char memory[MEM_SIZE], struct s
 		i++;
 	}
 	printf("debug = f[%d] s[%d] reg[%d]\n", first,second,reg);
-	process->reg[reg  % MEM_SIZE] = (first | second);
+	process->reg[reg % REG_SIZE] = (first | second);
 	process->carry = 1;
 }

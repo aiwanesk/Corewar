@@ -21,7 +21,8 @@ static void				normalize_len(struct s_data *d, int val)
 		i++;
 		size++;
 	}
-	free(tmp);
+	d->val[8] = '\0';
+//	free(tmp);
 }
 
 struct s_data			get_data_from_hex(int val)
