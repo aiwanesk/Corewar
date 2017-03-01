@@ -55,8 +55,8 @@ t_process		cpu(t_process process)
 		process.pc = 10;
 		++test;
 	}
-	dprintf(1, "Champion %s execute une fonction cpu\n", process.name);
-	dprintf(1, "On execute des truc sur le process : %u\n", process.id);
+	dprintf(STDERR, "Champion %s execute une fonction cpu\n", process.name);
+	dprintf(STDERR, "On execute des truc sur le process : %u\n", process.id);
 	return (process);
 }
 

@@ -34,7 +34,8 @@ struct					s_options
 {
 	int				dumpcycle;
 	unsigned int	nbchampions;
-	char			*champions[MAX_PLAYERS];
+	char			*champions[MAX_PLAYERS + 1];
+	int				id[MAX_PLAYERS + 1];
 	int				error;
 };
 
@@ -87,6 +88,7 @@ int						winner(t_process process);
 ** #2 -n `X` file.cor --> insert into VM `X` champions
 */
 t_options				parse_options(char **data, t_options opt);
+int						error_options(t_options opt);
 
 /*
 ** memory.c file

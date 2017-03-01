@@ -13,7 +13,7 @@ int				main(int argc, char **argv)
 		ft_putstr_fd("Please check option : ", STDERR);
 		ft_putendl_fd("[-dump nbr_cycles] [[-n number] champion1.cor]", STDERR);
 	}
-	else
+	else if (error_options(opts))
 	{
 		if ((env = init_core(opts)).error)
 		{
