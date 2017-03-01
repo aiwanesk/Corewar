@@ -5,5 +5,6 @@ int main(){
 	test_or();
 	test_and();
 	test_xor();
+	test_add();
 	return (0);
 }

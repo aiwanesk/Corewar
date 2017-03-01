@@ -11,7 +11,7 @@ t_process		create_process(){
 	ret.alive = 1;
 	ret.carry = 0;
 	ret.name = strdup("salut");
-	ret.nb_cycle = 0;
+	ret.nb_cycle = 1900;
 	for (i = 0; i < MEM_SIZE; i++){
 		ret.memory[i] =  i % MEM_SIZE;
 //		printf("%d", ret.memory[i]);

@@ -69,6 +69,6 @@ struct s_arg			parsing_request(t_process *p, char memory[MEM_SIZE])
 		}
 	}
 	else
-		p->nb_cycle = 0;
+		p->nb_cycle -= 1;
 	return (ret);
 }
