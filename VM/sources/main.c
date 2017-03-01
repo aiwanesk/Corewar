@@ -8,7 +8,7 @@ int				main(int argc, char **argv)
 
 	(void)argc;
 	opts = parse_options(&argv[1], (t_options){.error = 0, .dumpcycle = -1});
-	if (opts.nbchampions < 2 || opts.error == 1)
+	if (opts.nbchampions < 1 || opts.error == 1)
 	{
 		ft_putstr_fd("Please check option : ", STDERR);
 		ft_putendl_fd("[-dump nbr_cycles] [[-n number] champion1.cor]", STDERR);

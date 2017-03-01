@@ -46,6 +46,7 @@ struct					s_process
 	uint32_t		alive;
 	uint32_t		nb_cycle;
 	char			name[PROG_NAME_LENGTH + 1];
+	char			comment[COMMENT_LENGTH + 1];
 	unsigned char	carry;
 	uint32_t		*memory;
 	_Bool			isdead;
@@ -62,6 +63,8 @@ struct					s_env
 	_Bool			error;
 	char			*s_error;
 	_Bool			run;
+	uint32_t		nblive;
+	uint32_t		check;
 };
 
 struct				s_test
@@ -120,11 +123,11 @@ t_process				new_process(t_options opt, int id);
 t_env					create_process(t_env env, t_options opt);
 uint32_t				process_alive(t_env env);
 t_process				get_process_by_id(t_env env, uint32_t id);
-t_env					process_map(t_env env, t_env (*fct)(t_env env, int i));
 
 /*
 ** map.c file
 */
+t_env					process_map(t_env env, t_env (*fct)(t_env env, int i));
 t_env					add_cycle(t_env env, int i);
 t_env					process_live(t_env env, int i);
 t_env					execute_cpu(t_env env, int i);

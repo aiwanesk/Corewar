@@ -55,31 +55,46 @@ t_process		cpu(t_process process)
 		process.pc = 10;
 		++test;
 	}
+	dprintf(1, "Champion %s execute une fonction cpu\n", process.name);
 	dprintf(1, "On execute des truc sur le process : %u\n", process.id);
 	return (process);
 }
 
+t_process		get_last_player(t_env env)
+{
+	uint32_t	i;
+
+	i = 0;
+	while (i < env.nbprocess)
+	{
+		if (env.process[i].isdead == FALSE)
+			return (env.process[i]);
+		++i;
+	}
+	return (MATCH_NULL);
+}
+
 void				core(t_env env, uint32_t cycles)
 {
-	uint32_t		id;
-
 	if (env.dump > 0 && cycles >= env.dump)
 	{
 		print_memory(env.memory);
-		env.run = FALSE;
+		return ;
 	}
-	if (env.cycle_to_die <= 0)
-		env.run = winner(MATCH_NULL);
 	else if (cycles >= env.cycle_to_die)
 	{
 		env = process_map(env, &process_live);
 		cycles = cycles % env.cycle_to_die;
 	}
-	if ((id = process_alive(env)) > 0)
-		env.run = winner(get_process_by_id(env, id));
+	if (process_alive(env) <= 1)
+	{
+		winner(get_last_player(env));
+		return ;
+	}
+	if (env.cycle_to_die <= 0)
+		winner(MATCH_NULL);
 	env = process_map(env, &add_cycle);
 	env = process_map(env, &execute_cpu);
 	env = process_map(env, &create_fork);
-	if (env.run)
-		core(env, ++cycles);
+	core(env, ++cycles);
 }
