@@ -16,5 +16,5 @@ void						apply_lfork(t_process *p, t_arg arg)
 		f += p->memory[p->pc + 1 + i];
 		i++;
 	}
-	//fork.pc = p->pc + (f);
+	p->fork.pc = p->pc + (f);
 }

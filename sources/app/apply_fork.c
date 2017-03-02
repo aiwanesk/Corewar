@@ -16,5 +16,5 @@ void						apply_fork(t_process *p, t_arg arg)
 		f += p->memory[p->pc + 1 + i];
 		i++;
 	}
-	//fork.pc =  p->pc + (f % IDX_MOD);
+	p->fork.pc =  p->pc + (f % IDX_MOD);
 }

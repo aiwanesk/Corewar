@@ -5,6 +5,7 @@
 # include "op.h"
 
 #include <stdint.h>
+#include <stdbool.h>
 #include <stdio.h> //for debug purpose only
 #define CGREEN "\033[32m"
 #define CRED "\033[31m"
@@ -18,7 +19,7 @@ typedef struct s_fork t_fork;
 struct s_dict g_tab[2];
 
 struct	s_fork{
-	//_Bool		isfork;
+	bool		isfork;
 	uint32_t	pc;
 };
 
@@ -31,8 +32,9 @@ typedef struct		s_process{
 	unsigned char	carry;
 	char			*name;
 	uint32_t		nb_cycle;
-	unsigned char			memory[MEM_SIZE];
-	//_Bool			isdead;
+	unsigned char	memory[MEM_SIZE];
+	bool			isdead;
+	t_fork			fork;
 }					t_process;
 
 struct	s_data{
