@@ -6,7 +6,7 @@ paramètres derrière cette opération dont l’opcode est de 9. Elle prendra un
 	et fait un saut à cette adresse si le carry est à 1.
 */
 
-void					apply_zjmp(t_process *p, char mem[MEM_SIZE], t_arg arg)
+void					apply_zjmp(t_process *p, unsigned char mem[MEM_SIZE], t_arg arg)
 {
 	int			i;
 	uint32_t	dest;

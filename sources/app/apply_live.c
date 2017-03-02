@@ -1,6 +1,6 @@
 #include "../../includes/cpu.h"
 
-void				apply_live(t_process *process, char memory[MEM_SIZE])
+void				apply_live(t_process *process, unsigned char memory[MEM_SIZE])
 {
 	int		i;
 	int		total;

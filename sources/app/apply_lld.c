@@ -5,7 +5,7 @@
  * technically i don't have to check the <registre> value , because it's send by the vm.
  */
 
-void					apply_lld(t_process *process, char memory[MEM_SIZE], struct s_arg arg)
+void					apply_lld(t_process *process, unsigned char memory[MEM_SIZE], struct s_arg arg)
 {
 	int				i;
 	uint32_t		first;

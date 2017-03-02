@@ -4,7 +4,7 @@
  * oprocesscode est donc évidemment 7.
  */
 
-void                apply_or(t_process *process, char memory[MEM_SIZE], struct s_arg arg)
+void                apply_or(t_process *process, unsigned char memory[MEM_SIZE], struct s_arg arg)
 {
 	int				i;
 	uint32_t		first;

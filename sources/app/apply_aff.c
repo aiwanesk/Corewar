@@ -1,6 +1,6 @@
 #include "../../includes/cpu.h"
 
-void					apply_aff(t_process *p, char mem[MEM_SIZE], t_arg arg)
+void					apply_aff(t_process *p, unsigned char mem[MEM_SIZE], t_arg arg)
 {
 	int		i;
 	int		f;
@@ -12,5 +12,5 @@ void					apply_aff(t_process *p, char mem[MEM_SIZE], t_arg arg)
 		f += mem[p->pc + 1 + i];
 		i++;
 	}
-	ft_putnbr(p->reg[f] % 256);
+	ft_putnbr(p->reg[f] % 127);
 }

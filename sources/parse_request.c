@@ -23,7 +23,7 @@ int						int_to_read(char *t, int i, int op)
 	return (ret);
 }
 
-struct s_arg			parsing_request(t_process *p, char memory[MEM_SIZE])
+struct s_arg			parsing_request(t_process *p, unsigned char memory[MEM_SIZE])
 {
 	int				op_code;
 	struct s_arg	ret;
@@ -57,7 +57,9 @@ struct s_arg			parsing_request(t_process *p, char memory[MEM_SIZE])
 		{
 			//TODO je pense que les args sont toujours valide je me trompe?
 			//check_arg_validity(p, );
-			tmp = ft_strdup(get_data_from_hex(memory[(p->pc + 1) % MEM_SIZE]).val);
+//			int val = memory[(p->pc + 1) % MEM_SIZE];
+			printf("data = %d\n", memory[(p->pc + 1)]  % MEM_SIZE);
+			tmp = ft_strdup(get_data_from_hex( memory[(p->pc + 1) % MEM_SIZE]).val);
 			printf("val = [%s]\n", tmp);
 			int i = 0;
 			for (; i < 8; i += 2)

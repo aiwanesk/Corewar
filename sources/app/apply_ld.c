@@ -1,6 +1,6 @@
 #include "../../includes/cpu.h"
 
-void					apply_ld(t_process *process, char memory[MEM_SIZE], struct s_arg arg)
+void					apply_ld(t_process *process, unsigned char memory[MEM_SIZE], struct s_arg arg)
 {
 	int				i;
 	uint32_t		first;
@@ -19,6 +19,7 @@ void					apply_ld(t_process *process, char memory[MEM_SIZE], struct s_arg arg)
 		reg += memory[PCANDARG + i];
 		i++;
 	}
+	printf("f = %d\nreg = %d\n", first, reg);
 	if (arg.total_to_read[0] == 1)
 		first = process->reg[reg % REG_NUMBER];
 	if (arg.total_to_read[1] == 1)

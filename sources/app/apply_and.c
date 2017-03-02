@@ -5,7 +5,7 @@ and : Applique un & (ET bit-à-bit) sur les deux premiers paramètres, et stocke
 résultat dans le registre qui est le 3ème paramètre. Opcode 0x06. Modifie le carry.
 */
 
-void				apply_and(t_process *process, char mem[MEM_SIZE], struct s_arg arg)
+void				apply_and(t_process *process, unsigned char mem[MEM_SIZE], struct s_arg arg)
 {
 	int				i;
 	uint32_t		first;

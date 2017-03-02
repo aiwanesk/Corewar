@@ -5,7 +5,7 @@ add : Opcode 4. Prend trois registres, additionne les 2 premiers, et met le rés
 dans le troisième, juste avant de modifier le carry.
 */
 
-void				apply_add(struct s_process *process, char memory[MEM_SIZE], t_arg arg)
+void				apply_add(struct s_process *process, unsigned char memory[MEM_SIZE], t_arg arg)
 {
 	int					i;
 	uint32_t			first;
