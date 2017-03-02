@@ -69,14 +69,15 @@ void				apply_st(t_process *process, t_arg arg);
 void				apply_aff(t_process *process, unsigned char memory[MEM_SIZE], t_arg arg);
 void				apply_fork(t_process *process, t_arg arg);
 void				apply_lfork(t_process *process, t_arg arg);
-//TODO this test
 
-void				apply_live(t_process *process, unsigned char memory[MEM_SIZE]);
-void				apply_zjmp(t_process *process, unsigned char memory[MEM_SIZE], t_arg arg);
 void				apply_ldi(t_process *process, unsigned char memory[MEM_SIZE], t_arg arg);
 void				apply_sti(t_process *process, t_arg arg);
 void				apply_lld(t_process *process, unsigned char memory[MEM_SIZE], t_arg arg);
 void				apply_lldi(t_process *process, unsigned char memory[MEM_SIZE], t_arg arg);
+//TODO this test
+
+void				apply_live(t_process *process, unsigned char memory[MEM_SIZE]);
+void				apply_zjmp(t_process *process, unsigned char memory[MEM_SIZE], t_arg arg);
 
 int					int_to_read(char *t, int i, int op);
 

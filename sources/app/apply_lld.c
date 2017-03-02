@@ -24,6 +24,10 @@ void					apply_lld(t_process *process, unsigned char memory[MEM_SIZE], struct s_
 		reg += memory[PCANDARG + i];
 		i++;
 	}
-	process->reg[reg] = first;
+	if (arg.total_to_read[0] == 1)
+		first = process->reg[reg % REG_NUMBER];
+	if (arg.total_to_read[1] == 1)
+		reg = process->reg[reg % REG_NUMBER];
+	process->reg[reg % REG_NUMBER] = process->memory[(process->pc + first) % MEM_SIZE];
 	process->carry = 1;
 }

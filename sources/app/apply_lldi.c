@@ -24,11 +24,12 @@ void				apply_lldi(t_process *process, unsigned char mem[MEM_SIZE], t_arg arg)
 		second += mem[PCANDARG + i];
 		i++;
 	}
+	reg = 0;
 	while (i < arg.total_to_read[0] + arg.total_to_read[1] + arg.total_to_read[2])
 	{
 		reg += mem[PCANDARG + i];
 		i++;
 	}
-	//TODO clairement pas sur du comportement de celui la 
-	process->reg[reg] = mem[first + second] % IDX_MOD;
+	process->reg[reg % REG_NUMBER] = mem[(first + second) % MEM_SIZE];
+	process->carry = 1;
 }

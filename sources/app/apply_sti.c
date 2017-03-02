@@ -34,5 +34,5 @@ void				apply_sti(t_process *process, t_arg arg)
 		f = process->reg[f];
 	if (arg.total_to_read[2] == 1)
 		s = process->reg[s];
-	process->memory[f + s] = process->reg[reg];
+	process->memory[(f + s)  % MEM_SIZE] = process->reg[reg % REG_NUMBER];
 }
