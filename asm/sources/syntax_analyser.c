@@ -42,31 +42,6 @@ static void		st_cmd(t_lex *lex)
 		syntax_error(lex, i, "Bad delimiter");
 }
 
-static void		st_check_arg(t_lex *lex, t_op op, int pos)
-{
-	unsigned int	i;
-	unsigned int	nbr;
-	char			*code;
-
-	i = 0;
-	nbr = 0;
-	code = &lex->code[pos];
-	while (code[i])
-	{
-		if (i == 0 || code[i - 1] == SEPARATOR_CHAR)
-		{
-			if (!(code[i] == DIRECT_CHAR && (op.arg[nbr] & T_DIR)) && \
-				!(code[i] == 'r' && (op.arg[nbr] & T_REG)) && \
-				!(ft_isdigit(code[i]) && (op.arg[nbr] & T_IND)))
-				syntax_error(lex, pos + i, "Bad argument");
-			if (!syn_is_valid(&code[i]))
-				syntax_error(lex, pos + i, "Bad argument");
-			++nbr;
-		}
-		++i;
-	}
-}
-
 static void		st_opcode(t_lex *lex, unsigned int j)
 {
 	unsigned int	i;
@@ -93,7 +68,7 @@ static void		st_opcode(t_lex *lex, unsigned int j)
 		syntax_error(lex, 0, "Bad number argument instruction");
 	while (lex->code[j] && ft_isspace(lex->code[j]))
 		++j;
-	st_check_arg(lex, op, j);
+	syn_check_arg(lex, op, j);
 }
 
 void			syn_analyser(t_lex *lex)

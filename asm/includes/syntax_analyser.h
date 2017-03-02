@@ -1,6 +1,9 @@
 #ifndef SYNTAX_ANALYSER_H
 # define SYNTAX_ANALYSER_H
 
+# include <opcode.h>
+# include <struct_lex.h>
+
 /*
 ** syntax_analyser.c
 */
@@ -15,6 +18,6 @@ void			syntax_error(t_lex *lex, int pos, char *strerr);
 /*
 ** syntax_argument.c
 */
-int				syn_is_valid(char *arg);
+void			syn_check_arg(t_lex *lex, t_op op, int pos);
 
 #endif

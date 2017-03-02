@@ -1,29 +1,60 @@
 #include <libft.h>
 #include <op.h>
+#include <opcode.h>
+#include <struct_lex.h>
+#include <syntax_analyser.h>
 
-int				syn_is_valid(char *arg)
+#include <stdio.h> // TODO DEBUG
+
+static void		st_is_valid(char *arg, char *mask, unsigned int i)
 {
-	unsigned int	i;
-	char			ret;
-
-	ret = 0;
 	if (arg[0] == 'r')
 	{
 		if (ft_atoi(&arg[1]) <= 16 && ft_atoi(&arg[1]) > 0)
-			ret = 1;
+			*mask = T_REG;
 	}
 	else
 	{
-		if (arg[1] == LABEL_CHAR)
-			ret = 1;
+		*mask = T_IND;
+		if (arg[0] == DIRECT_CHAR)
+		{
+			*mask = T_DIR;
+			++arg;
+		}
+		if (arg[0] == LABEL_CHAR)
+			return ;
 		else
 		{
-			i = 1;
+			i = (arg[0] == '-') ? 1 : 0;
 			while (arg[i] && arg[i] != SEPARATOR_CHAR && ft_isdigit(arg[i]))
 				++i;
-			if (arg[i] == '\0' || arg[i] == SEPARATOR_CHAR)
-				ret = 1;
+			if (arg[i] != '\0' && arg[i] != SEPARATOR_CHAR && !ft_isspace(arg[i]))
+				*mask = 0;
 		}
 	}
-	return (ret);
+}
+
+void			syn_check_arg(t_lex *lex, t_op op, int pos)
+{
+	unsigned int	i;
+	unsigned int	nbr;
+	char			*code;
+	char			mask;
+
+	i = 0;
+	nbr = 0;
+	code = &lex->code[pos];
+	while (code[i])
+	{
+		if (i == 0 || code[i - 1] == SEPARATOR_CHAR)
+		{
+			st_is_valid(&code[i], &mask, 0);
+			if (mask == 0)
+				syntax_error(lex, pos + i, "Bad argument");
+			if (!(op.arg[nbr] & mask) && !(op.arg[nbr] & mask) && !(op.arg[nbr] & mask))
+				syntax_error(lex, pos + i, "Bad argument");
+			++nbr;
+		}
+		++i;
+	}
 }
