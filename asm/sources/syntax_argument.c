@@ -48,6 +48,7 @@ void			syn_check_arg(t_lex *lex, t_op op, int pos)
 	{
 		if (i == 0 || code[i - 1] == SEPARATOR_CHAR)
 		{
+			mask = 0;
 			st_is_valid(&code[i], &mask, 0);
 			if (mask == 0)
 				syntax_error(lex, pos + i, "Bad argument");
