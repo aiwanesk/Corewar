@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <lexical_analyser.h>
 #include <syntax_analyser.h>
+#include <label.h>
 #include <compilateur.h>
 #include <error.h>
 
@@ -28,6 +29,7 @@ int			main(int ac, char **av)
 	err_name(av[1]);
 	syn_analyser(lex_analyser(*code));
 	free(*code);
+	lab_free();
 	return (0);
 }
 
@@ -37,6 +39,7 @@ void		exit_main(void)
 
 	code = st_get();
 	free(*code);
+	lab_free();
 	free_lex();
 	exit(2);
 }
