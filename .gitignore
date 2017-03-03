@@ -33,3 +33,6 @@ libs*
 # Debug files
 *.dSYM/
 *.su
+
+# vim file temporaire
+*.swp

@@ -44,8 +44,6 @@ int			winner(t_process process)
 	return (FALSE);
 }
 
-//TODO : DEL FUNCTION
-
 t_process		get_last_player(t_env env)
 {
 	uint32_t	i;
