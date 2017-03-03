@@ -16,7 +16,7 @@ t_lex			*get_lex(void)
 	return (lex->next);
 }
 
-void			new_lex(char *code, e_Type type, int ligne)
+void			new_lex(char *code, enum e_type type, int ligne)
 {
 	t_lex		*new;
 	t_lex		*lex;

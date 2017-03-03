@@ -13,7 +13,7 @@ static char		**st_get(void)
 	return (&str);
 }
 
-int			main(int ac, char **av)
+int				main(int ac, char **av)
 {
 	char	**code;
 
@@ -29,11 +29,12 @@ int			main(int ac, char **av)
 	err_name(av[1]);
 	syn_analyser(lex_analyser(*code));
 	free(*code);
+	free_lex();
 	lab_free();
 	return (0);
 }
 
-void		exit_main(void)
+void			exit_main(void)
 {
 	char	**code;
 

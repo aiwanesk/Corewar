@@ -4,8 +4,6 @@
 #include <struct_lex.h>
 #include <syntax_analyser.h>
 
-#include <stdio.h> // TODO DEBUG
-
 static void		st_is_valid(char *arg, char *mask, unsigned int i)
 {
 	if (arg[0] == 'r')
@@ -28,7 +26,8 @@ static void		st_is_valid(char *arg, char *mask, unsigned int i)
 			i = (arg[0] == '-') ? 1 : 0;
 			while (arg[i] && arg[i] != SEPARATOR_CHAR && ft_isdigit(arg[i]))
 				++i;
-			if (arg[i] != '\0' && arg[i] != SEPARATOR_CHAR && !ft_isspace(arg[i]))
+			if (arg[i] != '\0' && arg[i] != SEPARATOR_CHAR && \
+					!ft_isspace(arg[i]))
 				*mask = 0;
 		}
 	}
@@ -52,7 +51,8 @@ void			syn_check_arg(t_lex *lex, t_op op, int pos)
 			st_is_valid(&code[i], &mask, 0);
 			if (mask == 0)
 				syntax_error(lex, pos + i, "Bad argument");
-			if (!(op.arg[nbr] & mask) && !(op.arg[nbr] & mask) && !(op.arg[nbr] & mask))
+			if (!(op.arg[nbr] & mask) && !(op.arg[nbr] & mask) && \
+					!(op.arg[nbr] & mask))
 				syntax_error(lex, pos + i, "Bad argument");
 			++nbr;
 		}
