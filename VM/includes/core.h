@@ -48,14 +48,14 @@ struct					s_process
 	char			name[PROG_NAME_LENGTH + 1];
 	char			comment[COMMENT_LENGTH + 1];
 	unsigned char	carry;
-	uint32_t		*memory;
+	unsigned char	*memory;
 	_Bool			isdead;
 	t_fork			fork;
 };
 
 struct					s_env
 {
-	uint32_t		memory[MEM_SIZE];
+	unsigned char	memory[MEM_SIZE];
 	uint32_t		dump;
 	unsigned int	cycle_to_die;
 	unsigned int	nbprocess;
@@ -92,10 +92,11 @@ t_options				parse_options(char **data, t_options opt);
 ** memory.c file
 ** function handle memory
 */
-void					write_memory(uint32_t *memory, uint32_t addr, uint32_t val);
-uint32_t				read_memory(uint32_t *memory, uint32_t addr);
-void					cpy_memory(uint32_t *memory, uint32_t *cpy);
-void					print_memory(uint32_t *memory);
+void					write_memory(unsigned char *memory, uint32_t addr,
+														uint32_t val);
+unsigned char			read_memory(unsigned char *memory, uint32_t addr);
+void					cpy_memory(unsigned char *memory, uint32_t *cpy);
+void					print_memory(unsigned char *memory);
 
 t_process				cpu(t_process process);
 
