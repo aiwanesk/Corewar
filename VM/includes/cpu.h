@@ -6,7 +6,7 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 14:52:48 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/03 18:09:39 by aiwanesk         ###   ########.fr       */
+/*   Updated: 2017/03/03 18:26:39 by aiwanesk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void				apply_sub(t_process *process,
 
 void				apply_ld(t_process *process,
 		unsigned char memory[MEM_SIZE], t_arg arg);
-void				apply_st(t_process *process, t_arg arg);
+void				apply_st(t_process *process, t_arg arg, t_env *env);
 
 void				apply_aff(t_process *process,
 		unsigned char memory[MEM_SIZE], t_arg arg);
@@ -71,7 +71,7 @@ void				apply_lfork(t_process *process, t_arg arg);
 
 void				apply_ldi(t_process *process,
 		unsigned char memory[MEM_SIZE], t_arg arg);
-void				apply_sti(t_process *process, t_arg arg);
+void				apply_sti(t_process *process, t_arg arg, t_env *env);
 void				apply_lld(t_process *process,
 		unsigned char memory[MEM_SIZE], t_arg arg);
 void				apply_lldi(t_process *process,

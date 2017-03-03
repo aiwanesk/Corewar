@@ -6,7 +6,7 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 15:09:42 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/03 18:10:38 by aiwanesk         ###   ########.fr       */
+/*   Updated: 2017/03/03 18:32:38 by aiwanesk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,11 @@ void				apply_live(t_process *process,
 		i++;
 	}
 	//TODO c'est ca que tu veux?
-	env->nblive++;
+	i = 0;
+	while (i < 255)
+	{
+		if (i == total)
+			env->process[i].alive++;
+		i++;
+	}
 }

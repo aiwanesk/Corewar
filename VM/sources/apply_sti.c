@@ -6,7 +6,7 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 15:15:43 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/03 18:12:04 by aiwanesk         ###   ########.fr       */
+/*   Updated: 2017/03/03 18:27:41 by aiwanesk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,5 @@ void				apply_sti(t_process *process, t_arg arg, t_env *env)
 		s = process->reg[s];
 	process->memory[(f + s) % MEM_SIZE] = process->reg[reg % REG_NUMBER];
 	//TODO application du protocol
+	(void)env;
 }
