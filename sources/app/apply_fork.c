@@ -1,7 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   apply_fork.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/03/03 15:05:51 by aiwanesk          #+#    #+#             */
+/*   Updated: 2017/03/03 15:06:18 by aiwanesk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/cpu.h"
 
 /*
-fork : Pas d’octet de codage des paramètres, prend un index, opcode 0x0c. Crée un nouveau processus, qui hérite des différents états de son père, à part son PC, qui est mis à (PC + (1er paramètre % IDX_MOD)).
+** fork : Pas d’octet de codage des paramètres, prend un index, opcode 0x0c.
+** Crée un nouveau processus, qui hérite des différents états de son père,
+** à part son PC, qui est mis à (PC + (1er paramètre % IDX_MOD)).
 */
 
 void						apply_fork(t_process *p, t_arg arg)
@@ -16,5 +30,5 @@ void						apply_fork(t_process *p, t_arg arg)
 		f += p->memory[p->pc + 1 + i];
 		i++;
 	}
-	p->fork.pc =  p->pc + (f % IDX_MOD);
+	p->fork.pc = p->pc + (f % IDX_MOD);
 }

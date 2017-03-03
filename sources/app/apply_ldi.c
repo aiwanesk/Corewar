@@ -1,23 +1,35 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   apply_ldi.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/03/03 15:07:16 by aiwanesk          #+#    #+#             */
+/*   Updated: 2017/03/03 15:08:16 by aiwanesk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/cpu.h"
 
-/* 
-ldi : ldi, comme son nom l’indique, n’implique nullement de se baigner dans de la crème de marrons, même si son opcode est 0x0a. Au lieu de ça, ca prend 2 index et 1 registre, additionne les 2 premiers, traite ca comme une adresse, y lit une valeur de la taille d’un registre et la met dans le 3eme.
- */
+/*
+** ldi : ldi,on opcode est 0x0a. Au lieu de ça, ca prend 2 index et 1 registre,
+** additionne les 2 premiers, traite ca comme une adresse, y lit une valeur de
+** taille d’un registre et la met dans le 3eme.
+*/
 
-void				apply_ldi(t_process *process, unsigned char mem[MEM_SIZE], t_arg arg)
+void				apply_ldi(t_process *process,
+		unsigned char mem[MEM_SIZE], t_arg arg)
 {
 	int			i;
 	uint32_t	first;
 	uint32_t	second;
 	uint32_t	reg;
 
-	i = 0;
+	i = -1;
 	first = 0;
-	while (arg.total_to_read[0] > i)
-	{
+	while (arg.total_to_read[0] > ++i)
 		first += mem[PCANDARG + i];
-		i++;
-	}
 	second = 0;
 	while (i < arg.total_to_read[0] + arg.total_to_read[1])
 	{
@@ -25,7 +37,8 @@ void				apply_ldi(t_process *process, unsigned char mem[MEM_SIZE], t_arg arg)
 		i++;
 	}
 	reg = 0;
-	while (i < arg.total_to_read[0] + arg.total_to_read[1] + arg.total_to_read[2])
+	while (i < arg.total_to_read[0] + arg.total_to_read[1] +
+			arg.total_to_read[2])
 	{
 		reg += mem[PCANDARG + i];
 		i++;

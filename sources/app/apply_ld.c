@@ -1,6 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   apply_ld.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/03/03 15:06:24 by aiwanesk          #+#    #+#             */
+/*   Updated: 2017/03/03 15:07:04 by aiwanesk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../includes/cpu.h"
 
-void					apply_ld(t_process *process, unsigned char memory[MEM_SIZE], struct s_arg arg)
+void					apply_ld(t_process *process,
+		unsigned char memory[MEM_SIZE], struct s_arg arg)
 {
 	int				i;
 	uint32_t		first;
@@ -23,6 +36,7 @@ void					apply_ld(t_process *process, unsigned char memory[MEM_SIZE], struct s_a
 		first = process->reg[first % REG_NUMBER];
 	if (arg.total_to_read[1] == 1)
 		reg = process->reg[reg % REG_NUMBER];
-	process->memory[reg % REG_NUMBER] = process->memory[(process->pc + (first % IDX_MOD))  % MEM_SIZE];
+	process->memory[reg % REG_NUMBER] = process->memory[(process->pc +
+			(first % IDX_MOD)) % MEM_SIZE];
 	process->carry = 1;
 }
