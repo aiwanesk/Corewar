@@ -3,6 +3,7 @@
 #include <lexical_analyser.h>
 #include <syntax_analyser.h>
 #include <compilateur.h>
+#include <error.h>
 
 static char		**st_get(void)
 {
@@ -24,7 +25,7 @@ int			main(int ac, char **av)
 	*code = bufferise(av[1]);
 	if (*code == 0x00)
 		return (1);
-	syn_err_name(av[1]);
+	err_name(av[1]);
 	syn_analyser(lex_analyser(*code));
 	free(*code);
 	return (0);
