@@ -28,7 +28,7 @@ void		print_hex(uintmax_t hex, char *base)
 	write(1, str, 2);
 }
 
-void		print_memory(uint32_t memory[MEM_SIZE])
+void		print_memory(unsigned char memory[MEM_SIZE])
 {
 	int		i;
 
@@ -37,23 +37,23 @@ void		print_memory(uint32_t memory[MEM_SIZE])
 	{
 		if (i > 0 && (i % 64) == 0)
 			write(1, "\n", 1);
-		print_hex((uint32_t)memory[i], BASE_16);
+		print_hex((unsigned char)memory[i], BASE_16);
 		++i;
 	}
 }
 //END TODO
 
-void		write_memory(uint32_t memory[MEM_SIZE], uint32_t addr, uint32_t val)
+void		write_memory(unsigned char memory[MEM_SIZE], uint32_t addr, uint32_t val)
 {
 	memory[addr % MEM_SIZE] = val;
 }
 
-uint32_t	read_memory(uint32_t memory[MEM_SIZE], uint32_t addr)
+unsigned char	read_memory(unsigned char memory[MEM_SIZE], uint32_t addr)
 {
 	return (memory[(addr % MEM_SIZE)]);
 }
 
-void		cpy_memory(uint32_t memory[MEM_SIZE], uint32_t cpy[MEM_SIZE])
+void		cpy_memory(unsigned char memory[MEM_SIZE], uint32_t cpy[MEM_SIZE])
 {
 	int		i;
 
