@@ -6,11 +6,11 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 15:13:03 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/03 15:13:58 by aiwanesk         ###   ########.fr       */
+/*   Updated: 2017/03/03 16:37:36 by aiwanesk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cpu.h"
+#include "cpu.h"
 
 /*
 ** st : Prend un registre et un registre ou un indirect, et stocke la valeur du

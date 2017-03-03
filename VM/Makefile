@@ -6,7 +6,7 @@
 #    By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/04/07 16:55:33 by mbarbari          #+#    #+#              #
-#    Updated: 2017/03/03 16:14:52 by aiwanesk         ###   ########.fr        #
+#    Updated: 2017/03/03 16:42:35 by aiwanesk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,7 @@ CLI_SRCS = 	$(SOURCES_FILES)/core.c \
 			$(SOURCES_FILES)/apply_aff.c\
 			$(SOURCES_FILES)/apply_and.c\
 			$(SOURCES_FILES)/apply_fork.c\
+			$(SOURCES_FILES)/apply_lfork.c\
 			$(SOURCES_FILES)/apply_ld.c\
 			$(SOURCES_FILES)/apply_ldi.c\
 			$(SOURCES_FILES)/apply_live.c\
@@ -50,7 +51,7 @@ CLI_SRCS = 	$(SOURCES_FILES)/core.c \
 			$(SOURCES_FILES)/apply_st.c\
 			$(SOURCES_FILES)/apply_sti.c\
 			$(SOURCES_FILES)/apply_sub.c\
-			$(SOURCES_FILES)/apply_zjump.c\
+			$(SOURCES_FILES)/apply_zjmp.c\
 			$(SOURCES_FILES)/apply_xor.c\
 			$(SOURCES_FILES)/cpu.c\
 			$(SOURCES_FILES)/exit_error.c\

@@ -6,11 +6,11 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 15:04:31 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/03 15:05:45 by aiwanesk         ###   ########.fr       */
+/*   Updated: 2017/03/03 16:39:29 by aiwanesk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cpu.h"
+#include "cpu.h"
 
 /*
 ** and : Applique un & (ET bit-à-bit) sur les deux premiers paramètres, et stoc
@@ -37,6 +37,7 @@ void				apply_and(t_process *process,
 		second += mem[(PCANDARG + i) % MEM_SIZE];
 		i++;
 	}
+	dest = 0;
 	while (i < arg.total_to_read[0] + arg.total_to_read[1] +
 			arg.total_to_read[2])
 	{

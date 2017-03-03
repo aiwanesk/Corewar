@@ -45,20 +45,6 @@ int			winner(t_process process)
 }
 
 //TODO : DEL FUNCTION
-t_process		cpu(t_process process)
-{
-	static int		test = 0;
-
-	if (test == 0)
-	{
-		process.fork.isfork = TRUE;
-		process.pc = 10;
-		++test;
-	}
-	dprintf(1, "Champion %s execute une fonction cpu\n", process.name);
-	dprintf(1, "On execute des truc sur le process : %u\n", process.id);
-	return (process);
-}
 
 t_process		get_last_player(t_env env)
 {

@@ -6,11 +6,11 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 15:11:32 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/03 15:12:50 by aiwanesk         ###   ########.fr       */
+/*   Updated: 2017/03/03 16:37:26 by aiwanesk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cpu.h"
+#include "cpu.h"
 
 /*
 ** or : Cette oprocessération est un OU bit-à-bit,

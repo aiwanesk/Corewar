@@ -6,11 +6,11 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 15:06:24 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/03 15:07:04 by aiwanesk         ###   ########.fr       */
+/*   Updated: 2017/03/03 16:36:18 by aiwanesk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cpu.h"
+#include "cpu.h"
 
 void					apply_ld(t_process *process,
 		unsigned char memory[MEM_SIZE], struct s_arg arg)

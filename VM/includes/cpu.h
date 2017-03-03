@@ -6,7 +6,7 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 14:52:48 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/03 16:16:28 by aiwanesk         ###   ########.fr       */
+/*   Updated: 2017/03/03 16:47:33 by aiwanesk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CPU_H
 
 # include "core.h"
+# include "libft.h"
 
 # include <stdint.h>
 # include <stdbool.h>
@@ -44,8 +45,6 @@ struct s_data		get_data_from_hex(int val);
 int					int_to_bin(unsigned int k);
 
 void				exit_error(char *s);
-
-t_process			cpu(t_process p);
 
 void				apply_function(t_process *process);
 

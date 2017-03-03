@@ -6,11 +6,11 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 15:01:44 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/03 15:04:10 by aiwanesk         ###   ########.fr       */
+/*   Updated: 2017/03/03 16:35:41 by aiwanesk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cpu.h"
+#include "cpu.h"
 
 /*
 ** add : Opcode 4. Prend trois registres, additionne les 2 premiers,

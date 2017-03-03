@@ -6,7 +6,7 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 15:24:25 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/03 15:30:30 by aiwanesk         ###   ########.fr       */
+/*   Updated: 2017/03/03 16:42:47 by aiwanesk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,10 @@ struct s_arg			parsing_request(t_process *p,
 	char			*tmp;
 
 	i = 0;
+	//TODO verfier si pas de cycle si tout va bien
+	ret.total_to_read[0] = -1;
 	op_code = mem[p->pc % MEM_SIZE];
-	if (op_code < 17 && op_code >= 0 && g_tab[op_code].cycle <= p->nb_cycle)
+	if (op_code < 17 && op_code >= 0)
 	{
 		if (op_code == 1 || op_code == 9 || op_code == 12)
 			norme(op_code, &ret);

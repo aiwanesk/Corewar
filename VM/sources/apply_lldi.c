@@ -6,11 +6,11 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 15:10:55 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/03 15:11:20 by aiwanesk         ###   ########.fr       */
+/*   Updated: 2017/03/03 16:37:18 by aiwanesk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cpu.h"
+#include "cpu.h"
 
 void				apply_lldi(t_process *process,
 		unsigned char mem[MEM_SIZE], t_arg arg)

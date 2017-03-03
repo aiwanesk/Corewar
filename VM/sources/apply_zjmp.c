@@ -6,11 +6,11 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 15:18:38 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/03 15:19:26 by aiwanesk         ###   ########.fr       */
+/*   Updated: 2017/03/03 16:38:24 by aiwanesk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cpu.h"
+#include "cpu.h"
 
 /*
 **zjmp : Il n’y a jamais eu, n’y a pas, et n’y aura jamais d’octet de codage des

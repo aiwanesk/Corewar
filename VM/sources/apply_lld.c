@@ -6,11 +6,11 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 15:10:08 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/03 15:10:33 by aiwanesk         ###   ########.fr       */
+/*   Updated: 2017/03/03 16:36:56 by aiwanesk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cpu.h"
+#include "cpu.h"
 
 /*
 ** fill process->reg[registre] with value v;

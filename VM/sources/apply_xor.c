@@ -6,11 +6,11 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 15:17:51 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/03 15:18:28 by aiwanesk         ###   ########.fr       */
+/*   Updated: 2017/03/03 16:38:12 by aiwanesk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cpu.h"
+#include "cpu.h"
 
 /*
 ** xor : Cette oprocessération est un OU exclusif bit-à-bit, suivant le même

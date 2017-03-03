@@ -6,11 +6,11 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 15:05:51 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/03 15:06:18 by aiwanesk         ###   ########.fr       */
+/*   Updated: 2017/03/03 16:36:08 by aiwanesk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cpu.h"
+#include "cpu.h"
 
 /*
 ** fork : Pas d’octet de codage des paramètres, prend un index, opcode 0x0c.
