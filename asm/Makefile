@@ -38,11 +38,14 @@ LIBFT = $(LIBSDIR)libft.a
 CHECK_PATH=./unitest/
 CHECK=check.sh
 
+DEBUG_BASIC = -g -fsanitize=address
+DEBUG_PROF = -pg
+
 ifeq ($(DEBUG), basic)
-	CFLAGS += -g
+	CFLAGS += $(DEBUG_BASIC)
 endif
-ifeq ($(DEBUG), all)
-	CFLAGS += -pg -g
+ifeq ($(DEBUG), prof)
+	CFLAGS += $(DEBUG_PROF)
 endif
 
 SRC = $(addprefix $(SRC_PATH),$(SRC_NAME))
