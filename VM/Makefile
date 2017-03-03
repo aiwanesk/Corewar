@@ -37,6 +37,7 @@ CLI_SRCS = 	$(SOURCES_FILES)/core.c \
 			$(SOURCES_FILES)/random.c \
 			$(SOURCES_FILES)/tools.c \
 			$(SOURCES_FILES)/map.c \
+			$(SOURCES_FILES)/protocol_ui.c \
 
 CLI_OBJS = $(patsubst $(SOURCES_FILES)/%.c,$(OBJECTS_FILES)/%.o,$(CLI_SRCS))
 

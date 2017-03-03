@@ -46,15 +46,15 @@ t_options		parse_options(char **data, t_options opt)
 		opt.id[0] = ft_atoi(*(++data));
 		opt.nbchampions = 0;
 		++data;
-		while (data[opt.nbchampions] != NULL)
+		while (data[opt.nbchampions] != NULL && opt.nbchampions <= MAX_PLAYERS)
 		{
 			opt.id[opt.nbchampions] = opt.id[0] + opt.nbchampions;
-			dprintf(1, "JUST A Test : %s - %i\n", data[opt.nbchampions], opt.id[opt.nbchampions]);
 			opt.champions[opt.nbchampions] = data[opt.nbchampions];
-			if (++opt.nbchampions > MAX_PLAYERS)
-				return (opt);
+			opt.nbchampions++;
 		}
 	}
+	else if (*data && ft_strcmp(*data, "-ui") == 0)
+		opt.ui = TRUE;
 	if (*(data + 1))
 		return (parse_options(data + 1, opt));
 	else

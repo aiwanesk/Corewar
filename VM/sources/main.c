@@ -7,7 +7,8 @@ int				main(int argc, char **argv)
 	t_env			env;
 
 	(void)argc;
-	opts = parse_options(&argv[1], (t_options){.error = 0, .dumpcycle = -1});
+	opts = parse_options(&argv[1],
+			(t_options){.error = 0, .dumpcycle = -1, .ui = FALSE});
 	if (opts.nbchampions < 1 || opts.error == 1)
 	{
 		ft_putstr_fd("Please check option : ", STDERR);
@@ -21,7 +22,7 @@ int				main(int argc, char **argv)
 			ft_putendl_fd(env.s_error, STDERR);
 			return (0);
 		}
-		core(env, 0);
+		core(env);
 	}
 	return (0);
 }
