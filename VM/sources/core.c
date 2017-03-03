@@ -69,27 +69,29 @@ t_process		get_last_player(t_env env)
 
 void				core(t_env env)
 {
-	if (env.dump > 0 && env.cycles >= env.dump)
+	while (1)
 	{
-		print_memory(env.memory);
-		return ;
+		++env.cycles;
+		if (env.dump > 0 && env.cycles >= env.dump)
+		{
+			print_memory(env.memory);
+			return ;
+		}
+		else if (env.cycles >= env.cycle_to_die)
+		{
+			env = process_map(env, &process_live);
+			env.cycles = env.cycles % env.cycle_to_die;
+		}
+		dprintf(1, "TEST1 ; Lecture du cycle : %u\n", env.cycles);
+		protocol_lc(env);
+		if (process_alive(env) <= 1)
+		{
+			winner(env, get_last_player(env));
+			return ;
+		}
+		env = process_map(env, &add_cycle);
+		env = process_map(env, &execute_cpu);
+		env = process_map(env, &create_fork);
+		protocol_sleep(env);
 	}
-	else if (env.cycles >= env.cycle_to_die)
-	{
-		env = process_map(env, &process_live);
-		env.cycles = env.cycles % env.cycle_to_die;
-	}
-	protocol_lc(env);
-	if (process_alive(env) <= 1)
-	{
-		winner(env, get_last_player(env));
-		return ;
-	}
-	if (env.cycle_to_die <= 0)
-		winner(env, MATCH_NULL);
-	env = process_map(env, &add_cycle);
-	env = process_map(env, &execute_cpu);
-	env = process_map(env, &create_fork);
-	++env.cycles;
-	core(env);
 }
