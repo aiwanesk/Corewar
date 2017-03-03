@@ -1,5 +1,6 @@
 #include <unistd.h>
 #include <stdlib.h>
+#include <struct_lex.h>
 #include <lexical_analyser.h>
 #include <syntax_analyser.h>
 #include <label.h>
@@ -28,6 +29,7 @@ int				main(int ac, char **av)
 		return (1);
 	err_name(av[1]);
 	syn_analyser(lex_analyser(*code));
+	compilation(get_lex());
 	free(*code);
 	free_lex();
 	lab_free();

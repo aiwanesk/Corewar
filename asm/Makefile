@@ -9,7 +9,16 @@ SRC_NAME = main.c \
 			syntax_error.c \
 			syntax_argument.c \
 			djb2.c \
-			opcode.c
+			opcode.c \
+			header.c \
+			cmd.c \
+			label0.c \
+			label1.c \
+			bytecode0.c \
+			bytecode1.c \
+			bytecode2.c \
+			compilateur.c \
+			error.c
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 
