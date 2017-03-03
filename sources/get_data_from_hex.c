@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_data_from_hex.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/03/03 15:23:18 by aiwanesk          #+#    #+#             */
+/*   Updated: 2017/03/03 15:23:42 by aiwanesk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cpu.h"
 
 static void				normalize_len(struct s_data *d, int val)
@@ -22,7 +34,6 @@ static void				normalize_len(struct s_data *d, int val)
 		size++;
 	}
 	d->val[8] = '\0';
-//	free(tmp);
 }
 
 struct s_data			get_data_from_hex(int val)
