@@ -6,7 +6,7 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 15:15:43 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/03 16:37:49 by aiwanesk         ###   ########.fr       */
+/*   Updated: 2017/03/03 18:12:04 by aiwanesk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 ** adresse ou sera copiée la valeur du premier paramètre.
 */
 
-void				apply_sti(t_process *process, t_arg arg)
+void				apply_sti(t_process *process, t_arg arg, t_env *env)
 {
 	int			i;
 	uint32_t	reg;
@@ -44,4 +44,5 @@ void				apply_sti(t_process *process, t_arg arg)
 	if (arg.total_to_read[2] == 1)
 		s = process->reg[s];
 	process->memory[(f + s) % MEM_SIZE] = process->reg[reg % REG_NUMBER];
+	//TODO application du protocol
 }

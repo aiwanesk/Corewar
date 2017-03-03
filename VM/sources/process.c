@@ -35,6 +35,7 @@ t_process	get_process_by_id(t_env env, uint32_t id)
 	uint32_t		i;
 
 	i = 0;
+	//TODO wut?
 	if (id == 0)
 		return (MATCH_NULL);
 	while (i < env.nbprocess)

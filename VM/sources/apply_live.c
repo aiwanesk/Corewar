@@ -6,14 +6,14 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 15:09:42 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/03 16:36:47 by aiwanesk         ###   ########.fr       */
+/*   Updated: 2017/03/03 18:10:38 by aiwanesk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cpu.h"
 
 void				apply_live(t_process *process,
-		unsigned char memory[MEM_SIZE])
+		unsigned char memory[MEM_SIZE], t_env *env)
 {
 	int		i;
 	int		total;
@@ -25,5 +25,6 @@ void				apply_live(t_process *process,
 		total += memory[process->pc + i];
 		i++;
 	}
-	//=TODO comment suis je sense savoir comment se portent les autres process sans requetE?
+	//TODO c'est ca que tu veux?
+	env->nblive++;
 }

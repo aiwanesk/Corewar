@@ -44,6 +44,8 @@ int			winner(t_process process)
 	return (FALSE);
 }
 
+//TODO : DEL FUNCTION
+
 t_process		get_last_player(t_env env)
 {
 	uint32_t	i;
@@ -60,33 +62,25 @@ t_process		get_last_player(t_env env)
 
 void				core(t_env env, uint32_t cycles)
 {
-	uint32_t		id;
-
-	while (1)
+	if (env.dump > 0 && cycles >= env.dump)
 	{
-		cycles++;
-		if (env.dump > 0 && cycles >= env.dump)
-		{
-			print_memory(env.memory);
-			env.run = FALSE;
-		}
-		if (env.cycle_to_die <= 0)
-		{
-			winner(MATCH_NULL);
-			return ;
-		}
-		else if (cycles >= env.cycle_to_die)
-		{
-			env = process_map(env, &process_live);
-			cycles = cycles % env.cycle_to_die;
-		}
-		if ((id = process_alive(env)) > 0)
-		{
-			winner(get_process_by_id(env, id));
-			return ;
-		}
-		env = process_map(env, &add_cycle);
-		env = process_map(env, &execute_cpu);
-		env = process_map(env, &create_fork);
+		print_memory(env.memory);
+		return ;
 	}
+	else if (cycles >= env.cycle_to_die)
+	{
+		env = process_map(env, &process_live);
+		cycles = cycles % env.cycle_to_die;
+	}
+	if (process_alive(env) <= 1)
+	{
+		winner(get_last_player(env));
+		return ;
+	}
+	if (env.cycle_to_die <= 0)
+		winner(MATCH_NULL);
+	env = process_map(env, &add_cycle);
+	env = process_map(env, &execute_cpu);
+	env = process_map(env, &create_fork);
+	core(env, ++cycles);
 }

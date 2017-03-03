@@ -6,7 +6,7 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 14:52:48 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/03 16:47:33 by aiwanesk         ###   ########.fr       */
+/*   Updated: 2017/03/03 18:09:39 by aiwanesk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void				apply_lldi(t_process *process,
 		unsigned char memory[MEM_SIZE], t_arg arg);
 
 void				apply_live(t_process *process,
-		unsigned char memory[MEM_SIZE]);
+		unsigned char memory[MEM_SIZE], t_env *env);
 void				apply_zjmp(t_process *process,
 		unsigned char memory[MEM_SIZE], t_arg arg);
 

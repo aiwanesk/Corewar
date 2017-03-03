@@ -59,7 +59,6 @@ CLI_SRCS = 	$(SOURCES_FILES)/core.c \
 			$(SOURCES_FILES)/int_to_bin.c\
 			$(SOURCES_FILES)/parse_request.c\
 
-
 CLI_OBJS = $(patsubst $(SOURCES_FILES)/%.c,$(OBJECTS_FILES)/%.o,$(CLI_SRCS))
 
 SRC_INCLUDE = $(HEADERS_FILES)/core.h \
