@@ -9,7 +9,16 @@ SRC_NAME = main.c \
 			syntax_error.c \
 			syntax_argument.c \
 			djb2.c \
-			opcode.c
+			opcode.c \
+			header.c \
+			cmd.c \
+			label0.c \
+			label1.c \
+			bytecode0.c \
+			bytecode1.c \
+			bytecode2.c \
+			compilateur.c \
+			error.c
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 
@@ -29,11 +38,14 @@ LIBFT = $(LIBSDIR)libft.a
 CHECK_PATH=./unitest/
 CHECK=check.sh
 
+DEBUG_BASIC = -g -fsanitize=address
+DEBUG_PROF = -pg
+
 ifeq ($(DEBUG), basic)
-	CFLAGS += -g
+	CFLAGS += $(DEBUG_BASIC)
 endif
-ifeq ($(DEBUG), all)
-	CFLAGS += -pg -g
+ifeq ($(DEBUG), prof)
+	CFLAGS += $(DEBUG_PROF)
 endif
 
 SRC = $(addprefix $(SRC_PATH),$(SRC_NAME))
