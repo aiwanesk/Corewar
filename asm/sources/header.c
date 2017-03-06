@@ -1,5 +1,6 @@
 #include <libft.h>
 #include <op.h>
+#include <compilateur.h>
 #include <header.h>
 
 static t_header		*st_get(void)
@@ -35,7 +36,7 @@ void				head_size(int size)
 	t_header		*head;
 
 	head = st_get();
-	head->prog_size = size;
+	head->prog_size = rev_indian(size);
 }
 
 void				write_header(int fd)
