@@ -91,7 +91,6 @@ int		main(void)
 	
 	opt = test0();
 	env= init_core(opt);
-	env = create_process(env, opt);
 	if (env.error)
 		dprintf(1, "ERROR IN ENV\n");
 	else
@@ -99,7 +98,6 @@ int		main(void)
 	dprintf(1, "\n\n");
 	opt = test1();
 	env= init_core(opt);
-	env = create_process(env, opt);
 	if (env.error)
 		dprintf(1, "ERROR IN ENV\n");
 	else
@@ -107,7 +105,6 @@ int		main(void)
 	dprintf(1, "\n\n");
 	opt = test2();
 	env= init_core(opt);
-	env = create_process(env, opt);
 	if (env.error)
 		dprintf(1, "ERROR IN ENV : %s\n", env.s_error);
 	else
@@ -116,7 +113,6 @@ int		main(void)
 
 	opt = test3();
 	env= init_core(opt);
-	env = create_process(env, opt);
 	if (env.error)
 		dprintf(1, "ERROR IN ENV : %s\n", env.s_error);
 	else
@@ -125,7 +121,6 @@ int		main(void)
 
 	opt = test4();
 	env= init_core(opt);
-	env = create_process(env, opt);
 	if (env.error)
 		dprintf(1, "ERROR IN ENV : %s\n", env.s_error);
 	else

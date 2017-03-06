@@ -34,7 +34,9 @@ struct					s_options
 {
 	int				dumpcycle;
 	unsigned int	nbchampions;
-	char			*champions[MAX_PLAYERS];
+	char			*champions[MAX_PLAYERS + 1];
+	int				id[MAX_PLAYERS + 1];
+	_Bool			ui;
 	int				error;
 };
 
@@ -58,6 +60,7 @@ struct					s_env
 	unsigned char	memory[MEM_SIZE];
 	uint32_t		dump;
 	unsigned int	cycle_to_die;
+	unsigned int	cycles;
 	unsigned int	nbprocess;
 	t_process		process[255];
 	_Bool			error;
@@ -65,6 +68,7 @@ struct					s_env
 	_Bool			run;
 	uint32_t		nblive;
 	uint32_t		check;
+	_Bool			ui;
 };
 
 struct				s_test
@@ -76,9 +80,9 @@ struct				s_test
 ** core.c file
 ** VM CORE
 */
-void					core(t_env env, uint32_t cycles);
+void					core(t_env env);
 t_env					init_core(t_options opt);
-int						winner(t_process process);
+int						winner(t_env env, t_process process);
 
 /*
 ** set_options.c file
@@ -87,6 +91,7 @@ int						winner(t_process process);
 ** #2 -n `X` file.cor --> insert into VM `X` champions
 */
 t_options				parse_options(char **data, t_options opt);
+int						error_options(t_options opt);
 
 /*
 ** memory.c file
@@ -133,5 +138,14 @@ t_env					add_cycle(t_env env, int i);
 t_env					process_live(t_env env, int i);
 t_env					execute_cpu(t_env env, int i);
 t_env					create_fork(t_env env, int i);
+
+/*
+** protocol_ui.c file
+*/
+void					protocol_lmz(t_env e, int id, uint32_t len,	char *str);
+void					protocol_pc(t_env env, t_process proc, uint32_t addr);
+void					protocol_win(t_env env, t_process process);
+void					protocol_lc(t_env env);
+void					protocol_sleep(t_env env);
 
 # endif
