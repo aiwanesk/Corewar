@@ -6,7 +6,7 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 15:13:03 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/06 14:36:25 by aiwanesk         ###   ########.fr       */
+/*   Updated: 2017/03/06 15:04:41 by aiwanesk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void				apply_st(t_process *process, struct s_arg arg, t_env *env)
 		second = process->reg[second % REG_NUMBER];
 	process->memory[(process->pc + (second % IDX_MOD)) % MEM_SIZE] =
 		process->reg[reg % REG_NUMBER];
-	process->pc = (process->pc + i + 2) % MEM_SIZE;
-	//TODO application du protocol
-	(void)env;
+	process->pc = (process->pc + i + 1) % MEM_SIZE;
+	protocol_pc(*env, *process, process->pc);
 }

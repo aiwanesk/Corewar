@@ -6,7 +6,7 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 15:15:43 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/06 14:36:31 by aiwanesk         ###   ########.fr       */
+/*   Updated: 2017/03/06 15:04:45 by aiwanesk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void				apply_sti(t_process *process, t_arg arg, t_env *env)
 	if (arg.total_to_read[2] == 1)
 		s = process->reg[s];
 	process->memory[(f + s) % MEM_SIZE] = process->reg[reg % REG_NUMBER];
-	process->pc = (process->pc + i + 2) % MEM_SIZE;
+	process->pc = (process->pc + i + 1) % MEM_SIZE;
 	//TODO application du protocol
-	(void)env;
+	protocol_pc(*env, *process, process->pc);
 }

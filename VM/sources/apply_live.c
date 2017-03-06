@@ -6,7 +6,7 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 15:09:42 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/06 14:37:08 by aiwanesk         ###   ########.fr       */
+/*   Updated: 2017/03/06 15:05:24 by aiwanesk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,5 @@ void				apply_live(t_process *process,
 		}
 		i++;
 	}
-	process->pc = (process->pc + i + 1) % MEM_SIZE;
+	process->pc = (process->pc + i) % MEM_SIZE;
 }
