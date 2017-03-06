@@ -21,10 +21,7 @@ uint32_t			process_alive(t_env env)
 	while (i < env.nbprocess)
 	{
 		if (env.process[i].isdead == FALSE)
-		{
-			dprintf(1, "\nHE's NOT DEAD : %u \n", env.process[i].id); //TODO del
 			nbalive++;
-		}
 		++i;
 	}
 	return (nbalive);
@@ -51,7 +48,7 @@ t_process	new_process(t_options opt, int id)
 {
 	t_process	process;
 	
-	process.id = random_uint32();
+	process.id = opt.id[id];
 	process.pc = (MEM_SIZE / opt.nbchampions) * id;
 	process.reg[0] = process.id;
 	process.alive = 0;

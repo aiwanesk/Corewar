@@ -45,11 +45,7 @@ t_env		load_champion(t_env env, t_options opt, int id)
 		ft_strncpy(env.process[id].name, head.prog_name, PROG_NAME_LENGTH);
 		ft_strncpy(env.process[id].comment, head.comment, COMMENT_LENGTH);
 	}
-	ft_putstr(C_GREEN"Load champion : ");
-	ft_putstr(env.process[id].name);
-	ft_putstr(" - ");
-	ft_putendl(env.process[id].comment);
-	ft_putstr(C_NONE);
+	protocol_lmz(env, id, convert_endianness(head.prog_size), head.prog_name);
 	close(fd);
 	return (env);
 }

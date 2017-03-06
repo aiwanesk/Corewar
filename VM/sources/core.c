@@ -14,6 +14,7 @@ t_env		init_core(t_options opt)
 	uint32_t	i;
 
 	ft_bzero(&env, sizeof(t_env));
+	env.ui = opt.ui;
 	env.dump = opt.dumpcycle;
 	env.nbprocess = opt.nbchampions;
 	i = 0;
@@ -29,12 +30,13 @@ t_env		init_core(t_options opt)
 	return (env);
 }
 
-int			winner(t_process process)
+int			winner(t_env env, t_process process)
 {
 	if (process.id == 0)
 		ft_putendl(C_MAGENTA"Match NULL");
 	else
 	{
+		protocol_win(env, process);
 		ft_putstr(C_MAGENTA"Le joueur ");
 		ft_putnbr_uint32(process.id);
 		ft_putstr("(");
@@ -43,8 +45,6 @@ int			winner(t_process process)
 	}
 	return (FALSE);
 }
-
-//TODO : DEL FUNCTION
 
 t_process		get_last_player(t_env env)
 {
@@ -60,27 +60,30 @@ t_process		get_last_player(t_env env)
 	return (MATCH_NULL);
 }
 
-void				core(t_env env, uint32_t cycles)
+void				core(t_env env)
 {
-	if (env.dump > 0 && cycles >= env.dump)
+	while (1)
 	{
-		print_memory(env.memory);
-		return ;
-	}
-	else if (cycles >= env.cycle_to_die)
-	{
-		env = process_map(env, &process_live);
-		cycles = cycles % env.cycle_to_die;
-	}
-	if (process_alive(env) <= 1)
-	{
-		winner(get_last_player(env));
-		return ;
-	}
-	if (env.cycle_to_die <= 0)
-		winner(MATCH_NULL);
-	env = process_map(env, &add_cycle);
-	env = process_map(env, &execute_cpu);
-	env = process_map(env, &create_fork);
-	core(env, ++cycles);
+		++env.cycles;
+		if (env.dump > 0 && env.cycles >= env.dump)
+		{
+			print_memory(env.memory);
+			return ;
+		}
+		else if (env.cycles >= env.cycle_to_die)
+		{
+			env = process_map(env, &process_live);
+			env.cycles = env.cycles % env.cycle_to_die;
+		}
+		dprintf(1, "TEST1 ; Lecture du cycle : %u\n", env.cycles);
+		protocol_lc(env);
+		if (process_alive(env) <= 1)
+		{
+			winner(env, get_last_player(env));
+			return ;
+		}
+		env = process_map(env, &add_cycle);
+		env = process_map(env, &execute_cpu);
+		env = process_map(env, &create_fork);
+		protocol_sleep(env);
 }
