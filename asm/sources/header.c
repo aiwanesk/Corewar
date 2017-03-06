@@ -4,7 +4,7 @@
 
 static t_header		*st_get(void)
 {
-	static t_header		header = {0xEA83F3, {0}, 0, {0}};
+	static t_header		header = {0xF383EA00, {0}, 0, {0}};
 
 	return (&header);
 }
