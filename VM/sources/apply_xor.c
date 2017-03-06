@@ -6,7 +6,7 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 15:17:51 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/03 16:38:12 by aiwanesk         ###   ########.fr       */
+/*   Updated: 2017/03/06 14:36:42 by aiwanesk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,5 @@ void	apply_xor(t_process *process,
 	}
 	process->reg[reg % REG_NUMBER] = (first ^ second);
 	process->carry = 1;
+	process->pc = (process->pc + i + 2) % MEM_SIZE;
 }

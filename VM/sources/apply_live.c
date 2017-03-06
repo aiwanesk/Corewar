@@ -6,7 +6,7 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 15:09:42 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/03 18:32:38 by aiwanesk         ###   ########.fr       */
+/*   Updated: 2017/03/06 14:37:08 by aiwanesk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,11 @@ void				apply_live(t_process *process,
 	while (i < 255)
 	{
 		if (i == total)
+		{
 			env->process[i].alive++;
+			break;
+		}
 		i++;
 	}
+	process->pc = (process->pc + i + 1) % MEM_SIZE;
 }

@@ -6,7 +6,7 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 15:10:55 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/03 16:37:18 by aiwanesk         ###   ########.fr       */
+/*   Updated: 2017/03/06 14:36:09 by aiwanesk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,5 @@ void				apply_lldi(t_process *process,
 	}
 	process->reg[reg % REG_NUMBER] = mem[(first + second) % MEM_SIZE];
 	process->carry = 1;
+	process->pc = (process->pc + i + 2) % MEM_SIZE;
 }
