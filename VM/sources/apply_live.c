@@ -6,7 +6,7 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 15:09:42 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/06 15:05:24 by aiwanesk         ###   ########.fr       */
+/*   Updated: 2017/03/06 17:48:32 by aiwanesk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@ void				apply_live(t_process *process,
 		total += memory[process->pc + i];
 		i++;
 	}
+	printf("Live Called id[%u]\n", process->id);
+	process->pc = (process->pc + i + 1) % MEM_SIZE;
+	process->nb_cycle -= 10;
 	//TODO c'est ca que tu veux?
 	i = 0;
 	while (i < 255)
@@ -36,5 +39,4 @@ void				apply_live(t_process *process,
 		}
 		i++;
 	}
-	process->pc = (process->pc + i) % MEM_SIZE;
 }

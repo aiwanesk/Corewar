@@ -6,7 +6,7 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 15:04:31 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/06 17:04:52 by aiwanesk         ###   ########.fr       */
+/*   Updated: 2017/03/06 17:52:50 by aiwanesk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void				apply_and(t_process *process,
 	uint32_t		second;
 	uint32_t		dest;
 
+	printf("apply and\n");
 	i = -1;
 	first = 0;
 	while (++i < arg.total_to_read[0])

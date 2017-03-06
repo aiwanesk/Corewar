@@ -6,7 +6,7 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 15:01:44 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/06 17:01:33 by aiwanesk         ###   ########.fr       */
+/*   Updated: 2017/03/06 17:27:13 by aiwanesk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void				apply_add(struct s_process *process,
 	uint32_t			second;
 	uint32_t			dest;
 
+	printf("Add called id[%u]\n", process->id);
 	i = 0;
 	first = 0;
 	while (i < arg.total_to_read[0])

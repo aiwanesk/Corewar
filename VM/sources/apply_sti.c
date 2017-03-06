@@ -6,7 +6,7 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 15:15:43 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/06 17:05:25 by aiwanesk         ###   ########.fr       */
+/*   Updated: 2017/03/06 17:54:57 by aiwanesk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void				apply_sti(t_process *process, t_arg arg, t_env *env)
 	uint32_t	f;
 	uint32_t	s;
 
+	printf("Appli STI\n");
 	reg = 0;
 	i = -1;
 	while (++i < arg.total_to_read[0])

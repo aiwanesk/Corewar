@@ -33,12 +33,18 @@ void		print_memory(unsigned char memory[MEM_SIZE])
 	int		i;
 
 	i = 0;
+	int j = 0;
 	while (i < MEM_SIZE)
 	{
 		if (i > 0 && (i % 64) == 0)
 			write(1, "\n", 1);
 		print_hex((uint32_t)memory[i], BASE_16);
 		++i;
+		++j;
+		if (j == 1){
+			write(1,"|", 1);
+			j = 0;
+		}
 	}
 }
 //END TODO
