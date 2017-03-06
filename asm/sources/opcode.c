@@ -28,8 +28,8 @@ static t_op		*st_get(void)
 		{0x01, 4, 1, 0, {T_DIR, 0, 0}},
 		{0x02, 4, 2, 0, {T_DIR | T_IND, T_REG, 0}},
 		{0x03, 0, 2, 0, {T_REG, T_IND | T_REG, 0}},
-		{0x04, 0, 3, 0, {T_REG, T_REG, T_REG}},
-		{0x05, 0, 3, 0, {T_REG, T_REG, T_REG}},
+		{0x04, 0, 3, 0, {T_REG, T_REG, T_REG | T_FORCE}},
+		{0x05, 0, 3, 0, {T_REG, T_REG, T_REG | T_FORCE}},
 		{0x06, 4, 3, 0, {T_REG | T_DIR | T_IND, T_REG | T_IND | T_DIR, T_REG}},
 		{0x07, 4, 3, 0, {T_REG | T_DIR | T_IND, T_REG | T_IND | T_DIR, T_REG}},
 		{0x08, 4, 3, 0, {T_REG | T_DIR | T_IND, T_REG | T_IND | T_DIR, T_REG}},
@@ -40,7 +40,7 @@ static t_op		*st_get(void)
 		{0x0D, 4, 2, 0, {T_DIR | T_IND, T_REG, 0}},
 		{0x0E, 2, 3, 0, {T_REG | T_DIR | T_IND, T_DIR | T_REG, T_REG}},
 		{0x0F, 2, 1, 0, {T_DIR, 0, 0}},
-		{0x10, 0, 1, 0, {T_REG, 0, 0}},
+		{0x10, 0, 1, 0, {T_REG | T_FORCE, 0, 0}},
 		{0x00, 0, 0, 0, {0, 0, 0}}
 	};
 
