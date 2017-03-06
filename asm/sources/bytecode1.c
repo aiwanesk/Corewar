@@ -6,8 +6,6 @@
 #include <opcode.h>
 #include <bytecode.h>
 
-#include <stdio.h> // TODO DEBUG
-
 static unsigned int		st_encode_reg(char *arg)
 {
 	char		n;
@@ -37,15 +35,17 @@ static unsigned int		st_encode_val(char *arg, t_op op)
 	return (labelsize);
 }
 
-static unsigned int		st_encode_label(char *arg, t_op op, t_lex *lex, int pos)
+static unsigned int		st_encode_label(t_op op, t_lex *lex, int pos, int align)
 {
 	t_label				label;
 	unsigned int		hash;
 	unsigned int		i;
 	char				tmp;
-	unsigned int		indian;
+	char				*arg;
 
 	i = 0;
+	arg = get_arg(lex->code);
+	arg = &arg[pos];
 	if (*arg == DIRECT_CHAR)
 		++arg;
 	else
@@ -57,10 +57,10 @@ static unsigned int		st_encode_label(char *arg, t_op op, t_lex *lex, int pos)
 	hash = djb2(&arg[1]);
 	arg[i] = tmp;
 	label = label_valid(lex, pos, hash);
-	indian = rev_indian(label.addr);
+	i = rev_indian(label.addr - align);
 	if (op.labelsize == 2)
-		indian = indian >> 16;
-	byt_add((char *)&indian, op.labelsize);
+		i = i >> 16;
+	byt_add((char *)&i, op.labelsize);
 	return (op.labelsize);
 }
 
@@ -76,7 +76,7 @@ char					*get_arg(char *code)
 	return (&code[i]);
 }
 
-unsigned int			byt_argument(t_lex *lex, t_op op)
+unsigned int			byt_argument(t_lex *lex, t_op op, unsigned int pos)
 {
 	char			*code;
 	unsigned int	i;
@@ -94,7 +94,7 @@ unsigned int			byt_argument(t_lex *lex, t_op op)
 			else
 			{
 				if (code[i] == LABEL_CHAR || code[i + 1] == LABEL_CHAR)
-					size += st_encode_label(&code[i], op, lex, i);
+					size += st_encode_label(op, lex, i, pos);
 				else
 					size += st_encode_val(&code[i], op);
 			}

@@ -68,8 +68,9 @@ void				byt_add(char *mem, unsigned int size)
 
 void				byt_new(t_lex *lex)
 {
-	t_op			op;
-	unsigned int	i;
+	static unsigned int		pos = 0;
+	t_op					op;
+	unsigned int			i;
 
 	i = 0;
 	while (!ft_isspace(lex->code[i]))
@@ -82,7 +83,8 @@ void				byt_new(t_lex *lex)
 		++i;
 	if (byt_if_encode(op))
 		byt_encode(&lex->code[i]);
-	byt_argument(lex, op);
+	pos += byt_argument(lex, op, pos);
+	pos += (byt_if_encode(op)) ? 2 : 1;
 }
 
 unsigned int		byt_encode(char *code)
