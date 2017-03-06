@@ -97,15 +97,17 @@ unsigned int		byt_encode(char *code)
 		if (i == 0 || code[i - 1] == SEPARATOR_CHAR)
 		{
 			if (code[i] == 'r')
-				enc += REG_CODE;
+				enc |= REG_CODE;
 			else if (code[i] == DIRECT_CHAR)
-				enc += DIR_CODE;
+				enc |= DIR_CODE;
 			else
-				enc += IND_CODE;
+				enc |= IND_CODE;
 			enc = (enc << 2);
 		}
 		++i;
 	}
+	while (!(enc & 0xC0))
+		enc = (enc << 2);
 	byt_add(&enc, 1);
 	return (1);
 }
