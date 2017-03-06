@@ -75,12 +75,11 @@ void				core(t_env env)
 			env = process_map(env, &process_live);
 			env.cycles = env.cycles % env.cycle_to_die;
 		}
-		//printf("---------------------------\n");
+		//print_memory(env.memory);
+		//printf("\n\n");
 		//printf("nb total Cycle :%u\n", env.cycles);
-		printf("pc->p1[%u]=memory[%d]\n", env.process[0].pc, env.process[0].memory[env.process[0].pc]);
-		printf("pc->p2[%u]=memory[%d]\n", env.process[1].pc, env.process[1].memory[env.process[1].pc]);
-		if (env.cycles == 150)
-			exit(-1);
+		//printf("pc->p1[%u]=memory[%d]\n", env.process[0].pc, env.process[0].memory[env.process[0].pc]);
+	//	printf("pc->p2[%u]=memory[%d]\n", env.process[1].pc, env.process[1].memory[env.process[1].pc]);
 		//dprintf(1, "TEST1 ; Lecture du cycle : %u\n", env.cycles);
 		protocol_lc(env);
 		if (process_alive(env) <= 1)

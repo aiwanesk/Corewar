@@ -6,7 +6,7 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 15:15:43 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/06 17:54:57 by aiwanesk         ###   ########.fr       */
+/*   Updated: 2017/03/06 19:14:50 by aiwanesk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,15 @@ void				apply_sti(t_process *process, t_arg arg, t_env *env)
 		s += process->memory[PCANDARG + i];
 		i++;
 	}
+	printf("reg = %u f = %u s = %u\n", reg, f, s);
+	//exit(-1);
 	if (arg.total_to_read[1] == 1)
 		f = process->reg[f];
 	if (arg.total_to_read[2] == 1)
 		s = process->reg[s];
-	process->memory[(f + s) % MEM_SIZE] = process->reg[reg % REG_NUMBER];
+	process->memory[(f + s) % MEM_SIZE] = process->reg[(reg - 1) % REG_NUMBER];
+	printf("reg[0] = %u\n", process->reg[0]);
+	print_memory(process->memory);
 	process->pc = (process->pc + i + 1) % MEM_SIZE;
 	//TODO application du protocol
 	protocol_pc(*env, *process, process->pc);
