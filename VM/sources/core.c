@@ -50,6 +50,16 @@ int			winner(t_env env, t_process process)
 t_process		cpu(t_process process)
 {
 	ft_putendl("UI_PROTOCOL PC 1-3000");
+	static int		test = 0;
+
+	if (test == 0)
+	{
+		process.fork.isfork = TRUE;
+		process.pc = 10;
+		++test;
+	}
+	dprintf(1, "Champion %s execute une fonction cpu\n", process.name);
+	dprintf(1, "On execute des truc sur le process : %u\n", process.id);
 	return (process);
 }
 
@@ -95,3 +105,4 @@ void				core(t_env env)
 		protocol_sleep(env);
 	}
 }
+

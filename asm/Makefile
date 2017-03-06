@@ -4,7 +4,12 @@ SRC_NAME = main.c \
 			struct_lex.c \
 			lex_cmd.c \
 			lex_label.c \
-			lex_opcode.c
+			lex_opcode.c \
+			syntax_analyser.c \
+			syntax_error.c \
+			syntax_argument.c \
+			djb2.c \
+			opcode.c
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 

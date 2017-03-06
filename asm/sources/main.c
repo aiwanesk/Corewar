@@ -1,6 +1,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <lexical_analyser.h>
+#include <syntax_analyser.h>
 #include <compilateur.h>
 
 static char		**st_get(void)
@@ -23,7 +24,8 @@ int			main(int ac, char **av)
 	*code = bufferise(av[1]);
 	if (*code == 0x00)
 		return (1);
-	lex_analyser(*code);
+	syn_err_name(av[1]);
+	syn_analyser(lex_analyser(*code));
 	free(*code);
 	return (0);
 }

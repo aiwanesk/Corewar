@@ -21,10 +21,7 @@ uint32_t			process_alive(t_env env)
 	while (i < env.nbprocess)
 	{
 		if (env.process[i].isdead == FALSE)
-		{
-			dprintf(STDERR, "\nHE's NOT DEAD : %u \n", env.process[i].id); //TODO del
 			nbalive++;
-		}
 		++i;
 	}
 	return (nbalive);

@@ -11,4 +11,9 @@ char			*bufferise(char *namefile);
 */
 void			exit_main(void);
 
+/*
+** djb2.c
+*/
+unsigned int	djb2(char *str);
+
 #endif
