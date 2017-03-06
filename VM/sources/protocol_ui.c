@@ -66,5 +66,5 @@ void		protocol_sleep(t_env env)
 {
 	if (!env.ui)
 		return ;
-	usleep(50000);
+	usleep(10000);
 }

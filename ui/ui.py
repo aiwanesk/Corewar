@@ -236,7 +236,7 @@ class App():
     def run(self):
         self.display()
         self.window.get_RunButton().configure(command=self.run_vm)
-        self.root.mainloop()
+        #self.root.mainloop()
 
     def display(self):
         canvasx = int(self.window.get_Canvas().cget("width")) / self.nbline
@@ -252,6 +252,21 @@ class App():
             x0 = x * canvas_ceil_x + canvas_ceil_x
             x1 = x * canvas_ceil_x + canvas_ceil_x + canvas_ceil_x
             self.window.get_Canvas().create_rectangle(x0, y0, x1, y1, fill = self.color[self.array[a]]);
+        #self.root.update()
+
+    def unit_display(self, a):
+        canvasx = int(self.window.get_Canvas().cget("width")) / self.nbline
+        canvasy = int(self.window.get_Canvas().cget("height")) / int((len(self.array) / self.nbline))
+        canvas_ceil_x = canvasx - 0.4
+        canvas_ceil_y = canvasy - 0.4
+        y = int(a / int(len(self.array) / self.nbline))
+        ytmp =  canvas_ceil_y * y
+        y0 = canvas_ceil_y + ytmp
+        y1 = canvas_ceil_y + canvas_ceil_y + ytmp
+        x = int(a % (len(self.array) / self.nbline))
+        x0 = x * canvas_ceil_x + canvas_ceil_x
+        x1 = x * canvas_ceil_x + canvas_ceil_x + canvas_ceil_x
+        self.window.get_Canvas().create_rectangle(x0, y0, x1, y1, fill = self.color[self.array[a]]);
         self.root.update()
 
     def run_vm(self):
@@ -266,47 +281,48 @@ class App():
         if (self.corewarRun != True):
             execute = "../VM//corewar -ui -n 1 " + championString
             self.corewarRun = True
-            self.process = Popen(execute, stdout = PIPE, stderr = STDOUT, bufsize=1, close_fds=ON_POSIX, shell=True)
+            print("Execute : " + execute)
+            self.process = Popen(execute, stdout = PIPE, stderr = STDOUT, shell=True)
             self.setprocess_stdout()
-
-        #if (self.corewarRun == True):
-        #    for line in self.process.stdout:
-        #        self.display()
-        #        time.sleep(1)
 
     def enqueue_output(self, out, queue):
         for line in iter(out.readline, b''):
-            queue.put(line)
+            newline = line.decode("utf-8")
+            if ("UI_PROTOCOL" in newline):
+                queue.put(newline)
         out.close()
 
-    def display_continu(self):
-        self.display()
-        if (self.corewarRun == True):
-            self.root.after(100, self.display_continu)
+    def process_data(self):
+        try: line = self.queue.get_nowait()
+        except Empty:
+            print("No output")
+        else:
+            print (line)
+            out = line.split( )
+            if (len(out) > 1 and out[0] == "UI_PROTOCOL"):
+                if (out[1] == "LMZ"): #"UI_PROTOCOL LMZ 1-0-588-0.t" give ID-StartPtr-LengthCode-Name
+                    self.setprocess_lmz(out[2])
+                    self.display()
+                if (out[1] == "PC"): #"UI_PROTOCOL PC 1-255" give ID-PtrMemory
+                    self.setprocess_pc(out[2])
+                if (out[1] == "LC"): #"UI_PROTOCOL LC 1-21-1480" give ID-Life-Cycle
+                    self.setprocess_life_cycle(out[2])
+                    self.root.update()
+                if (out[1] == "WIN"): #"UI_PROTOCOL WIN 1" give ID
+                    self.setprocess_win(out[2])
+                    self.root.update()
+        if (self.process.poll() is not None):
+                return ;
+        self.root.after(10, self.process_data())
+
+
 
     def setprocess_stdout(self):
         self.queue = Queue()
         self.thread = Thread(target=self.enqueue_output, args=(self.process.stdout, self.queue))
         self.thread.daemon = True
         self.thread.start()
-        self.display_continu()
-        try: line = self.queue.get_nowait()
-        except Empty:
-            print("No output")
-        else:
-            print (line)
-            out = line.decode("utf-8").split( )
-            if (len(out) > 1 and out[0] == "UI_PROTOCOL"):
-                if (out[1] == "LMZ"): #"UI_PROTOCOL LMZ 1-0-588-0.t" give ID-StartPtr-LengthCode-Name
-                    self.setprocess_lmz(out[2])
-                if (out[1] == "PC"): #"UI_PROTOCOL PC 1-255" give ID-PtrMemory
-                    self.setprocess_pc(out[2])
-                if (out[1] == "LC"): #"UI_PROTOCOL LC 1-21-1480" give ID-Life-Cycle
-                    self.setprocess_life_cycle(out[2])
-                if (out[1] == "WIN"): #"UI_PROTOCOL WIN 1" give ID
-                    self.setprocess_win(out[2])
-            if (self.process.poll() is not None):
-                return ;
+        self.process_data()
 
     def setprocess_lmz(self, command):
         out = command.split("-")
@@ -314,8 +330,6 @@ class App():
             if (index >= int(out[1]) and index <= (int(out[1]) + int(out[2]))):
                 self.array[index] = int(out[0])
         self.window.set_player_by_id(int(out[0]), out[3], "0")
-        #widget = UserBox(self.playerCanvas)
-        #self.playerFrame.append(widget)
 
     def setprocess_win(self, command):
         self.window.get_player_by_id(int(command))[1].set("WINNER")
@@ -325,12 +339,14 @@ class App():
         for index in range(len(self.array)):
             if (index == int(out[1])):
                 self.array[index] = int(out[0])
-        self.display()
+                self.unit_display(out[1])
 
     def setprocess_life_cycle(self, command):
         out = command.split("-")
         self.window.get_player_by_id(int(out[0]))[1].set("Life: " + out[1])
-        self.display()
+
+    def loop(self):
+        self.root.mainloop()
 
     def reset(self):
         for index in range(len(self.array)):
@@ -346,3 +362,4 @@ class App():
 
 application = App()
 application.run()
+application.loop()

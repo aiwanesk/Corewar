@@ -105,4 +105,3 @@ void				core(t_env env)
 		protocol_sleep(env);
 	}
 }
-
