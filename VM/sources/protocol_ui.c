@@ -33,6 +33,7 @@ void		protocol_pc(t_env env, t_process process, uint32_t addr)
 	ft_putnbr_uint32(process.id);
 	ft_putstr("-");
 	ft_putnbr_uint32(addr);
+	ft_putendl("");
 }
 
 void		protocol_win(t_env env, t_process process)
@@ -41,6 +42,7 @@ void		protocol_win(t_env env, t_process process)
 		return ;
 	ft_putstr("UI_PROTOCOL PC ");
 	ft_putnbr_uint32(process.id);
+	ft_putendl("");
 }
 
 void		protocol_lc(t_env env)
@@ -58,6 +60,7 @@ void		protocol_lc(t_env env)
 		ft_putnbr_uint32(env.process[i].alive);
 		ft_putstr("-");
 		ft_putnbr_uint32(env.cycles);
+		ft_putendl("");
 		++i;
 	}
 }
