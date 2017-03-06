@@ -6,7 +6,7 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 15:08:23 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/06 15:05:17 by aiwanesk         ###   ########.fr       */
+/*   Updated: 2017/03/06 17:06:02 by aiwanesk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,5 @@ void						apply_lfork(t_process *p, t_arg arg)
 	}
 	p->fork.pc = p->pc + (f);
 	p->pc = (p->pc + i + 1) % MEM_SIZE;
+	p->nb_cycle -= 1000;
 }

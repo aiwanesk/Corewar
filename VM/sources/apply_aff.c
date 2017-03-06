@@ -6,7 +6,7 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 15:04:19 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/06 15:04:56 by aiwanesk         ###   ########.fr       */
+/*   Updated: 2017/03/06 17:06:12 by aiwanesk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,5 @@ void					apply_aff(t_process *p,
 	}
 	ft_putnbr(p->reg[f] % 127);
 	p->pc = (p->pc + i) % MEM_SIZE;
+	p->nb_cycle -= 2;
 }

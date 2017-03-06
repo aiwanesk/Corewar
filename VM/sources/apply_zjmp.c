@@ -6,7 +6,7 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 15:18:38 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/06 15:05:54 by aiwanesk         ###   ########.fr       */
+/*   Updated: 2017/03/06 17:04:40 by aiwanesk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,5 @@ void					apply_zjmp(t_process *p,
 	if (p->carry == 1)
 		p->pc = dest;
 	p->pc = (p->pc + i) % MEM_SIZE;
+	p->nb_cycle -= 20;
 }

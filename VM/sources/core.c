@@ -75,7 +75,7 @@ void				core(t_env env)
 			env = process_map(env, &process_live);
 			env.cycles = env.cycles % env.cycle_to_die;
 		}
-		dprintf(1, "TEST1 ; Lecture du cycle : %u\n", env.cycles);
+		//dprintf(1, "TEST1 ; Lecture du cycle : %u\n", env.cycles);
 		protocol_lc(env);
 		if (process_alive(env) <= 1)
 		{
@@ -86,4 +86,5 @@ void				core(t_env env)
 		env = process_map(env, &execute_cpu);
 		env = process_map(env, &create_fork);
 		protocol_sleep(env);
+	}
 }

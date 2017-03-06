@@ -6,7 +6,7 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 15:01:44 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/06 15:04:49 by aiwanesk         ###   ########.fr       */
+/*   Updated: 2017/03/06 17:01:33 by aiwanesk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,5 @@ void				apply_add(struct s_process *process,
 		process->reg[second % REG_NUMBER];
 	process->carry = 1;
 	process->pc = (process->pc + i + 1) % MEM_SIZE;
+	process->nb_cycle = process->nb_cycle - 10;
 }

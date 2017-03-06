@@ -6,7 +6,7 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 15:05:51 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/06 15:05:04 by aiwanesk         ###   ########.fr       */
+/*   Updated: 2017/03/06 17:02:48 by aiwanesk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,5 @@ void						apply_fork(t_process *p, t_arg arg)
 	}
 	p->fork.pc = p->pc + (f % IDX_MOD);
 	p->pc = (p->pc + i + 1) % MEM_SIZE;
+	p->nb_cycle -= 800;
 }

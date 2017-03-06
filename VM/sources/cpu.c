@@ -6,7 +6,7 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 15:20:54 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/03 18:12:22 by aiwanesk         ###   ########.fr       */
+/*   Updated: 2017/03/06 17:07:01 by aiwanesk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,10 @@ static t_process		norme(t_process process, t_arg arg, t_env *env)
 		apply_lldi(&process, process.memory, arg);
 	else if (process.memory[process.pc] == 15 && process.nb_cycle >= 1000)
 		apply_lfork(&process, arg);
-	else if (process.memory[process.pc] == 16)
+	else if (process.memory[process.pc] == 16 && process.nb_cycle >= 2)
 		apply_aff(&process, process.memory, arg);
+	else if (process.memory[process.pc] > 16)
+		process.nb_cycle -= 1;
 	return (process);
 }
 
@@ -49,7 +51,7 @@ t_process				cpu(t_process process, t_env *env)
 	else if (process.memory[process.pc] == 5 && process.nb_cycle >= 10)
 		apply_and(&process, process.memory, arg);
 	else if (process.memory[process.pc] == 6 && process.nb_cycle >= 6)
-		apply_and(&process, process.memory, arg);
+		apply_sub(&process, process.memory, arg);
 	else if (process.memory[process.pc] == 7 && process.nb_cycle >= 6)
 		apply_or(&process, process.memory, arg);
 	else if (process.memory[process.pc] == 8 && process.nb_cycle >= 6)

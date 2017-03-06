@@ -6,7 +6,7 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 15:07:16 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/06 15:05:14 by aiwanesk         ###   ########.fr       */
+/*   Updated: 2017/03/06 17:05:14 by aiwanesk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,5 @@ void				apply_ldi(t_process *process,
 	}
 	process->reg[reg % REG_NUMBER] = mem[(first + second) % MEM_SIZE] % IDX_MOD;
 	process->pc = (process->pc + i + 1) % MEM_SIZE;
+	process->nb_cycle -= 25;
 }

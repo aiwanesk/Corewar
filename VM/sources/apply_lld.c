@@ -6,7 +6,7 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 15:10:08 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/06 15:05:28 by aiwanesk         ###   ########.fr       */
+/*   Updated: 2017/03/06 17:05:37 by aiwanesk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,5 @@ void					apply_lld(t_process *process,
 		% MEM_SIZE];
 	process->carry = 1;
 	process->pc = (process->pc + i + 1) % MEM_SIZE;
+	process->nb_cycle -= 10;
 }
