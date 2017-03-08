@@ -1,0 +1,1 @@
+changer les carry flag if result == 0 carry = 0 else carry = 1

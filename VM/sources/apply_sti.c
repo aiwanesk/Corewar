@@ -6,7 +6,7 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 15:15:43 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/08 16:47:39 by aiwanesk         ###   ########.fr       */
+/*   Updated: 2017/03/08 18:28:14 by aiwanesk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,27 @@ void				apply_sti(t_process *process, t_arg arg, t_env *env)
 	f = 0;
 	s = 0;
 	while (i < arg.total_to_read[0] + arg.total_to_read[1])
-		f += env->memory[PCANDARG + i++];
+	{
+		f <<= 8;
+		f |= env->memory[PCANDARG + i++];
+	}
 	while (i < arg.total_to_read[0] + arg.total_to_read[1] +
 			arg.total_to_read[2])
 	{
-		s += env->memory[PCANDARG + i];
+		s <<= 8;
+		s |= env->memory[PCANDARG + i];
 		i++;
 	}
+	f <<= 8;
+	s <<= 8;
+	printf("f = %x s = %x\n", f ,s );
 	if (arg.total_to_read[1] == 1)
 		f = process->reg[(f - 1)  % REG_NUMBER];
 	if (arg.total_to_read[2] == 1)
 		s = process->reg[(s - 1) % REG_NUMBER];
-write_memory(env->memory, (f + s + process->pc) % MEM_SIZE, process->reg[(reg - 1) % REG_NUMBER]);
+	//convertir 
+	//write_memory(env->memory, (f + s + process->pc) % MEM_SIZE, process->reg[(reg - 1) % REG_NUMBER]);
+	write_memory(env->memory, (f + s + process->pc + 3) % MEM_SIZE, process->reg[(reg - 1) % REG_NUMBER]);
 	process->pc = (process->pc + i + 2) % MEM_SIZE;
 	protocol_pc(*env, *process, process->pc);
 	process->nb_cycle -= 25;

@@ -6,7 +6,7 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 15:17:51 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/06 17:04:57 by aiwanesk         ###   ########.fr       */
+/*   Updated: 2017/03/08 16:51:32 by aiwanesk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,10 @@ void	apply_xor(t_process *process,
 	if (arg.total_to_read[1] == 1)
 		second = process->reg[(second - 1) % REG_NUMBER];
 	process->reg[(reg - 1) % REG_NUMBER] = (first ^ second);
-	process->carry = 1;
+	if ((first ^ second) != 0)
+		process->carry = 1;
+	else
+		process->carry = 0;
 	process->pc = (process->pc + i + 2) % MEM_SIZE;
 	process->nb_cycle -= 6;
 }

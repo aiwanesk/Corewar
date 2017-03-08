@@ -6,7 +6,7 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 15:04:31 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/06 18:58:34 by aiwanesk         ###   ########.fr       */
+/*   Updated: 2017/03/08 18:33:34 by aiwanesk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,13 @@ void				apply_and(t_process *process,
 	if (arg.total_to_read[1] == 1)
 		second = process->reg[(second - 1) % REG_NUMBER];
 	
-	//printf("i debug = %d\n", i);
+	printf("i debug = %d\n", (first & second));
+	if ((first & second) != 0)
+		process->carry = 1;
+	else
+		process->carry = 0;
+		
 	process->reg[(dest - 1) % REG_NUMBER] = (first & second);
-	process->carry = 1;
 	process->pc = (process->pc + i + 2) % MEM_SIZE;
 	process->nb_cycle -= 6;
 }

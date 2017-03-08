@@ -6,7 +6,7 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 15:18:38 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/06 17:04:40 by aiwanesk         ###   ########.fr       */
+/*   Updated: 2017/03/08 18:33:10 by aiwanesk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,27 @@ void					apply_zjmp(t_process *p,
 	i = 0;
 	dest = 0;
 	printf("instruction ZJMP \n");
+//	char test[2];
+	uint32_t	test = 0;
 	while (i < arg.total_to_read[0])
 	{
-
-		dest += mem[p->pc + 1 + i];
+		test <<= 8;
+		test |= mem[p->pc + i + 1];
+		printf("%.4x\n", test);
 		i++;
+//		test[0] = mem[p->pc + i + 1];
+//		test[1] = mem[p->pc + i + 2];
+//		break;
+	//	if (dest == 0)
+	//		dest = 1;
+	//	dest *= mem[p->pc + 1 + i];
+	//	printf("int = %d\n", dest);
+	//	i++;
 	}
+	printf("destination = %d\n", (p->pc  + test) % MEM_SIZE);
+	printf("carry = %d\n", p->carry);
 	if (p->carry == 1)
-//	printf("%d\n", dest);
-//	if (p->carry == 0)
-		p->pc = dest;
+		p->pc += (p->pc + test) % MEM_SIZE;
 	else
 		p->pc = (p->pc + i + 1) % MEM_SIZE;
 	p->nb_cycle -= 20;

@@ -6,7 +6,7 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 15:11:32 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/06 17:04:47 by aiwanesk         ###   ########.fr       */
+/*   Updated: 2017/03/08 16:50:46 by aiwanesk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,10 @@ void	apply_or(t_process *process,
 		i++;
 	}
 	process->reg[reg % REG_NUMBER] = (first | second);
-	process->carry = 1;
+	if ((first | second) != 0)
+		process->carry = 1;
+	else
+		process->carry = 0;
 	process->pc = (process->pc + i + 2) % MEM_SIZE;
 	process->nb_cycle -= 6;
 }
