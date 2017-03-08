@@ -9,7 +9,7 @@
 
 # include <unistd.h>
 # include <stdint.h>
-# include "op.h"
+# include "../../core/op.h"
 
 # ifndef STDERR
 #  define STDERR STDERR_FILENO
@@ -50,7 +50,6 @@ struct					s_process
 	char			name[PROG_NAME_LENGTH + 1];
 	char			comment[COMMENT_LENGTH + 1];
 	unsigned char	carry;
-	unsigned char	*memory;
 	_Bool			isdead;
 	t_fork			fork;
 };

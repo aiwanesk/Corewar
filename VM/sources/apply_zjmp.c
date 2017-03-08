@@ -25,13 +25,18 @@ void					apply_zjmp(t_process *p,
 
 	i = 0;
 	dest = 0;
+	printf("instruction ZJMP \n");
 	while (i < arg.total_to_read[0])
 	{
+		printf("mem[%d] = [%d]\n", p->pc + 1 + i, mem[p->pc + 1 + 1]);
 		dest += mem[p->pc + 1 + i];
 		i++;
 	}
 	if (p->carry == 1)
+//	printf("%d\n", dest);
+//	if (p->carry == 0)
 		p->pc = dest;
-	p->pc = (p->pc + i) % MEM_SIZE;
+	else
+		p->pc = (p->pc + i + 1) % MEM_SIZE;
 	p->nb_cycle -= 20;
 }

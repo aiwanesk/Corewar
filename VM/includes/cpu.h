@@ -66,8 +66,10 @@ void				apply_st(t_process *process, t_arg arg, t_env *env);
 
 void				apply_aff(t_process *process,
 		unsigned char memory[MEM_SIZE], t_arg arg);
-void				apply_fork(t_process *process, t_arg arg);
-void				apply_lfork(t_process *process, t_arg arg);
+void				apply_fork(t_process *process, t_env *env,
+t_arg arg);
+void				apply_lfork(t_process *process, t_env *env,
+t_arg arg);
 
 void				apply_ldi(t_process *process,
 		unsigned char memory[MEM_SIZE], t_arg arg);

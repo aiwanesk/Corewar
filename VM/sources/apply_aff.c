@@ -18,6 +18,7 @@ void					apply_aff(t_process *p,
 	int		i;
 	int		f;
 
+	printf("Instruction Aff\n");
 	i = 0;
 	f = 0;
 	while (i < arg.total_to_read[0])
@@ -25,6 +26,8 @@ void					apply_aff(t_process *p,
 		f += mem[p->pc + 1 + i];
 		i++;
 	}
+	if (arg.total_to_read[0] == 1)
+		f = p->reg[(f - 1) % REG_NUMBER];
 	ft_putnbr(p->reg[f] % 127);
 	p->pc = (p->pc + i) % MEM_SIZE;
 	p->nb_cycle -= 2;

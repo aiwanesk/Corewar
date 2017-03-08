@@ -25,32 +25,40 @@ void				apply_sti(t_process *process, t_arg arg, t_env *env)
 	uint32_t	f;
 	uint32_t	s;
 
-	printf("Appli STI\n");
+		printf("Instruction sti\n");
+//	printf("Appli STI\n");
 	reg = 0;
 	i = -1;
 	while (++i < arg.total_to_read[0])
-		reg += process->memory[PCANDARG + i];
+		reg += env->memory[PCANDARG + i];
 	f = 0;
 	s = 0;
 	while (i < arg.total_to_read[0] + arg.total_to_read[1])
-		f += process->memory[PCANDARG + i++];
+		f += env->memory[PCANDARG + i++];
 	while (i < arg.total_to_read[0] + arg.total_to_read[1] +
 			arg.total_to_read[2])
 	{
-		s += process->memory[PCANDARG + i];
+		s += env->memory[PCANDARG + i];
 		i++;
 	}
-	printf("reg = %u f = %u s = %u\n", reg, f, s);
+//	printf("reg = %u f = %u s = %u\n", reg, f, s);
 	//exit(-1);
+//	printf("meme[%u]\n", process->memory[(f + s) % MEM_SIZE]);
 	if (arg.total_to_read[1] == 1)
-		f = process->reg[f];
+		f = process->reg[(f - 1)  % REG_NUMBER];
 	if (arg.total_to_read[2] == 1)
-		s = process->reg[s];
-	process->memory[(f + s) % MEM_SIZE] = process->reg[(reg - 1) % REG_NUMBER];
-	printf("reg[0] = %u\n", process->reg[0]);
-	print_memory(process->memory);
-	process->pc = (process->pc + i + 1) % MEM_SIZE;
+		s = process->reg[(s - 1) % REG_NUMBER];
+//	printf("val avant[%u]\n", env->memory[(f + s + process->pc) % MEM_SIZE]);
+//	printf("[%d]\n", f + s + process->pc);
+//	printf("[%d]\n", (f + s + process->pc) % MEM_SIZE);
+	//print_memory(process->memory);
+	env->memory[(f + s + process->pc) % MEM_SIZE] = process->reg[(reg - 1) % REG_NUMBER];
+//	printf("val aprest[%u]\n", env->memory[(f + s + process->pc) % MEM_SIZE]);
+//	printf("reg[0] = %u\n", process->reg[0]);
+	process->pc = (process->pc + i + 2) % MEM_SIZE;
 	//TODO application du protocol
 	protocol_pc(*env, *process, process->pc);
 	process->nb_cycle -= 25;
+//	for (i = 0; process->memory[i]; i++)
+//		env->memory[i] = process->memory[i];
 }

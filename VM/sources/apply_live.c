@@ -18,6 +18,7 @@ void				apply_live(t_process *process,
 	int		i;
 	int		total;
 
+	printf("Instruction live\n");
 	i = 0;
 	total = 0;
 	while (i < 4)
@@ -25,7 +26,7 @@ void				apply_live(t_process *process,
 		total += memory[process->pc + i];
 		i++;
 	}
-	printf("Live Called id[%u]\n", process->id);
+//	printf("Live Called id[%u]\n", process->id);
 	process->pc = (process->pc + i + 1) % MEM_SIZE;
 	process->nb_cycle -= 10;
 	//TODO c'est ca que tu veux?

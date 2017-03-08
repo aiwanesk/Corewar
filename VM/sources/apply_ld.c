@@ -19,6 +19,7 @@ void					apply_ld(t_process *process,
 	uint32_t		first;
 	uint32_t		reg;
 
+	printf("Instruction ld\n");
 	i = 0;
 	first = 0;
 	while (i < arg.total_to_read[0])
@@ -33,12 +34,12 @@ void					apply_ld(t_process *process,
 		i++;
 	}
 	if (arg.total_to_read[0] == 1)
-		first = process->reg[first % REG_NUMBER];
+		first = process->reg[(first - 1) % REG_NUMBER];
 	if (arg.total_to_read[1] == 1)
-		reg = process->reg[reg % REG_NUMBER];
-	process->memory[reg % REG_NUMBER] = process->memory[(process->pc +
+		reg = process->reg[(reg - 1)  % REG_NUMBER];
+	memory[(reg - 1) % REG_NUMBER] = memory[(process->pc +
 			(first % IDX_MOD)) % MEM_SIZE];
 	process->carry = 1;
-	process->pc = (process->pc + i + 1) % MEM_SIZE;
+	process->pc = (process->pc + i + 2) % MEM_SIZE;
 	process->nb_cycle -= 5;
 }

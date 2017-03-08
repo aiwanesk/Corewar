@@ -24,23 +24,24 @@ void				apply_st(t_process *process, struct s_arg arg, t_env *env)
 	int		reg;
 	int		second;
 
+		printf("Instruction st\n");
 	i = -1;
 	reg = 0;
 	while (++i < arg.total_to_read[0])
-		reg += process->memory[(PCANDARG + i) % MEM_SIZE];
+		reg += env->memory[(PCANDARG + i) % MEM_SIZE];
 	second = 0;
 	while (i < arg.total_to_read[0] + arg.total_to_read[1])
 	{
-		second += process->memory[(PCANDARG + i) % MEM_SIZE];
+		second += env->memory[(PCANDARG + i) % MEM_SIZE];
 		i++;
 	}
 	if (arg.total_to_read[0] == 1)
-		reg = process->reg[reg % REG_NUMBER];
+		reg = process->reg[(reg - 1) % REG_NUMBER];
 	if (arg.total_to_read[1] == 1)
-		second = process->reg[second % REG_NUMBER];
-	process->memory[(process->pc + (second % IDX_MOD)) % MEM_SIZE] =
+		second = process->reg[(second - 1 ) % REG_NUMBER];
+	env->memory[(process->pc + (second % IDX_MOD)) % MEM_SIZE] =
 		process->reg[reg % REG_NUMBER];
-	process->pc = (process->pc + i + 1) % MEM_SIZE;
+	process->pc = (process->pc + i + 2) % MEM_SIZE;
 	protocol_pc(*env, *process, process->pc);
 	process->nb_cycle = 5;
 }

@@ -26,7 +26,8 @@ void				apply_add(struct s_process *process,
 	uint32_t			second;
 	uint32_t			dest;
 
-	printf("Add called id[%u]\n", process->id);
+	printf("Instruction Add\n");
+//	printf("Add called id[%u]\n", process->id);
 	i = 0;
 	first = 0;
 	while (i < arg.total_to_read[0])
@@ -44,9 +45,9 @@ void				apply_add(struct s_process *process,
 		dest += memory[(PCANDARG + i) % MEM_SIZE];
 		i++;
 	}
-	process->reg[dest % REG_NUMBER] = process->reg[first % REG_NUMBER] +
-		process->reg[second % REG_NUMBER];
+	process->reg[(dest - 1) % REG_NUMBER] = process->reg[(first - 1) % REG_NUMBER] +
+		process->reg[(second - 1) % REG_NUMBER];
 	process->carry = 1;
-	process->pc = (process->pc + i + 1) % MEM_SIZE;
+	process->pc = (process->pc + i + 2) % MEM_SIZE;
 	process->nb_cycle = process->nb_cycle - 10;
 }

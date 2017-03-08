@@ -26,6 +26,7 @@ void				apply_ldi(t_process *process,
 	uint32_t	second;
 	uint32_t	reg;
 
+	printf("Instruction ldi\n");
 	i = -1;
 	first = 0;
 	while (arg.total_to_read[0] > ++i)
@@ -43,7 +44,12 @@ void				apply_ldi(t_process *process,
 		reg += mem[PCANDARG + i];
 		i++;
 	}
-	process->reg[reg % REG_NUMBER] = mem[(first + second) % MEM_SIZE] % IDX_MOD;
-	process->pc = (process->pc + i + 1) % MEM_SIZE;
+	if (arg.total_to_read[0] == 1)
+		first = process->reg[(first - 1) % REG_NUMBER];
+	if (arg.total_to_read[1] == 1)
+		second = process->reg[(second - 1) % REG_NUMBER];
+	
+	process->reg[(reg - 1) % REG_NUMBER] = mem[(first + second) % MEM_SIZE] % IDX_MOD;
+	process->pc = (process->pc + i + 2) % MEM_SIZE;
 	process->nb_cycle -= 25;
 }

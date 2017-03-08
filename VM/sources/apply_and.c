@@ -27,7 +27,8 @@ void				apply_and(t_process *process,
 	uint32_t		second;
 	uint32_t		dest;
 
-	printf("apply and\n");
+	printf("Instruction And\n");
+//	printf("apply and\n");
 	i = -1;
 	first = 0;
 	while (++i < arg.total_to_read[0])
@@ -45,8 +46,14 @@ void				apply_and(t_process *process,
 		dest += mem[(PCANDARG + i) % MEM_SIZE];
 		i++;
 	}
-	process->reg[dest % REG_NUMBER] = (first & second);
+	if (arg.total_to_read[0] == 1)
+		first = process->reg[(first - 1) % REG_NUMBER];
+	if (arg.total_to_read[1] == 1)
+		second = process->reg[(second - 1) % REG_NUMBER];
+	
+	//printf("i debug = %d\n", i);
+	process->reg[(dest - 1) % REG_NUMBER] = (first & second);
 	process->carry = 1;
-	process->pc = (process->pc + i + 1) % MEM_SIZE;
+	process->pc = (process->pc + i + 2) % MEM_SIZE;
 	process->nb_cycle -= 6;
 }

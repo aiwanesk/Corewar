@@ -18,19 +18,20 @@
 ** à part son PC, qui est mis à (PC + (1er paramètre % IDX_MOD)).
 */
 
-void						apply_fork(t_process *p, t_arg arg)
+void						apply_fork(t_process *p, t_env *env, t_arg arg)
 {
 	int			i;
 	uint32_t	f;
 
+	printf("Instruction fork\n");
 	i = 0;
 	f = 0;
 	while (i < arg.total_to_read[0])
 	{
-		f += p->memory[p->pc + 1 + i];
+		f += env->memory[p->pc + 1 + i];
 		i++;
 	}
 	p->fork.pc = p->pc + (f % IDX_MOD);
-	p->pc = (p->pc + i + 1) % MEM_SIZE;
+	p->pc = (p->pc + i + 2) % MEM_SIZE;
 	p->nb_cycle -= 800;
 }

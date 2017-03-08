@@ -22,7 +22,8 @@ t_env		init_core(t_options opt)
 	while (i < opt.nbchampions)
 	{
 		env.process[i].alive = 1;
-		env.process[i].memory = env.memory;
+		//Useless noew
+//		env.process[i].memory = env.memory;
 		++i;
 	}
 	env.run = TRUE;

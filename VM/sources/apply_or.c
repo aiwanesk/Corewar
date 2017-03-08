@@ -26,6 +26,7 @@ void	apply_or(t_process *process,
 	uint32_t		second;
 	uint32_t		reg;
 
+	printf("Instruction or\n");
 	i = -1;
 	first = 0;
 	while (++i < arg.total_to_read[0])
@@ -45,6 +46,6 @@ void	apply_or(t_process *process,
 	}
 	process->reg[reg % REG_NUMBER] = (first | second);
 	process->carry = 1;
-	process->pc = (process->pc + i + 1) % MEM_SIZE;
+	process->pc = (process->pc + i + 2) % MEM_SIZE;
 	process->nb_cycle -= 6;
 }
