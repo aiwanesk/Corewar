@@ -9,6 +9,7 @@ import signal
 import math
 import time
 
+DEBUG = True
 ON_POSIX = 'posix' in sys.builtin_module_names
 
 class New_Toplevel_1(Frame):
@@ -276,7 +277,7 @@ class App():
             self.window.reset_label_champion("")
             self.window.update()
         championString = ' '.join(self.window.getFile())
-        if (championString == ""):
+        if (DEBUG and championString == ""):
             championString = "/Users/mbarbari/project/corewar/ui/ressources/3615sleep.cor /Users/mbarbari/project/corewar/ui/ressources/3615sleep.cor"
         if (self.corewarRun != True):
             execute = "../VM//corewar -ui -n 1 " + championString
@@ -287,6 +288,8 @@ class App():
 
     def enqueue_output(self, out, queue):
         for line in iter(out.readline, b''):
+            if (self.corewarRun == False):
+                break ;
             newline = line.decode("utf-8")
             if ("UI_PROTOCOL" in newline):
                 queue.put(newline)
@@ -350,11 +353,12 @@ class App():
     def reset(self):
         for index in range(len(self.array)):
             self.array[index] = 0
+        self.process.stdout.close()
         if (self.process is not None):
             self.process.kill()
         self.corewarRun = False
         self.window.reset_label_champion("Wait loading champion")
-        self.queue.clear()
+        self.queue.queue.clear()
         self.display()
 
 application = App()
