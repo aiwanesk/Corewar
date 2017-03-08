@@ -6,7 +6,7 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 15:06:24 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/06 17:03:28 by aiwanesk         ###   ########.fr       */
+/*   Updated: 2017/03/08 16:23:52 by aiwanesk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void					apply_ld(t_process *process,
 	int				i;
 	uint32_t		first;
 	uint32_t		reg;
+	uint32_t		addr;
 
 	printf("Instruction ld\n");
 	i = 0;
@@ -37,6 +38,7 @@ void					apply_ld(t_process *process,
 		first = process->reg[(first - 1) % REG_NUMBER];
 	if (arg.total_to_read[1] == 1)
 		reg = process->reg[(reg - 1)  % REG_NUMBER];
+	addr = process->pc + (first % IDX_MOD);
 	memory[(reg - 1) % REG_NUMBER] = memory[(process->pc +
 			(first % IDX_MOD)) % MEM_SIZE];
 	process->carry = 1;

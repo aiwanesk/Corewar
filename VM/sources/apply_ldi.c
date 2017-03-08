@@ -6,7 +6,7 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 15:07:16 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/06 17:05:14 by aiwanesk         ###   ########.fr       */
+/*   Updated: 2017/03/08 16:24:45 by aiwanesk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void				apply_ldi(t_process *process,
 	uint32_t	first;
 	uint32_t	second;
 	uint32_t	reg;
+	uint32_t	addr;
 
 	printf("Instruction ldi\n");
 	i = -1;
@@ -49,7 +50,8 @@ void				apply_ldi(t_process *process,
 	if (arg.total_to_read[1] == 1)
 		second = process->reg[(second - 1) % REG_NUMBER];
 	
-	process->reg[(reg - 1) % REG_NUMBER] = mem[(first + second) % MEM_SIZE] % IDX_MOD;
+	addr = (first + second) % IDX_MOD;
+	process->reg[(reg - 1) % REG_NUMBER] = read_memory(mem, addr);
 	process->pc = (process->pc + i + 2) % MEM_SIZE;
 	process->nb_cycle -= 25;
 }

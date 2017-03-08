@@ -20,12 +20,7 @@ t_env		init_core(t_options opt)
 	i = 0;
 	env = create_process(env, opt);
 	while (i < opt.nbchampions)
-	{
-		env.process[i].alive = 1;
-		//Useless noew
-//		env.process[i].memory = env.memory;
-		++i;
-	}
+		env.process[i++].alive = 1;
 	env.run = TRUE;
 	env.cycle_to_die = CYCLE_TO_DIE;
 	return (env);
@@ -68,7 +63,7 @@ void				core(t_env env)
 		++env.cycles;
 		if (env.dump > 0 && env.cycles >= env.dump)
 		{
-			print_memory(env.memory);
+			print_memory(env.memory, env);
 			return ;
 		}
 		else if (env.cycles >= env.cycle_to_die)
@@ -76,12 +71,6 @@ void				core(t_env env)
 			env = process_map(env, &process_live);
 			env.cycles = env.cycles % env.cycle_to_die;
 		}
-		//print_memory(env.memory);
-		//printf("\n\n");
-		//printf("nb total Cycle :%u\n", env.cycles);
-		//printf("pc->p1[%u]=memory[%d]\n", env.process[0].pc, env.process[0].memory[env.process[0].pc]);
-	//	printf("pc->p2[%u]=memory[%d]\n", env.process[1].pc, env.process[1].memory[env.process[1].pc]);
-		//dprintf(1, "TEST1 ; Lecture du cycle : %u\n", env.cycles);
 		protocol_lc(env);
 		if (process_alive(env) <= 1)
 		{

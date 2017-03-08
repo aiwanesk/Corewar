@@ -47,7 +47,7 @@ t_env			process_live(t_env env, int i)
 t_env			execute_cpu(t_env env, int i)
 {
 	if (env.process[i].isdead == FALSE)
-		env.process[i] = cpu(env.process[i], &env);
+		cpu(&env.process[i], &env);
 	return (env);
 }
 

@@ -99,10 +99,11 @@ int						error_options(t_options opt);
 void					write_memory(unsigned char *memory, uint32_t addr, uint32_t val);
 uint32_t				read_memory(unsigned char *memory, uint32_t addr);
 void					cpy_memory(unsigned char *memory, unsigned char *cpy);
-void					print_memory(unsigned char *memory);
+void					print_memory(unsigned char *memory, t_env env);
 
 //TODO LUI PASSSER UN T ENV
-t_process				cpu(t_process process, t_env *env);
+void				cpu(t_process *process, t_env *env);
+
 
 /*
 ** random.c file
@@ -118,8 +119,10 @@ void					check_random(t_process process[], int n);
 ** to little endian
 */
 t_env					load_champion(t_env env, t_options opt, int id);
-uint32_t				convert_endianness(unsigned int val);
+uint32_t				convert_endianness32(uint32_t val);
+uint16_t				convert_endianness16(uint16_t val);
 void					ft_putnbr_uint32(uint32_t i);
+void					print_hex(uintmax_t hex, char *base);
 
 /*
 ** process.c file
