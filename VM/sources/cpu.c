@@ -43,8 +43,9 @@ t_process				cpu(t_process process, t_env *env)
 	t_arg		arg;
 
 	arg = parsing_request(&process, env->memory);
-	//if (env->memory[process.pc] < 17 && env->memory[process.pc] != 0)
-	//printf("pos  = %d\n", process.pc);
+//	printf("pos = [%d]---id = [%d]\n", process.pc, process.id);
+//	if (env->memory[process.pc] < 17 && env->memory[process.pc] != 0)
+//		printf("id  = %d\n", process.id);
 	if (env->memory[process.pc] == 1 && process.nb_cycle >= 10)
 		apply_live(&process, env->memory, env);
 	else if (env->memory[process.pc] == 2 && process.nb_cycle >= 5)

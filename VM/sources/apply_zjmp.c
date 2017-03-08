@@ -28,7 +28,7 @@ void					apply_zjmp(t_process *p,
 	printf("instruction ZJMP \n");
 	while (i < arg.total_to_read[0])
 	{
-		printf("mem[%d] = [%d]\n", p->pc + 1 + i, mem[p->pc + 1 + 1]);
+
 		dest += mem[p->pc + 1 + i];
 		i++;
 	}
