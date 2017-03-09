@@ -32,17 +32,21 @@ void				apply_add(struct s_process *process,
 	first = 0;
 	while (i < arg.total_to_read[0])
 	{
-		first += memory[(PCANDARG + i) % MEM_SIZE];
+		first <<= 8;
+		first |= memory[(PCANDARG + i) % MEM_SIZE];
 		i++;
 	}
 	second = 0;
-	while (i < arg.total_to_read[0] + arg.total_to_read[1])
-		second += memory[(PCANDARG + i++) % MEM_SIZE];
+	while (i < arg.total_to_read[0] + arg.total_to_read[1]){
+		second <<= 8;
+		second |= memory[(PCANDARG + i++) % MEM_SIZE];
+		}
 	dest = 0;
 	while (i < arg.total_to_read[0] + arg.total_to_read[1] +
 			arg.total_to_read[2])
 	{
-		dest += memory[(PCANDARG + i) % MEM_SIZE];
+		dest <<= 8;
+		dest |= memory[(PCANDARG + i) % MEM_SIZE];
 		i++;
 	}
 	process->reg[(dest - 1) % REG_NUMBER] = process->reg[(first - 1) % REG_NUMBER] +

@@ -28,7 +28,8 @@ void						apply_fork(t_process *p, t_env *env, t_arg arg)
 	f = 0;
 	while (i < arg.total_to_read[0])
 	{
-		f += env->memory[p->pc + 1 + i];
+		f<<= 8;
+		f |= env->memory[p->pc + 1 + i];
 		i++;
 	}
 	p->fork.pc = p->pc + (f % IDX_MOD);

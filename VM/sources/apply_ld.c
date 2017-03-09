@@ -25,13 +25,15 @@ void					apply_ld(t_process *process,
 	first = 0;
 	while (i < arg.total_to_read[0])
 	{
-		first += memory[PCANDARG + i];
+		first<<=8;
+		first |= memory[PCANDARG + i];
 		i++;
 	}
 	reg = 0;
 	while (i < arg.total_to_read[0] + arg.total_to_read[1])
 	{
-		reg += memory[PCANDARG + i];
+		reg<<=8;
+		reg |= memory[PCANDARG + i];
 		i++;
 	}
 	if (arg.total_to_read[0] == 1)
@@ -39,8 +41,8 @@ void					apply_ld(t_process *process,
 	if (arg.total_to_read[1] == 1)
 		reg = process->reg[(reg - 1)  % REG_NUMBER];
 	addr = process->pc + (first % IDX_MOD);
-	memory[(reg - 1) % REG_NUMBER] = memory[(process->pc +
-			(first % IDX_MOD)) % MEM_SIZE];
+	process->reg[(reg - 1) % REG_NUMBER] = memory[(process->pc +
+			(first % IDX_MOD)) % MEM_SIZE] ;
 	process->carry = 1;
 	process->pc = (process->pc + i + 2) % MEM_SIZE;
 	process->nb_cycle -= 5;

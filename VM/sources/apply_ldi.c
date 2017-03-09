@@ -30,19 +30,23 @@ void				apply_ldi(t_process *process,
 	printf("Instruction ldi\n");
 	i = -1;
 	first = 0;
-	while (arg.total_to_read[0] > ++i)
-		first += mem[PCANDARG + i];
+	while (arg.total_to_read[0] > ++i){
+		first<<=8;
+		first |= mem[PCANDARG + i];
+		}
 	second = 0;
 	while (i < arg.total_to_read[0] + arg.total_to_read[1])
 	{
-		second += mem[PCANDARG + i];
+		second<<=8;
+		second |= mem[PCANDARG + i];
 		i++;
 	}
 	reg = 0;
 	while (i < arg.total_to_read[0] + arg.total_to_read[1] +
 			arg.total_to_read[2])
 	{
-		reg += mem[PCANDARG + i];
+		reg<<=8;
+		reg |= mem[PCANDARG + i];
 		i++;
 	}
 	if (arg.total_to_read[0] == 1)

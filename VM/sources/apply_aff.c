@@ -23,7 +23,8 @@ void					apply_aff(t_process *p,
 	f = 0;
 	while (i < arg.total_to_read[0])
 	{
-		f += mem[p->pc + 1 + i];
+		f <<= 8;
+		f |= mem[p->pc + 1 + i];
 		i++;
 	}
 	if (arg.total_to_read[0] == 1)

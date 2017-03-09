@@ -29,23 +29,27 @@ void	apply_or(t_process *process,
 	printf("Instruction or\n");
 	i = -1;
 	first = 0;
-	while (++i < arg.total_to_read[0])
-		first += memory[(PCANDARG + i) % MEM_SIZE];
+	while (++i < arg.total_to_read[0]){
+		first<<=8;
+		first |= memory[(PCANDARG + i) % MEM_SIZE];
+		}
 	second = 0;
 	while (i < arg.total_to_read[0] + arg.total_to_read[1])
 	{
-		second += memory[(PCANDARG + i) % MEM_SIZE];
+		second<<=8;
+		second |= memory[(PCANDARG + i) % MEM_SIZE];
 		i++;
 	}
 	reg = 0;
 	while (i < arg.total_to_read[0] + arg.total_to_read[1] +
 			arg.total_to_read[2])
 	{
-		reg += memory[(PCANDARG + i) % MEM_SIZE];
+		reg<<=8;
+		reg |= memory[(PCANDARG + i) % MEM_SIZE];
 		i++;
 	}
 	process->reg[reg % REG_NUMBER] = (first | second);
-	if ((first | second) != 0)
+	if ((first | second) == process->reg[reg % REG_NUMBER])
 		process->carry = 1;
 	else
 		process->carry = 0;

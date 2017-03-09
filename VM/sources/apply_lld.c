@@ -26,12 +26,15 @@ void					apply_lld(t_process *process,
 	printf("Instruction lld\n");
 	i = -1;
 	first = 0;
-	while (++i < arg.total_to_read[0])
-		first += memory[PCANDARG + i];
+	while (++i < arg.total_to_read[0]){
+		first<<=8;
+		first |= memory[PCANDARG + i];
+		}
 	reg = 0;
 	while (i < arg.total_to_read[0] + arg.total_to_read[1])
 	{
-		reg += memory[PCANDARG + i];
+		reg<<=8;
+		reg |= memory[PCANDARG + i];
 		i++;
 	}
 	if (arg.total_to_read[0] == 1)
