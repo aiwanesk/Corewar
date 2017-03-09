@@ -3,9 +3,9 @@
 #include <compilateur.h>
 #include <header.h>
 
-static t_header		*st_get(void)
+static header_t		*st_get(void)
 {
-	static t_header		header = {0xF383EA00, {0}, 0, {0}};
+	static header_t		header = {0xF383EA00, {0}, 0, {0}};
 
 	return (&header);
 }
@@ -14,7 +14,7 @@ void				head_data(enum e_data data, char *code)
 {
 	unsigned int	i;
 	unsigned int	j;
-	t_header		*head;
+	header_t		*head;
 
 	head = st_get();
 	i = 0;
@@ -33,7 +33,7 @@ void				head_data(enum e_data data, char *code)
 
 void				head_size(int size)
 {
-	t_header		*head;
+	header_t		*head;
 
 	head = st_get();
 	head->prog_size = rev_indian(size);
@@ -41,5 +41,5 @@ void				head_size(int size)
 
 void				write_header(int fd)
 {
-	write(fd, (void*)st_get(), sizeof(t_header));
+	write(fd, (void*)st_get(), sizeof(header_t));
 }
