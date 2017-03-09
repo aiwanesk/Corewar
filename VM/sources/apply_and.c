@@ -6,7 +6,7 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 15:04:31 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/08 18:33:34 by aiwanesk         ###   ########.fr       */
+/*   Updated: 2017/03/09 12:47:34 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,46 +19,8 @@
 ** le carry.
 */
 
-void				apply_and(t_process *process,
-		unsigned char mem[MEM_SIZE], struct s_arg arg)
+void				apply_and(t_process *process, t_env *env)
 {
-	int				i;
-	uint32_t		first;
-	uint32_t		second;
-	uint32_t		dest;
-
-	printf("Instruction And\n");
-	i = -1;
-	first = 0;
-	while (++i < arg.total_to_read[0])
-	{
-		first <<= 8;
-		first |= mem[(PCANDARG + i) % MEM_SIZE];
-	}
-	second = 0;
-	while (i < arg.total_to_read[0] + arg.total_to_read[1])
-	{
-		second <<= 8;
-		second |= mem[(PCANDARG + i) % MEM_SIZE];
-		i++;
-	}
-	dest = 0;
-	while (i < arg.total_to_read[0] + arg.total_to_read[1] +
-			arg.total_to_read[2])
-	{
-		dest <<= 8;
-		dest |= mem[(PCANDARG + i) % MEM_SIZE];
-		i++;
-	}
-	if (arg.total_to_read[0] == 1)
-		first = process->reg[(first - 1) % REG_NUMBER];
-	if (arg.total_to_read[1] == 1)
-		second = process->reg[(second - 1) % REG_NUMBER];
-	if ((first & second) == process->reg[dest % REG_NUMBER])
-		process->carry = 1;
-	else
-		process->carry = 0;
-	process->reg[(dest - 1) % REG_NUMBER] = (first & second);
-	process->pc = (process->pc + i + 2) % MEM_SIZE;
-	process->nb_cycle -= 6;
+	(void)process;
+	(void)env;
 }

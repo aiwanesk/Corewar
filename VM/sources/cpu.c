@@ -6,58 +6,69 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 15:20:54 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/08 16:46:27 by aiwanesk         ###   ########.fr       */
+/*   Updated: 2017/03/09 12:51:24 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cpu.h"
 
-static void		norme(t_process *process, t_arg arg, t_env *env)
+static void			fct_cpu(t_fct_cpu fct[17])
 {
-	if (env->memory[process->pc] == 9 && process->nb_cycle >= 20)
-		apply_zjmp(process, env->memory, arg);
-	else if (env->memory[process->pc] == 10 && process->nb_cycle >= 25)
-		apply_ldi(process, env->memory, arg);
-	else if (env->memory[process->pc] == 11 && process->nb_cycle >= 25)
-		apply_sti(process, arg, env);
-	else if (env->memory[process->pc] == 12 && process->nb_cycle >= 800)
-		apply_fork(process, env, arg);
-	else if (env->memory[process->pc] == 13 && process->nb_cycle >= 10)
-		apply_lld(process, env->memory, arg);
-	else if (env->memory[process->pc] == 14 && process->nb_cycle >= 50)
-		apply_lldi(process, env->memory, arg);
-	else if (env->memory[process->pc] == 15 && process->nb_cycle >= 1000)
-		apply_lfork(process, env, arg);
-	else if (env->memory[process->pc] == 16 && process->nb_cycle >= 2)
-		apply_aff(process, env->memory, arg);
-	else if (env->memory[process->pc] > 16 || env->memory[process->pc] == 0)
-	{
-		process->nb_cycle -= 1;
-		process->pc += 1;
-	}
+	fct[0] = NULL;
+	fct[1] = &apply_live;
+	fct[2] = &apply_ld;
+	fct[3] = &apply_st;
+	fct[4] = &apply_add;
+	fct[5] = &apply_sub;
+	fct[6] = &apply_and;
+	fct[7] = &apply_or;
+	fct[8] = &apply_xor;
+	fct[9] = &apply_zjmp;
+	fct[10] = &apply_ldi;
+	fct[11] = &apply_sti;
+	fct[12] = &apply_fork;
+	fct[13] = &apply_lld;
+	fct[14] = &apply_lldi;
+	fct[15] = &apply_lfork;
+	fct[16] = &apply_aff;
+}
+
+static void			get_cycles(uint32_t cycles[17])
+{
+	cycles[0] = 0;
+	cycles[1] = 10;
+	cycles[2] = 5;
+	cycles[3] = 5;
+	cycles[4] = 10;
+	cycles[5] = 10;
+	cycles[6] = 6;
+	cycles[7] = 6;
+	cycles[8] = 6;
+	cycles[9] = 20;
+	cycles[10] = 25;
+	cycles[11] = 25;
+	cycles[12] = 800;
+	cycles[13] = 10;
+	cycles[14] = 50;
+	cycles[15] = 1000;
+	cycles[16] = 2;
 }
 
 void				cpu(t_process *process, t_env *env)
 {
-	t_arg		arg;
+	static t_fct_cpu	cpu[17] = {0};
+	static uint32_t		cycles[17] = {0};
+	static int			init = 0;
+	uint32_t			opcode;
 
-	arg = parsing_request(process, env->memory);
-	if (env->memory[process->pc] == 1 && process->nb_cycle >= 10)
-		apply_live(process, env->memory, env);
-	else if (env->memory[process->pc] == 2 && process->nb_cycle >= 5)
-		apply_ld(process, env->memory, arg);
-	else if (env->memory[process->pc] == 3 && process->nb_cycle >= 5)
-		apply_st(process, arg, env);
-	else if (env->memory[process->pc] == 4 && process->nb_cycle >= 10)
-		apply_add(process, env->memory, arg);
-	else if (env->memory[process->pc] == 5 && process->nb_cycle >= 10)
-		apply_sub(process, env->memory, arg);
-	else if (env->memory[process->pc] == 6 && process->nb_cycle >= 6)
-		apply_and(process, env->memory, arg);
-	else if (env->memory[process->pc] == 7 && process->nb_cycle >= 6)
-		apply_or(process, env->memory, arg);
-	else if (env->memory[process->pc] == 8 && process->nb_cycle >= 6)
-		apply_xor(process, env->memory, arg);
-	else
-		(norme(process, arg, env));
+	if (init == 0 && ++init)
+	{
+		fct_cpu(cpu);
+		get_cycles(cycles);
+	}
+	opcode = env->memory[process->pc];
+	if (cpu[opcode] && cycles[opcode] >= process->nb_cycle)
+		cpu[opcode](process, env);
+	else if (!cpu[opcode])
+		++process->pc;
 }

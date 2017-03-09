@@ -6,7 +6,7 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 15:01:44 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/06 17:27:13 by aiwanesk         ###   ########.fr       */
+/*   Updated: 2017/03/09 12:46:58 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,39 +18,8 @@
 ** dans le troisième, juste avant de modifier le carry.
 */
 
-void				apply_add(struct s_process *process,
-		unsigned char memory[MEM_SIZE], t_arg arg)
+void			apply_add(t_process *process, t_env *env)
 {
-	int					i;
-	uint32_t			first;
-	uint32_t			second;
-	uint32_t			dest;
-
-	printf("Instruction Add\n");
-	i = 0;
-	first = 0;
-	while (i < arg.total_to_read[0])
-	{
-		first <<= 8;
-		first |= memory[(PCANDARG + i) % MEM_SIZE];
-		i++;
-	}
-	second = 0;
-	while (i < arg.total_to_read[0] + arg.total_to_read[1]){
-		second <<= 8;
-		second |= memory[(PCANDARG + i++) % MEM_SIZE];
-		}
-	dest = 0;
-	while (i < arg.total_to_read[0] + arg.total_to_read[1] +
-			arg.total_to_read[2])
-	{
-		dest <<= 8;
-		dest |= memory[(PCANDARG + i) % MEM_SIZE];
-		i++;
-	}
-	process->reg[(dest - 1) % REG_NUMBER] = process->reg[(first - 1) % REG_NUMBER] +
-		process->reg[(second - 1) % REG_NUMBER];
-	process->carry = 1;
-	process->pc = (process->pc + i + 2) % MEM_SIZE;
-	process->nb_cycle = process->nb_cycle - 10;
+	(void)process;
+	(void)env;
 }

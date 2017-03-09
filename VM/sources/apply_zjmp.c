@@ -6,7 +6,7 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 15:18:38 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/08 18:33:10 by aiwanesk         ###   ########.fr       */
+/*   Updated: 2017/03/09 12:47:31 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,8 @@
 **paramètres derrière cette opération dont l’opcode est de 9. Elle prendra un in
 */
 
-void					apply_zjmp(t_process *p,
-		unsigned char mem[MEM_SIZE], t_arg arg)
+void					apply_zjmp(t_process *p, t_env *env)
 {
-	int			i;
-	uint32_t	dest;
-
-	i = 0;
-	dest = 0;
-	printf("instruction ZJMP \n");
-	uint32_t	test = 0;
-	while (i < arg.total_to_read[0])
-	{
-		test <<= 8;
-		test |= mem[p->pc + i + 1];
-		i++;
-	}
-	if (p->carry == 1)
-		p->pc = (p->pc + test) % (MEM_SIZE);
-	else
-		p->pc = (p->pc + i + 1) % MEM_SIZE;
-	p->nb_cycle -= 20;
+	(void)p;
+	(void)env;
 }

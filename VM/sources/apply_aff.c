@@ -6,30 +6,14 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 15:04:19 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/06 17:06:12 by aiwanesk         ###   ########.fr       */
+/*   Updated: 2017/03/09 12:47:03 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cpu.h"
 
-void					apply_aff(t_process *p,
-		unsigned char mem[MEM_SIZE], t_arg arg)
+void			apply_aff(t_process *process, t_env *env)
 {
-	int		i;
-	int		f;
-
-	printf("Instruction Aff\n");
-	i = 0;
-	f = 0;
-	while (i < arg.total_to_read[0])
-	{
-		f <<= 8;
-		f |= mem[p->pc + 1 + i];
-		i++;
-	}
-	if (arg.total_to_read[0] == 1)
-		f = p->reg[(f - 1) % REG_NUMBER];
-	ft_putnbr(p->reg[f] % 127);
-	p->pc = (p->pc + i) % MEM_SIZE;
-	p->nb_cycle -= 2;
+	(void)process;
+	(void)env;
 }

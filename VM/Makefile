@@ -6,7 +6,7 @@
 #    By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/04/07 16:55:33 by mbarbari          #+#    #+#              #
-#    Updated: 2017/03/03 16:42:35 by aiwanesk         ###   ########.fr        #
+#    Updated: 2017/03/09 12:20:32 by mbarbari         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,10 +55,9 @@ CLI_SRCS = 	$(SOURCES_FILES)/core.c \
 			$(SOURCES_FILES)/apply_xor.c\
 			$(SOURCES_FILES)/cpu.c\
 			$(SOURCES_FILES)/exit_error.c\
-			$(SOURCES_FILES)/get_data_from_hex.c\
-			$(SOURCES_FILES)/int_to_bin.c\
-			$(SOURCES_FILES)/parse_request.c\
 			$(SOURCES_FILES)/assign.c\
+			$(SOURCES_FILES)/decode.c\
+			$(SOURCES_FILES)/tools_args.c\
 			$(SOURCES_FILES)/protocol_ui.c \
 
 CLI_OBJS = $(patsubst $(SOURCES_FILES)/%.c,$(OBJECTS_FILES)/%.o,$(CLI_SRCS))

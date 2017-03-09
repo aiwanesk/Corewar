@@ -60,6 +60,7 @@ void				core(t_env env)
 {
 	while (1)
 	{
+		//dprintf(1, "CYCLES : %u\n", env.cycles);
 		++env.cycles;
 		if (env.dump > 0 && env.cycles >= env.dump)
 		{

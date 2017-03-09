@@ -25,6 +25,7 @@ t_env			add_cycle(t_env env, int i)
 
 t_env			process_live(t_env env, int i)
 {
+	dprintf(1, "On rentre deja la?\n");
 	if (env.process[i].alive == 0)
 		env.process[i].isdead = TRUE;
 	else
