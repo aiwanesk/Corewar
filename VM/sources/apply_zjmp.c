@@ -32,7 +32,7 @@ void					apply_zjmp(t_process *p,
 	{
 		test <<= 8;
 		test |= mem[p->pc + i + 1];
-		printf("%.4x\n", test);
+//		printf("%.4x\n", test);
 		i++;
 //		test[0] = mem[p->pc + i + 1];
 //		test[1] = mem[p->pc + i + 2];
@@ -43,8 +43,8 @@ void					apply_zjmp(t_process *p,
 	//	printf("int = %d\n", dest);
 	//	i++;
 	}
-	printf("destination = %d\n", (p->pc  + test) % MEM_SIZE);
-	printf("carry = %d\n", p->carry);
+//	printf("destination = %d\n", (p->pc  + test) % MEM_SIZE);
+//	printf("carry = %d\n", p->carry);
 	if (p->carry == 1)
 		p->pc = (p->pc + test) % (MEM_SIZE);
 	else

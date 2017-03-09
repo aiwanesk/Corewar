@@ -32,31 +32,36 @@ void				apply_and(t_process *process,
 	i = -1;
 	first = 0;
 	while (++i < arg.total_to_read[0])
-		first += mem[(PCANDARG + i) % MEM_SIZE];
+	{
+		first <<= 8;
+		first |= mem[(PCANDARG + i) % MEM_SIZE];
+	}
 	second = 0;
 	while (i < arg.total_to_read[0] + arg.total_to_read[1])
 	{
-		second += mem[(PCANDARG + i) % MEM_SIZE];
+		second <<= 8;
+		second |= mem[(PCANDARG + i) % MEM_SIZE];
 		i++;
 	}
 	dest = 0;
 	while (i < arg.total_to_read[0] + arg.total_to_read[1] +
 			arg.total_to_read[2])
 	{
-		dest += mem[(PCANDARG + i) % MEM_SIZE];
+		dest <<= 8;
+		dest |= mem[(PCANDARG + i) % MEM_SIZE];
 		i++;
 	}
 	if (arg.total_to_read[0] == 1)
 		first = process->reg[(first - 1) % REG_NUMBER];
 	if (arg.total_to_read[1] == 1)
 		second = process->reg[(second - 1) % REG_NUMBER];
-	
-//	printf("i debug = %d\n", (first & second));
-//	if ((first & second) != 0)
+	printf("%d %d %d\n", first, second, first + second);
+	printf("i debug = %d\n", (first & second));
+	if ((first & second) == process->reg[dest % REG_NUMBER])
 		process->carry = 1;
-//	else
-//		process->carry = 0;
-		
+	else
+		process->carry = 0;
+	printf("carry = %d\n", process->carry);
 	process->reg[(dest - 1) % REG_NUMBER] = (first & second);
 	process->pc = (process->pc + i + 2) % MEM_SIZE;
 	process->nb_cycle -= 6;

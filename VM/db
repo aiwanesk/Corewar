@@ -1,67 +1,401 @@
-0B|68|01|00|0F|00|01|06|64|01|00|00|00|00|01|01|0A|00|00|01|09|FF|FB|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|
-00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|
-00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|
-00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|
-00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|
-00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|
-00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|
-00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|
-00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|
-00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|
-00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|
-00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|
-00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|
-00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|
-00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|
-00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|
-00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|
-00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|
-00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|
-00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|
-00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|
-00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|
-00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|
-00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|
-00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|
-00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|
-00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|
-00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|
-00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|
-00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|
-00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|
-00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|
-0B|68|01|00|0F|00|01|06|64|01|00|00|00|00|01|01|0B|00|00|01|09|FF|FB|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|
-00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|
-00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|
-00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|
-00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|
-00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|
-00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|
-00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|
-00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|
-00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|
-00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|
-00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|
-00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|
-00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|
-00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|
-00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|
-00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|
-00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|
-00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|
-00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|
-00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|
-00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|
-00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|
-00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|
-00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|
-00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|
-00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|
-00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|
-00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|
-00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|
-00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|
-00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|00|Instruction sti
-f = f s = 1 f + s = 10 reg = b
 Instruction sti
-f = f s = 1 f + s = 10 reg = a
+Instruction sti
+Instruction And
+2 0 2
+i debug = 0
+Instruction And
+1 0 1
+i debug = 0
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instru[0;35;40mLe joueur 1(zork) a gagne
+ction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
+Instruction live
+Instruction live
+instruction ZJMP 
+instruction ZJMP 
