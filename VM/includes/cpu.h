@@ -6,7 +6,7 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 14:52:48 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/09 14:06:03 by mbarbari         ###   ########.fr       */
+/*   Updated: 2017/03/09 15:26:15 by barbare          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,11 @@
 
 # include <stdint.h>
 # include <stdbool.h>
+# include <stdio.h>
 
-# define PCANDARG (process->pc + 2)
+# define BYPASS_ARG_ENCODE 2
+# define BYPASS_ARG 1
+# define BYPASS(X, BYPASS) (X[0].length + X[1].length + X[2].length + BYPASS)
 # define CGREEN "\033[32m"
 # define CRED "\033[31m"
 # define CWHITE  "\033[37m"

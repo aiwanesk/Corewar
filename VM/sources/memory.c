@@ -7,6 +7,7 @@
 
 #include "core.h"
 #include "libft.h"
+#include <stdio.h>
 
 void		print_memory(unsigned char memory[MEM_SIZE], t_env env)
 {
@@ -27,14 +28,6 @@ void		print_memory(unsigned char memory[MEM_SIZE], t_env env)
 		++i;
 		write(1,"|", 1);
 	}
-}
-
-uint32_t	read_memory(unsigned char *memory, uint32_t addr)
-{
-	uint32_t val;
-
-	val = (uint32_t)(memory + (addr % MEM_SIZE));
-	return (convert_endianness32(val));
 }
 
 void		print_hex(uintmax_t hex, char *base)
@@ -67,10 +60,9 @@ uint16_t convert_endianness16(uint16_t val)
 
 void write_memory(unsigned char *memory, uint32_t addr, uint32_t val)
 {
-	size_t			i;
-
-	i = 0;
-	while (i < sizeof(uint32_t))
-		memory[(addr + i) % MEM_SIZE] = (val >> (sizeof(uint32_t) * 8 - i)) & 0xFF;
+	memory[(addr + 0) % MEM_SIZE] = ((val >> 24) & 0xFF);
+	memory[(addr + 1) % MEM_SIZE] = ((val >> 16) & 0xFF);
+	memory[(addr + 2) % MEM_SIZE] = ((val >> 8) & 0xFF);
+	memory[(addr + 3) % MEM_SIZE] = ((val >> 0) & 0xFF);
 }
 
