@@ -58,6 +58,7 @@ CLI_SRCS = 	$(SOURCES_FILES)/core.c \
 			$(SOURCES_FILES)/get_data_from_hex.c\
 			$(SOURCES_FILES)/int_to_bin.c\
 			$(SOURCES_FILES)/parse_request.c\
+			$(SOURCES_FILES)/assign.c\
 			$(SOURCES_FILES)/protocol_ui.c \
 
 CLI_OBJS = $(patsubst $(SOURCES_FILES)/%.c,$(OBJECTS_FILES)/%.o,$(CLI_SRCS))

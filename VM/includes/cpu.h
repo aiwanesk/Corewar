@@ -85,5 +85,6 @@ void				apply_zjmp(t_process *process,
 		unsigned char memory[MEM_SIZE], t_arg arg);
 
 int					int_to_read(char *t, int i, int op);
+void			assign(uint32_t val, uint32_t **bit);
 
 #endif

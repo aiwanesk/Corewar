@@ -22,8 +22,9 @@ void		print_memory(unsigned char memory[MEM_SIZE], t_env env)
 		if (i > 0 && (i % 64) == 0)
 			write(1, "\n", 1);
 		while (a < env.nbprocess)
-			if (env.process[a++].pc == (uint32_t)i)
+			if (env.process[a++].pc == (uint32_t)i || i == 15){
 				ft_putstr(C_MAGENTA);
+				}
 		print_hex((uint32_t)memory[i], BASE_16);
 		ft_putstr(C_NONE);
 		++i;

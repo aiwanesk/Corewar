@@ -44,17 +44,21 @@ void				apply_sti(t_process *process, t_arg arg, t_env *env)
 		s |= env->memory[PCANDARG + i];
 		i++;
 	}
-	f <<= 8;
-	s <<= 8;
-	printf("f = %x s = %x\n", f ,s );
+//	printf("f = %x s = %x f + s = %x reg = %x\n", f ,s ,f +s , process->reg[(reg -1 ) % MEM_SIZE]);
 	if (arg.total_to_read[1] == 1)
 		f = process->reg[(f - 1)  % REG_NUMBER];
 	if (arg.total_to_read[2] == 1)
 		s = process->reg[(s - 1) % REG_NUMBER];
-	//convertir 
-	//write_memory(env->memory, (f + s + process->pc) % MEM_SIZE, process->reg[(reg - 1) % REG_NUMBER]);
-	write_memory(env->memory, (f + s + process->pc + 3) % MEM_SIZE, process->reg[(reg - 1) % REG_NUMBER]);
+	uint32_t *bit;
+	bit = (uint32_t *)malloc(sizeof(uint32_t) * 4);
+	assign(process->reg[(reg - 1) % MEM_SIZE], &bit);
+	int j;
+	for (j = 0; j < 4; j++){
+//		printf("%d\n", bit[i]);
+		env->memory[(f + s + process->pc + j) % MEM_SIZE] = bit[j];
+	}
 	process->pc = (process->pc + i + 2) % MEM_SIZE;
 	protocol_pc(*env, *process, process->pc);
 	process->nb_cycle -= 25;
+	free(bit);
 }
