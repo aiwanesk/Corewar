@@ -1,6 +1,8 @@
 #ifndef OPCODE_H
 # define OPCODE_H
 
+# define T_FORCE 8
+
 typedef struct		s_op
 {
 	char			code;
