@@ -27,7 +27,6 @@ void				apply_add(struct s_process *process,
 	uint32_t			dest;
 
 	printf("Instruction Add\n");
-//	printf("Add called id[%u]\n", process->id);
 	i = 0;
 	first = 0;
 	while (i < arg.total_to_read[0])

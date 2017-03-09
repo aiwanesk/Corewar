@@ -44,7 +44,6 @@ void				apply_sti(t_process *process, t_arg arg, t_env *env)
 		s |= env->memory[PCANDARG + i];
 		i++;
 	}
-//	printf("f = %x s = %x f + s = %x reg = %x\n", f ,s ,f +s , process->reg[(reg -1 ) % MEM_SIZE]);
 	if (arg.total_to_read[1] == 1)
 		f = process->reg[(f - 1)  % REG_NUMBER];
 	if (arg.total_to_read[2] == 1)
@@ -54,7 +53,6 @@ void				apply_sti(t_process *process, t_arg arg, t_env *env)
 	assign(process->reg[(reg - 1) % MEM_SIZE], &bit);
 	int j;
 	for (j = 0; j < 4; j++){
-//		printf("%d\n", bit[i]);
 		env->memory[(f + s + process->pc + j) % MEM_SIZE] = bit[j];
 	}
 	process->pc = (process->pc + i + 2) % MEM_SIZE;
