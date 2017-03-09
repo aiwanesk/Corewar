@@ -46,7 +46,7 @@ void					apply_zjmp(t_process *p,
 	printf("destination = %d\n", (p->pc  + test) % MEM_SIZE);
 	printf("carry = %d\n", p->carry);
 	if (p->carry == 1)
-		p->pc += (test) % MEM_SIZE;
+		p->pc = (p->pc + test) % (MEM_SIZE);
 	else
 		p->pc = (p->pc + i + 1) % MEM_SIZE;
 	p->nb_cycle -= 20;
