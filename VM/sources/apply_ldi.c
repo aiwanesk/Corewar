@@ -6,11 +6,12 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 15:07:16 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/09 12:47:07 by mbarbari         ###   ########.fr       */
+/*   Updated: 2017/03/10 16:10:49 by barbare          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cpu.h"
+#include "core.h"
 
 /*
 ** ldi : ldi,on opcode est 0x0a. Au lieu de ça, ca prend 2 index et 1 registre,
@@ -23,6 +24,7 @@ void				apply_ldi(t_process *process, t_env *env)
 {
 	t_args		args[3];
 	uint32_t	addr;
+	uint32_t	val;
 	int16_t		val1;
 	int16_t		val2;
 
@@ -35,7 +37,8 @@ void				apply_ldi(t_process *process, t_env *env)
 	val2 = return_value(process, env->memory, args[1], val2);
 	addr += args[1].length;
 	addr = get_args(env->memory, addr, T_REG);
-	val1 = env->memory[(process->pc + ((val1 + val2) % IDX_MOD)) % MEM_SIZE];
+	val = process->pc + ((val1 + val2) % IDX_MOD) % MEM_SIZE;
+	val1 = read_memory(env->memory, val);
 	process->reg[addr - 1] = val1;
 	process->pc = BYPASS(args, BYPASS_ARG_ENCODE);
 	process->nb_cycle -= 25;
