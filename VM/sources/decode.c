@@ -26,10 +26,12 @@ void		decode(t_args args[3], uint32_t pc, unsigned char encoding)
 		i = a - 1;
 		elem = MAX_ARGS - a;
 		args[elem].arg = (encoding >> (2 * (i + 1))) & 0x3;
-		if (args[elem].arg == T_DIR)
+		if (args[elem].arg == DIR_CODE)
 			args[elem].length = length_label(pc);
+		else if (args[elem].arg == IND_CODE)
+			args[elem].length = T_DIR;
 		else
-			args[elem].length = args[elem].arg;
+			args[elem].length = T_REG;
 		--a;
 	}
 }

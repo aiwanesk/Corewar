@@ -97,7 +97,6 @@ int						error_options(t_options opt);
 ** function handle memory
 */
 void					write_memory(unsigned char *memory, uint32_t addr, uint32_t val);
-uint32_t				read_memory(unsigned char *memory, uint32_t addr);
 void					cpy_memory(unsigned char *memory, unsigned char *cpy);
 void					print_memory(unsigned char *memory, t_env env);
 
