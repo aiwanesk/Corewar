@@ -20,6 +20,19 @@
 
 void			apply_st(t_process *process, t_env *env)
 {
-	(void)process;
-	(void)env;
+	t_args		args[3];
+	uint32_t	reg;
+	uint32_t	addr;
+	uint32_t	pc;
+
+	decode(args, env->memory[process->pc], env->memory[process->pc + 1]);
+	pc = process->pc + 2;
+	reg = get_args(env->memory, pc, args[0].length);
+	pc += args[0].length;
+	addr = get_args(env->memory, pc, args[1].length);
+	write_memory(env->memory, process->pc + (addr % IDX_MOD), \
+				process->reg[reg - 1]);
+	protocol_pc(*env, *process, process->pc);
+	process->nb_cycle -= 5;
+	process->pc += BYPASS_ARG_ENCODE + args[0].length + args[1].length;
 }
