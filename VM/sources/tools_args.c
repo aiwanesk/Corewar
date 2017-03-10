@@ -6,7 +6,7 @@
 /*   By: mbarbari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 11:55:17 by mbarbari          #+#    #+#             */
-/*   Updated: 2017/03/09 14:05:40 by mbarbari         ###   ########.fr       */
+/*   Updated: 2017/03/10 10:19:18 by barbare          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,14 @@ uint32_t		get_args(unsigned char *memory, uint32_t addr, int oct)
 		++i;
 	}
 	return (val);
+}
+
+uint32_t	return_value(t_process *process, unsigned char *mem, uint32_t val)
+{
+	if (val == T_REG)
+		return (process->reg[val - 1]);
+	else if (val == T_IND)
+		return (read_memory(mem, val));
+	else
+		return (val);
 }
