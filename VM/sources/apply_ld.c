@@ -6,18 +6,32 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 15:06:24 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/09 12:45:46 by mbarbari         ###   ########.fr       */
+/*   Updated: 2017/03/10 15:43:32 by barbare          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cpu.h"
 
+/*
+** Charge la valeur du premier paramètre dans le registre.
+** T_DIR | T_IND, T_REG
+*/
+
 void			apply_ld(t_process *process, t_env *env)
 {
-	printf("Instruction ld\n");
-	(void)env;
-	return ;
-	process->carry = 1;
-	process->pc = (process->pc + 1 + 2) % MEM_SIZE;
+	t_args		args[3];
+	uint32_t	val;
+	uint32_t	reg;
+	uint32_t	addr;
+
+	decode(args, env->memory[process->pc], env->memory[process->pc + 1]);
+	addr = process->pc + BYPASS_ARG_ENCODE;
+	val = get_args(env->memory, addr, args[0].length);
+	val = return_value(process, env->memory, args[0], val);
+	addr += args[0].length;
+	reg = get_args(env->memory, addr, T_REG);
+	process->reg[reg - 1] = val;
 	process->nb_cycle -= 5;
+	process->pc += BYPASS(args, BYPASS_ARG_ENCODE);
+	process->carry = (val == 0);
 }

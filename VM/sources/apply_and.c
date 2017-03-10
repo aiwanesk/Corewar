@@ -35,5 +35,7 @@ void				apply_and(t_process *process, t_env *env)
 	pc += args[1].length;
 	reg = get_args(env->memory, pc, args[2].length);
 	process->reg[reg - 1] = val1 & val2;
+	process->carry = ((val1 & val2) == 0);
 	process->nb_cycle -= 6;
+	process->pc += BYPASS(args, BYPASS_ARG_ENCODE);
 }

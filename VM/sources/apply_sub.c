@@ -19,5 +19,15 @@
 
 void		apply_sub(t_process *process, t_env *env)
 {
-	(void)process; (void)env;
+	uint32_t		reg[3];
+	uint32_t		val;
+
+	reg[0] = get_args(env->memory, process->pc + BYPASS_ARG_ENCODE, T_REG);
+	reg[1] = get_args(env->memory, process->pc + BYPASS_ARG_ENCODE + 1, T_REG);
+	reg[2] = get_args(env->memory, process->pc + BYPASS_ARG_ENCODE + 2, T_REG);
+	val = process->reg[reg[0] - 1] - process->reg[reg[1] - 1];
+	process->reg[reg[2] - 1] = val;
+	process->carry = (val == 0);
+	process->pc += BYPASS_ARG_ENCODE + (3 * T_REG);
+	process->nb_cycle -= 10;
 }
