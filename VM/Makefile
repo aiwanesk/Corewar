@@ -6,7 +6,7 @@
 #    By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/04/07 16:55:33 by mbarbari          #+#    #+#              #
-#    Updated: 2017/02/22 11:36:19 by barbare          ###   ########.fr        #
+#    Updated: 2017/03/09 12:20:32 by mbarbari         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,27 @@ CLI_SRCS = 	$(SOURCES_FILES)/core.c \
 			$(SOURCES_FILES)/random.c \
 			$(SOURCES_FILES)/tools.c \
 			$(SOURCES_FILES)/map.c \
+			$(SOURCES_FILES)/apply_add.c\
+			$(SOURCES_FILES)/apply_aff.c\
+			$(SOURCES_FILES)/apply_and.c\
+			$(SOURCES_FILES)/apply_fork.c\
+			$(SOURCES_FILES)/apply_lfork.c\
+			$(SOURCES_FILES)/apply_ld.c\
+			$(SOURCES_FILES)/apply_ldi.c\
+			$(SOURCES_FILES)/apply_live.c\
+			$(SOURCES_FILES)/apply_lld.c\
+			$(SOURCES_FILES)/apply_lldi.c\
+			$(SOURCES_FILES)/apply_or.c\
+			$(SOURCES_FILES)/apply_st.c\
+			$(SOURCES_FILES)/apply_sti.c\
+			$(SOURCES_FILES)/apply_sub.c\
+			$(SOURCES_FILES)/apply_zjmp.c\
+			$(SOURCES_FILES)/apply_xor.c\
+			$(SOURCES_FILES)/cpu.c\
+			$(SOURCES_FILES)/exit_error.c\
+			$(SOURCES_FILES)/assign.c\
+			$(SOURCES_FILES)/decode.c\
+			$(SOURCES_FILES)/tools_args.c\
 			$(SOURCES_FILES)/protocol_ui.c \
 
 CLI_OBJS = $(patsubst $(SOURCES_FILES)/%.c,$(OBJECTS_FILES)/%.o,$(CLI_SRCS))

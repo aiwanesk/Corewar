@@ -9,7 +9,7 @@
 
 # include <unistd.h>
 # include <stdint.h>
-# include "op.h"
+# include "../../core/op.h"
 
 # ifndef STDERR
 #  define STDERR STDERR_FILENO
@@ -50,7 +50,6 @@ struct					s_process
 	char			name[PROG_NAME_LENGTH + 1];
 	char			comment[COMMENT_LENGTH + 1];
 	unsigned char	carry;
-	unsigned char	*memory;
 	_Bool			isdead;
 	t_fork			fork;
 };
@@ -97,13 +96,14 @@ int						error_options(t_options opt);
 ** memory.c file
 ** function handle memory
 */
-void					write_memory(unsigned char *memory, uint32_t addr,
-														uint32_t val);
-unsigned char			read_memory(unsigned char *memory, uint32_t addr);
-void					cpy_memory(unsigned char *memory, uint32_t *cpy);
-void					print_memory(unsigned char *memory);
+void					write_memory(unsigned char *memory, uint32_t addr, uint32_t val);
+uint32_t				read_memory(unsigned char *memory, uint32_t addr);
+void					cpy_memory(unsigned char *memory, unsigned char *cpy);
+void					print_memory(unsigned char *memory, t_env env);
 
-t_process				cpu(t_process process);
+//TODO LUI PASSSER UN T ENV
+void				cpu(t_process *process, t_env *env);
+
 
 /*
 ** random.c file
@@ -119,8 +119,10 @@ void					check_random(t_process process[], int n);
 ** to little endian
 */
 t_env					load_champion(t_env env, t_options opt, int id);
-uint32_t				convert_endianness(unsigned int val);
+uint32_t				convert_endianness32(uint32_t val);
+uint16_t				convert_endianness16(uint16_t val);
 void					ft_putnbr_uint32(uint32_t i);
+void					print_hex(uintmax_t hex, char *base);
 
 /*
 ** process.c file

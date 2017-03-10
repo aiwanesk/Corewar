@@ -20,11 +20,7 @@ t_env		init_core(t_options opt)
 	i = 0;
 	env = create_process(env, opt);
 	while (i < opt.nbchampions)
-	{
-		env.process[i].alive = 1;
-		env.process[i].memory = env.memory;
-		++i;
-	}
+		env.process[i++].alive = 1;
 	env.run = TRUE;
 	env.cycle_to_die = CYCLE_TO_DIE;
 	return (env);
@@ -46,23 +42,6 @@ int			winner(t_env env, t_process process)
 	return (FALSE);
 }
 
-//TODO : DEL FUNCTION
-t_process		cpu(t_process process)
-{
-	ft_putendl("UI_PROTOCOL PC 1-3000");
-	static int		test = 0;
-
-	if (test == 0)
-	{
-		process.fork.isfork = TRUE;
-		process.pc = 10;
-		++test;
-	}
-	dprintf(1, "Champion %s execute une fonction cpu\n", process.name);
-	dprintf(1, "On execute des truc sur le process : %u\n", process.id);
-	return (process);
-}
-
 t_process		get_last_player(t_env env)
 {
 	uint32_t	i;
@@ -81,10 +60,11 @@ void				core(t_env env)
 {
 	while (1)
 	{
+		//dprintf(1, "CYCLES : %u\n", env.cycles);
 		++env.cycles;
 		if (env.dump > 0 && env.cycles >= env.dump)
 		{
-			print_memory(env.memory);
+			print_memory(env.memory, env);
 			return ;
 		}
 		else if (env.cycles >= env.cycle_to_die)
@@ -92,7 +72,6 @@ void				core(t_env env)
 			env = process_map(env, &process_live);
 			env.cycles = env.cycles % env.cycle_to_die;
 		}
-		dprintf(1, "TEST1 ; Lecture du cycle : %u\n", env.cycles);
 		protocol_lc(env);
 		if (process_alive(env) <= 1)
 		{
