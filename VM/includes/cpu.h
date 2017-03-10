@@ -6,7 +6,7 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 14:52:48 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/09 15:26:15 by barbare          ###   ########.fr       */
+/*   Updated: 2017/03/10 10:38:15 by barbare          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,8 @@ int					int_to_read(char *t, int i, int op); //TO DEL PERHAPS?
 void				decode(t_args *args, uint32_t pc, unsigned char encoding);
 int					length_label(uint32_t opcode);
 uint32_t			get_args(unsigned char *memory, uint32_t addr, int oct);
+uint32_t			return_value(t_process *p, unsigned char *me,
+												t_args arg, uint32_t val);
 void				assign(uint32_t val, uint32_t **bit); //TO DEL PERHAPS?
 
 #endif
