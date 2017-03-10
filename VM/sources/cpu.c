@@ -67,7 +67,7 @@ void				cpu(t_process *process, t_env *env)
 		get_cycles(cycles);
 	}
 	opcode = env->memory[process->pc];
-	if (cpu[opcode] && cycles[opcode] >= process->nb_cycle)
+	if (cpu[opcode] && process->nb_cycle >= cycles[opcode])
 		cpu[opcode](process, env);
 	else if (!cpu[opcode])
 		++process->pc;

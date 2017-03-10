@@ -56,9 +56,10 @@ t_env			create_fork(t_env env, int i)
 	if (env.process[i].fork.isfork == TRUE)
 	{
 		env.process[i].fork.isfork = FALSE;
-		ft_memcpy(&env.process[env.nbprocess++], &env.process[i],
+		++env.nbprocess;
+		ft_memcpy(&env.process[env.nbprocess - 1], &env.process[i],
 														sizeof(t_process));
-		env.process[env.nbprocess].pc = env.process[i].fork.pc;
+		env.process[env.nbprocess - 1].pc = env.process[i].fork.pc;
 	}
 	return (env);
 }

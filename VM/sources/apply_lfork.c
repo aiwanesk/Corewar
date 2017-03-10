@@ -20,6 +20,13 @@
 
 void						apply_lfork(t_process *process, t_env *env)
 {
-	(void)process;
-	(void)env;
+	t_args			args[3];
+	int16_t			val;
+
+	decode(args, env->memory[process->pc], env->memory[process->pc + 1]);
+	val = (int16_t)get_args(env->memory, process->pc + 1, args[0].length);
+	process->fork.pc = process->pc + val;
+	process->fork.isfork = TRUE;
+	process->nb_cycle -= 1000;
+	process->pc += BYPASS_ARG + args[0].length;
 }
