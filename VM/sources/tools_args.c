@@ -67,7 +67,7 @@ uint32_t	return_value(t_process *process, unsigned char *mem, t_args args,
 	if (args.arg == REG_CODE)
 		return (process->reg[val - 1]);
 	else if (args.arg == IND_CODE)
-		return (mem[((process->pc + val) % IDX_MOD) % MEM_SIZE]);
+		return (mem[(process->pc + (val % IDX_MOD)) % MEM_SIZE]);
 	else
 		return (val);
 }

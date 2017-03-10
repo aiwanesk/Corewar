@@ -99,6 +99,7 @@ int						error_options(t_options opt);
 void					write_memory(unsigned char *memory, uint32_t addr, uint32_t val);
 void					cpy_memory(unsigned char *memory, unsigned char *cpy);
 void					print_memory(unsigned char *memory, t_env env);
+uint32_t				read_memory(unsigned char *memory, uint32_t addr);
 
 //TODO LUI PASSSER UN T ENV
 void				cpu(t_process *process, t_env *env);

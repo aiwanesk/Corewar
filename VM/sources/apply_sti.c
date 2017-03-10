@@ -28,9 +28,12 @@ void				apply_sti(t_process *process, t_env *env)
 	decode(args, env->memory[process->pc], env->memory[process->pc + 1]);
 	addr = process->pc + 2 + args[0].length;
 	val = get_args(env->memory, addr, args[1].length);
+	val = return_value(process, env->memory, args[1], val);
 	addr += args[1].length;
 	val += get_args(env->memory, addr, args[2].length);
-	reg = get_args(env->memory, process->pc + 2, args[0].length);
+	val = return_value(process, env->memory, args[2], val);
+	addr = process->pc + BYPASS_ARG_ENCODE;
+	reg = get_args(env->memory, addr, args[0].length);
 	write_memory(env->memory, process->pc + val, process->reg[reg - 1]);
 	protocol_pc(*env, *process, process->pc);
 	process->nb_cycle -= 25;
