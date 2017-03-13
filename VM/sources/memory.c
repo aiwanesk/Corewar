@@ -60,10 +60,10 @@ uint16_t convert_endianness16(uint16_t val)
 
 void write_memory(unsigned char *memory, uint32_t addr, uint32_t val)
 {
-	memory[(addr + 0) % MEM_SIZE] = ((val >> 24) & 0xFF);
-	memory[(addr + 1) % MEM_SIZE] = ((val >> 16) & 0xFF);
-	memory[(addr + 2) % MEM_SIZE] = ((val >> 8) & 0xFF);
-	memory[(addr + 3) % MEM_SIZE] = ((val >> 0) & 0xFF);
+	memory[(addr + 3) % MEM_SIZE] = ((val >> 24) & 0xFF);
+	memory[(addr + 2) % MEM_SIZE] = ((val >> 16) & 0xFF);
+	memory[(addr + 1) % MEM_SIZE] = ((val >> 8) & 0xFF);
+	memory[(addr + 0) % MEM_SIZE] = ((val >> 0) & 0xFF);
 }
 
 uint32_t	read_memory(unsigned char *memory, uint32_t addr)
