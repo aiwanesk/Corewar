@@ -32,7 +32,7 @@ void				apply_lldi(t_process *process, t_env *env)
 	addr = get_args(env->memory, addr, T_REG);
 	val = process->pc + ((val1 + val2)) % MEM_SIZE;
 	val1 = read_memory(env->memory, val);
-	if (val1 > 0 || val1 <= 16)
+	if (addr > 0 || addr <= 16)
 	{
 		process->reg[addr - 1] = val1;
 		process->carry = (val1 == 0);
