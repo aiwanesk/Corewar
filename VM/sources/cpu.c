@@ -6,7 +6,7 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 15:20:54 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/09 16:02:47 by barbare          ###   ########.fr       */
+/*   Updated: 2017/03/13 14:42:31 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,5 @@ void				cpu(t_process *process, t_env *env)
 		++process->pc;
 	}
 	process->pc = process->pc % MEM_SIZE;
+	protocol_pc(*env, process->pc);
 }
