@@ -159,7 +159,6 @@ class New_Toplevel_1(Frame):
 
     def onOpen(self):
         self.arr_file.append(fdialog.askopenfilename(initialdir = ".", title = "Select file", filetypes = (("CORE files","*.cor"),("all files","*.*"))))
-        print("Add champion : self.arr_file[-1]")
 
     def onReset(self):
         self.arr_file = []
@@ -286,7 +285,6 @@ class App():
         if (self.corewarRun != True and championString != ""):
             execute = "../VM//corewar -ui -n 1 " + championString
             self.corewarRun = True
-            print("Execute : " + execute)
             self.process = Popen(execute, stdout = PIPE, stderr = STDOUT, shell=True)
             self.setprocess_stdout()
         self.pc = 0
@@ -306,7 +304,6 @@ class App():
             except Empty:
                 print("")
             else:
-                print (line)
                 out = line.split( )
                 if (len(out) > 1 and out[0] == "UI_PROTOCOL"):
                     if (out[1] == "LMZ"): #"UI_PROTOCOL LMZ 1-0-588-0.t" give ID-StartPtr-LengthCode-Name

@@ -22,8 +22,11 @@ void			apply_aff(t_process *process, t_env *env)
 	decode(args, env->memory[process->pc], env->memory[process->pc + 1]);
 	pc = process->pc + BYPASS_ARG_ENCODE;
 	reg = get_args(env->memory, pc, args[0].length);
-	val = (process->reg[reg - 1] & 0xFF);
-	write(1, &val, 1);
+	if (reg > 0 && reg <= 16)
+	{
+		val = (process->reg[reg - 1] & 0xFF);
+		write(1, &val, 1);
+	}
 	process->nb_cycle -= 2;
 	process->pc += BYPASS_ARG_ENCODE + args[0].length;
 }

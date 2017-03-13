@@ -32,7 +32,13 @@ void				apply_lldi(t_process *process, t_env *env)
 	addr = get_args(env->memory, addr, T_REG);
 	val = process->pc + ((val1 + val2)) % MEM_SIZE;
 	val1 = read_memory(env->memory, val);
-	process->reg[addr - 1] = val1;
+	if (val1 > 0 || val1 <= 16)
+	{
+		process->reg[addr - 1] = val1;
+		process->carry = (val1 == 0);
+	}
+	else
+		process->carry = FALSE;
 	process->pc = BYPASS(args, BYPASS_ARG_ENCODE);
 	process->nb_cycle -= 50;
 	process->carry = (val1 == 0);
