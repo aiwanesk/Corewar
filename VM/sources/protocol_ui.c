@@ -25,23 +25,32 @@ void		protocol_lmz(t_env env, int id, uint32_t size, char *str)
 	ft_putendl(str);
 }
 
-void		protocol_pc(t_env env, t_process process, uint32_t addr)
+void		protocol_pc(t_env env, uint32_t addr)
 {
 	if (!env.ui)
 		return ;
 	ft_putstr("UI_PROTOCOL PC ");
+	ft_putnbr_uint32(addr);
+	ft_putendl("");
+}
+
+void		protocol_mem(t_env env, t_process process, uint32_t addr)
+{
+	if (!env.ui)
+		return ;
+	ft_putstr("UI_PROTOCOL MEM ");
 	ft_putnbr_uint32(process.id);
 	ft_putstr("-");
 	ft_putnbr_uint32(addr);
-	ft_putstr("\nUI_PROTOCOL PC ");
+	ft_putstr("\nUI_PROTOCOL MEM ");
 	ft_putnbr_uint32(process.id);
 	ft_putstr("-");
 	ft_putnbr_uint32(addr + 1);
-	ft_putstr("\nUI_PROTOCOL PC ");
+	ft_putstr("\nUI_PROTOCOL MEM ");
 	ft_putnbr_uint32(process.id);
 	ft_putstr("-");
 	ft_putnbr_uint32(addr + 2);
-	ft_putstr("\nUI_PROTOCOL PC ");
+	ft_putstr("\nUI_PROTOCOL MEM ");
 	ft_putnbr_uint32(process.id);
 	ft_putstr("-");
 	ft_putnbr_uint32(addr + 3);
@@ -81,5 +90,5 @@ void		protocol_sleep(t_env env)
 {
 	if (!env.ui)
 		return ;
-	usleep(10000);
+	usleep(50000);
 }

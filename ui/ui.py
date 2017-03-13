@@ -159,6 +159,7 @@ class New_Toplevel_1(Frame):
 
     def onOpen(self):
         self.arr_file.append(fdialog.askopenfilename(initialdir = ".", title = "Select file", filetypes = (("CORE files","*.cor"),("all files","*.*"))))
+        print("Add champion : self.arr_file[-1]")
 
     def onReset(self):
         self.arr_file = []
@@ -212,7 +213,8 @@ class App():
         self.nbline = 64
         self.size = 10
         self.array = [0 for i in range(self.memory_length)]
-        self.color = {0: "white", 1: "blue", 2: "red", 3: "yellow", 4: "cyan"}
+        self.color = {-1: "green", 0: "white", 1: "blue", 2: "red", 3: "yellow", 4: "cyan"}
+        self.pc = 0;
         self.playerFrame = []
 
     ## WINDOW
@@ -236,7 +238,6 @@ class App():
     def run(self):
         self.display()
         self.window.get_RunButton().configure(command=self.run_vm)
-        #self.root.mainloop()
 
     def display(self):
         canvasx = int(self.window.get_Canvas().cget("width")) / self.nbline
@@ -252,9 +253,9 @@ class App():
             x0 = x * canvas_ceil_x + canvas_ceil_x
             x1 = x * canvas_ceil_x + canvas_ceil_x + canvas_ceil_x
             self.window.get_Canvas().create_rectangle(x0, y0, x1, y1, fill = self.color[self.array[a]]);
-        #self.root.update()
+        self.root.update()
 
-    def unit_display(self, a):
+    def unit_display(self, a, color=0):
         canvasx = int(self.window.get_Canvas().cget("width")) / self.nbline
         canvasy = int(self.window.get_Canvas().cget("height")) / int((len(self.array) / self.nbline))
         canvas_ceil_x = canvasx - 0.4
@@ -266,7 +267,11 @@ class App():
         x = int(a % (len(self.array) / self.nbline))
         x0 = x * canvas_ceil_x + canvas_ceil_x
         x1 = x * canvas_ceil_x + canvas_ceil_x + canvas_ceil_x
-        self.window.get_Canvas().create_rectangle(x0, y0, x1, y1, fill = self.color[self.array[a]]);
+        if (color == 0):
+            test = self.color[self.array[a]]
+        else:
+            test = "green";
+        self.window.get_Canvas().create_rectangle(x0, y0, x1, y1, fill = test)
         self.root.update()
 
     def run_vm(self):
@@ -278,12 +283,12 @@ class App():
         championString = ' '.join(self.window.getFile())
         if (DEBUG and championString == ""):
             championString = "/Users/mbarbari/project/corewar/ui/ressources/3615sleep.cor /Users/mbarbari/project/corewar/ui/ressources/3615sleep.cor"
-        if (self.corewarRun != True):
+        if (self.corewarRun != True and championString != ""):
             execute = "../VM//corewar -ui -n 1 " + championString
             self.corewarRun = True
-            print("Execute : " + execute)
             self.process = Popen(execute, stdout = PIPE, stderr = STDOUT, shell=True)
             self.setprocess_stdout()
+        self.pc = 0
 
     def enqueue_output(self, out, queue):
         for line in iter(out.readline, b''):
@@ -298,16 +303,17 @@ class App():
         while (self.corewarRun):
             try: line = self.queue.get_nowait()
             except Empty:
-                print("No output")
+                print("")
             else:
-                print (line)
                 out = line.split( )
                 if (len(out) > 1 and out[0] == "UI_PROTOCOL"):
                     if (out[1] == "LMZ"): #"UI_PROTOCOL LMZ 1-0-588-0.t" give ID-StartPtr-LengthCode-Name
                         self.setprocess_lmz(out[2])
                         self.display()
-                    if (out[1] == "PC"): #"UI_PROTOCOL PC 1-255" give ID-PtrMemory
+                    if (out[1] == "PC"): #"UI_PROTOCOL PC 255" give ID-PtrMemory
                         self.setprocess_pc(out[2])
+                    if (out[1] == "MEM"): #"UI_PROTOCOL MEM 1-255" give ID-PtrMemory
+                        self.setprocess_memory(out[2])
                     if (out[1] == "LC"): #"UI_PROTOCOL LC 1-21-1480" give ID-Life-Cycle
                         self.setprocess_life_cycle(out[2])
                         self.root.update()
@@ -336,6 +342,11 @@ class App():
         self.window.get_player_by_id(int(command))[1].set("WINNER")
 
     def setprocess_pc(self, command):
+        self.unit_display(self.pc)
+        self.pc = int(command)
+        self.unit_display(int(command), 1)
+
+    def setprocess_memory(self, command):
         out = command.split("-")
         for index in range(len(self.array)):
             if (index == int(out[1])):
