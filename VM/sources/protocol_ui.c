@@ -33,6 +33,18 @@ void		protocol_pc(t_env env, t_process process, uint32_t addr)
 	ft_putnbr_uint32(process.id);
 	ft_putstr("-");
 	ft_putnbr_uint32(addr);
+	ft_putstr("\nUI_PROTOCOL PC ");
+	ft_putnbr_uint32(process.id);
+	ft_putstr("-");
+	ft_putnbr_uint32(addr + 1);
+	ft_putstr("\nUI_PROTOCOL PC ");
+	ft_putnbr_uint32(process.id);
+	ft_putstr("-");
+	ft_putnbr_uint32(addr + 2);
+	ft_putstr("\nUI_PROTOCOL PC ");
+	ft_putnbr_uint32(process.id);
+	ft_putstr("-");
+	ft_putnbr_uint32(addr + 3);
 	ft_putendl("");
 }
 

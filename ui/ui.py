@@ -1,7 +1,6 @@
 from tkinter import *
 import tkinter.filedialog as fdialog
 from subprocess import Popen, PIPE, STDOUT
-from pycparser import parse_file #To parse header!
 from threading import Thread
 from queue import Queue, Empty
 import os
