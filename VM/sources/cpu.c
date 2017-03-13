@@ -70,5 +70,9 @@ void				cpu(t_process *process, t_env *env)
 	if (cpu[opcode] && process->nb_cycle >= cycles[opcode])
 		cpu[opcode](process, env);
 	else if (!cpu[opcode])
+	{
+		process->nb_cycle -= 1;
 		++process->pc;
+	}
+	process->pc = process->pc % MEM_SIZE;
 }

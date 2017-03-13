@@ -20,18 +20,18 @@
 void			apply_ld(t_process *process, t_env *env)
 {
 	t_args		args[3];
-	uint32_t	val;
+	int16_t		val;
 	uint32_t	reg;
 	uint32_t	addr;
 
 	decode(args, env->memory[process->pc], env->memory[process->pc + 1]);
 	addr = process->pc + BYPASS_ARG_ENCODE;
-	val = get_args(env->memory, addr, args[0].length);
+	val = (int16_t)get_args(env->memory, addr, args[0].length);
 	val = return_value(process, env->memory, args[0], val);
 	addr += args[0].length;
 	reg = get_args(env->memory, addr, T_REG);
 	process->reg[reg - 1] = val;
 	process->nb_cycle -= 5;
-	process->pc += BYPASS(args, BYPASS_ARG_ENCODE);
+	process->pc += BYPASS_ARG_ENCODE + args[0].length + args[1].length;
 	process->carry = (val == 0);
 }

@@ -1,7 +1,6 @@
 from tkinter import *
 import tkinter.filedialog as fdialog
 from subprocess import Popen, PIPE, STDOUT
-from pycparser import parse_file #To parse header!
 from threading import Thread
 from queue import Queue, Empty
 import os
@@ -213,7 +212,8 @@ class App():
         self.nbline = 64
         self.size = 10
         self.array = [0 for i in range(self.memory_length)]
-        self.color = {0: "white", 1: "blue", 2: "red", 3: "yellow", 4: "cyan"}
+        self.color = {-1: "green", 0: "white", 1: "blue", 2: "red", 3: "yellow", 4: "cyan"}
+        self.pc = [-1 for i in range(4)];
         self.playerFrame = []
 
     ## WINDOW
@@ -252,7 +252,12 @@ class App():
             x = int(a % (len(self.array) / self.nbline))
             x0 = x * canvas_ceil_x + canvas_ceil_x
             x1 = x * canvas_ceil_x + canvas_ceil_x + canvas_ceil_x
+            if (self.pc[0] == self.array[a] or self.pc[1] == self.array[a] or self.pc[2] == self.array[a] or self.pc[3] == self.array[a]) :
+                fill = self.color[-1]
+            else:
+                fill = self.color[self.array[a]]
             self.window.get_Canvas().create_rectangle(x0, y0, x1, y1, fill = self.color[self.array[a]]);
+        a = 0
         #self.root.update()
 
     def unit_display(self, a):
@@ -307,8 +312,10 @@ class App():
                     if (out[1] == "LMZ"): #"UI_PROTOCOL LMZ 1-0-588-0.t" give ID-StartPtr-LengthCode-Name
                         self.setprocess_lmz(out[2])
                         self.display()
-                    if (out[1] == "PC"): #"UI_PROTOCOL PC 1-255" give ID-PtrMemory
-                        self.setprocess_pc(out[2])
+                    if (out[1] == "PC"): #"UI_PROTOCOL MEM 1-255" give ID-PtrMemory
+                        self.setprocess_memory(out[2])
+                    if (out[1] == "MEM"): #"UI_PROTOCOL PC 255" give ID-PtrMemory
+                        self.setprocess_memory(out[1])
                     if (out[1] == "LC"): #"UI_PROTOCOL LC 1-21-1480" give ID-Life-Cycle
                         self.setprocess_life_cycle(out[2])
                         self.root.update()
@@ -335,6 +342,13 @@ class App():
 
     def setprocess_win(self, command):
         self.window.get_player_by_id(int(command))[1].set("WINNER")
+
+    def setprocess_memory(self, command):
+        out = command.split("-")
+        for index in range(len(self.array)):
+            if (index == int(out[1])):
+                self.array[index] = int(out[0])
+                self.unit_display(int(out[1]))
 
     def setprocess_pc(self, command):
         out = command.split("-")

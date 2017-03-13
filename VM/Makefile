@@ -15,7 +15,7 @@ CX ?= clang++
 
 NAME = corewar
 
-CFLAGS += -O3 -g -Wall -Wextra -Werror #Don't remove -O3, tail recursive need it
+CFLAGS += -g -Wall -Wextra -Werror #Don't remove -O3, tail recursive need it
 
 SOURCES_FILES = ./sources
 HEADERS_FILES = ./includes

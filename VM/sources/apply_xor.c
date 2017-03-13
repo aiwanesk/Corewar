@@ -22,16 +22,16 @@ void	apply_xor(t_process *process, t_env *env)
 {
 	t_args		args[3];
 	uint32_t	pc;
-	uint32_t	val1;
-	uint32_t	val2;
+	int16_t		val1;
+	int16_t		val2;
 	uint32_t	reg;
 
 	decode(args, env->memory[process->pc], env->memory[process->pc + 1]);
 	pc = process->pc + BYPASS_ARG_ENCODE;
-	val1 = get_args(env->memory, pc, args[0].length);
+	val1 = (int16_t)get_args(env->memory, pc, args[0].length);
 	pc += args[0].length;
 	val1 = return_value(process, env->memory, args[0], val1);
-	val2 = get_args(env->memory, pc, args[1].length);
+	val2 = (int16_t)get_args(env->memory, pc, args[1].length);
 	pc += args[1].length;
 	val2 = return_value(process, env->memory, args[1], val2);
 	reg = get_args(env->memory, pc, args[2].length);

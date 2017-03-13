@@ -19,9 +19,12 @@
 
 void					apply_zjmp(t_process *process, t_env *env)
 {
-	uint32_t	addr;
+	int16_t			addr;
 
-	addr = get_args(env->memory, process->pc + BYPASS_ARG, T_DIR);
+	addr = (int16_t)get_args(env->memory, process->pc + BYPASS_ARG, T_DIR);
 	if (process->carry == 1)
-		process->pc = (process->pc + addr) % MEM_SIZE;
+		process->pc = (process->pc + (addr % IDX_MOD)) % MEM_SIZE;
+	else
+		process->pc += 3;
+	process->nb_cycle -= 20;
 }

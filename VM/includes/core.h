@@ -145,9 +145,10 @@ t_env					create_fork(t_env env, int i);
 ** protocol_ui.c file
 */
 void					protocol_lmz(t_env e, int id, uint32_t len,	char *str);
-void					protocol_pc(t_env env, t_process proc, uint32_t addr);
+void					protocol_pc(t_env env, uint32_t addr);
 void					protocol_win(t_env env, t_process process);
 void					protocol_lc(t_env env);
+void					protocol_mem(t_env env, t_process proc, uint32_t addr);
 void					protocol_sleep(t_env env);
 
 # endif
