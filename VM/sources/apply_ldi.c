@@ -38,9 +38,9 @@ void				apply_ldi(t_process *process, t_env *env)
 	addr += args[1].length;
 	addr = get_args(env->memory, addr, T_REG);
 	val = process->pc + ((val1 + val2) % IDX_MOD) % MEM_SIZE;
-	val1 = read_memory(env->memory, val);
+	val = read_memory(env->memory, val);
 	if (addr > 0 && addr <= 16)
-		process->reg[addr - 1] = val1;
+		process->reg[addr - 1] = val;
 	process->pc += BYPASS(args, BYPASS_ARG_ENCODE);
 	process->nb_cycle -= 25;
 }
