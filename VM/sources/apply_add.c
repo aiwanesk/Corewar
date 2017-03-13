@@ -29,7 +29,7 @@ void			apply_add(t_process *process, t_env *env)
 	reg[2] = get_args(env->memory, process->pc + BYPASS_ARG_ENCODE + 2, T_REG);
 	if (reg[0] > 0 && reg[0] <= 16 && reg[1] > 0 && reg[1] <= 16)
 		val = process->reg[reg[0] - 1] + process->reg[reg[1] - 1];
-	if (reg[2] > 0 || reg[2] <= 16)
+	if (reg[2] > 0 && reg[2] <= 16)
 	{
 		process->reg[reg[2] - 1] = val;
 		process->carry = (val == 0);
