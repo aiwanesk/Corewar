@@ -30,7 +30,8 @@ void			apply_ld(t_process *process, t_env *env)
 	val = return_value(process, env->memory, args[0], val);
 	addr += args[0].length;
 	reg = get_args(env->memory, addr, T_REG);
-	process->reg[reg - 1] = val;
+	if (val > 0 || val <= 16)
+		process->reg[reg - 1] = val;
 	process->nb_cycle -= 5;
 	process->pc += BYPASS_ARG_ENCODE + args[0].length + args[1].length;
 	process->carry = (val == 0);
