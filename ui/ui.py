@@ -213,7 +213,7 @@ class App():
         self.size = 10
         self.array = [0 for i in range(self.memory_length)]
         self.color = {-1: "green", 0: "white", 1: "blue", 2: "red", 3: "yellow", 4: "cyan"}
-        self.pc = 0;
+        self.pcDict = {"1": 0};
         self.playerFrame = []
 
     ## WINDOW
@@ -283,11 +283,13 @@ class App():
         if (DEBUG and championString == ""):
             championString = "/Users/mbarbari/project/corewar/ui/ressources/3615sleep.cor /Users/mbarbari/project/corewar/ui/ressources/3615sleep.cor"
         if (self.corewarRun != True and championString != ""):
-            execute = "../VM//corewar -ui -n 1 " + championString
-            self.corewarRun = True
-            self.process = Popen(execute, stdout = PIPE, stderr = STDOUT, shell=True)
-            self.setprocess_stdout()
-        self.pc = 0
+            pathcore = os.environ["COREWAR"]
+            if (os.path.isfile(pathcore + "/corewar") and  os.access(pathcore + "/corewar", os.X_OK)):
+                execute = pathcore + "./corewar -ui -n 1 " + championString
+                self.corewarRun = True
+                self.process = Popen(execute, stdout = PIPE, stderr = STDOUT, shell=True)
+                self.setprocess_stdout()
+        self.pcDict = {"1": 0}
 
     def enqueue_output(self, out, queue):
         for line in iter(out.readline, b''):
@@ -302,14 +304,15 @@ class App():
         while (self.corewarRun):
             try: line = self.queue.get_nowait()
             except Empty:
-                print("")
+                pass
             else:
                 out = line.split( )
+                print(out)
                 if (len(out) > 1 and out[0] == "UI_PROTOCOL"):
                     if (out[1] == "LMZ"): #"UI_PROTOCOL LMZ 1-0-588-0.t" give ID-StartPtr-LengthCode-Name
                         self.setprocess_lmz(out[2])
                         self.display()
-                    if (out[1] == "PC"): #"UI_PROTOCOL PC 255" give ID-PtrMemory
+                    if (out[1] == "PC"): #"UI_PROTOCOL PC 1-255" give ID-PtrMemory
                         self.setprocess_pc(out[2])
                     if (out[1] == "MEM"): #"UI_PROTOCOL MEM 1-255" give ID-PtrMemory
                         self.setprocess_memory(out[2])
@@ -341,9 +344,11 @@ class App():
         self.window.get_player_by_id(int(command))[1].set("WINNER")
 
     def setprocess_pc(self, command):
-        self.unit_display(self.pc)
-        self.pc = int(command)
-        self.unit_display(int(command), 1)
+        out = command.split("-")
+        if out[0] in self.pcDict.keys():
+            self.unit_display(self.pcDict[out[0]])
+        self.unit_display(int(out[1]), 1)
+        self.pcDict[out[0]] = int(out[1])
 
     def setprocess_memory(self, command):
         out = command.split("-")

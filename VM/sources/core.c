@@ -72,7 +72,6 @@ void				core(t_env env)
 			env = process_map(env, &process_live);
 			env.cycles = env.cycles % env.cycle_to_die;
 		}
-		protocol_lc(env);
 		if (process_alive(env) <= 1)
 		{
 			winner(env, get_last_player(env));
