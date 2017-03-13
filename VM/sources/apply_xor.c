@@ -35,8 +35,11 @@ void	apply_xor(t_process *process, t_env *env)
 	pc += args[1].length;
 	val2 = return_value(process, env->memory, args[1], val2);
 	reg = get_args(env->memory, pc, args[2].length);
-	process->reg[reg - 1] = (val1 ^ val2);
-	process->nb_cycle -= 6;
+	if (reg > 0 && reg <= 16)
+	{
+		process->reg[reg - 1] = (val1 ^ val2);
+		process->nb_cycle -= 6;
+	}
 	process->pc += BYPASS(args, BYPASS_ARG_ENCODE);
-	process->carry = (process->reg[reg - 1] == 0);
+	process->carry = ((val1 ^ val2) == 0);
 }

@@ -159,7 +159,6 @@ class New_Toplevel_1(Frame):
 
     def onOpen(self):
         self.arr_file.append(fdialog.askopenfilename(initialdir = ".", title = "Select file", filetypes = (("CORE files","*.cor"),("all files","*.*"))))
-        print("Add champion : self.arr_file[-1]")
 
     def onReset(self):
         self.arr_file = []

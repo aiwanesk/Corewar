@@ -64,10 +64,9 @@ uint32_t		get_args(unsigned char *memory, uint32_t addr, int oct)
 uint32_t	return_value(t_process *process, unsigned char *mem, t_args args,
 													uint32_t val)
 {
-	if (args.arg == REG_CODE)
+	if (args.arg == REG_CODE && (val > 0 && val <= 16))
 		return (process->reg[val - 1]);
 	else if (args.arg == IND_CODE)
 		return (mem[(process->pc + (val % IDX_MOD)) % MEM_SIZE]);
-	else
-		return (val);
+	return (val);
 }
