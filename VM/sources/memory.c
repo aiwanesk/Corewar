@@ -72,16 +72,16 @@ uint32_t	read_memory(unsigned char *memory, uint32_t addr)
 	uint32_t tmp;
 
 	val = 0;
-	tmp = memory[(addr + 0) % MEM_SIZE];
+	tmp = memory[(addr + 3) % MEM_SIZE];
 	tmp <<= 24;
 	val |= tmp;
-	tmp = memory[(addr + 1) % MEM_SIZE];
+	tmp = memory[(addr + 2) % MEM_SIZE];
 	tmp <<= 16;
 	val |= tmp;
-	tmp = memory[(addr + 2) % MEM_SIZE];
+	tmp = memory[(addr + 1) % MEM_SIZE];
 	tmp <<= 8;
 	val |= tmp;
-	tmp = memory[(addr + 3) % MEM_SIZE];
+	tmp = memory[(addr + 0) % MEM_SIZE];
 	val |= tmp;
 	return (val);
 }

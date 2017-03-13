@@ -15,19 +15,19 @@
 void				apply_live(t_process *process, t_env *env)
 {
 	uint32_t		tmp;
-	uint32_t		total;
+	int16_t			total;
 	uint32_t		length;
 
 	tmp = 0;
 	length = length_label(env->memory[process->pc]);
-	total = get_args(env->memory, process->pc + 1, length);
+	total = (int16_t)get_args(env->memory, process->pc + 1, length);
 	while (tmp < env->nbprocess)
 	{
-		if (env->process[tmp].id == total)
+		if (env->process[tmp].id == (uint32_t)total)
 			++env->process[tmp].alive;
 		++tmp;
 	}
-	process->pc += ((length + 1) % MEM_SIZE);
+	process->pc += (length + 1);
 	process->nb_cycle -= 10;
 }
 
