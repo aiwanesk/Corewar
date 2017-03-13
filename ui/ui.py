@@ -298,6 +298,8 @@ class App():
             newline = line.decode("utf-8")
             if ("UI_PROTOCOL" in newline):
                 queue.put(newline)
+            else :
+                print(newline)
         out.close()
 
     def process_data(self):
@@ -307,7 +309,6 @@ class App():
                 pass
             else:
                 out = line.split( )
-                print(out)
                 if (len(out) > 1 and out[0] == "UI_PROTOCOL"):
                     if (out[1] == "LMZ"): #"UI_PROTOCOL LMZ 1-0-588-0.t" give ID-StartPtr-LengthCode-Name
                         self.setprocess_lmz(out[2])

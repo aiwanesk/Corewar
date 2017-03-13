@@ -60,7 +60,6 @@ void				core(t_env env)
 {
 	while (1)
 	{
-		//dprintf(1, "CYCLES : %u\n", env.cycles);
 		++env.cycles;
 		if (env.dump > 0 && env.cycles >= env.dump)
 		{
@@ -75,7 +74,7 @@ void				core(t_env env)
 		if (process_alive(env) <= 1)
 		{
 			winner(env, get_last_player(env));
-			return ;
+			exit(0);
 		}
 		env = process_map(env, &add_cycle);
 		env = process_map(env, &execute_cpu);
