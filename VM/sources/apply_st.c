@@ -32,7 +32,7 @@ void			apply_st(t_process *process, t_env *env)
 	addr = get_args(env->memory, pc, args[1].length);
 	write_memory(env->memory, process->pc + (addr % IDX_MOD), \
 				process->reg[reg - 1]);
-	protocol_pc(*env, *process, process->pc + (addr % IDX_MOD));
+	protocol_mem(*env, *process, process->pc + (addr % IDX_MOD));
 	process->nb_cycle -= 5;
 	process->pc += BYPASS_ARG_ENCODE + args[0].length + args[1].length;
 }

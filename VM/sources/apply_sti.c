@@ -37,7 +37,7 @@ void				apply_sti(t_process *process, t_env *env)
 	addr = process->pc + BYPASS_ARG_ENCODE;
 	reg = get_args(env->memory, addr, args[0].length);
 	write_memory(env->memory, process->pc + (val % IDX_MOD), process->reg[reg - 1]);
-	protocol_pc(*env, *process, process->pc + (val % IDX_MOD));
+	protocol_mem(*env, *process, process->pc + (val % IDX_MOD));
 	process->nb_cycle -= 25;
 	process->pc += BYPASS(args, BYPASS_ARG_ENCODE);
 }
