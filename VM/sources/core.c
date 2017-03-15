@@ -58,18 +58,20 @@ t_process		get_last_player(t_env env)
 
 void				core(t_env env)
 {
+	uint32_t		todump;
+
+	todump = 0;
 	while (1)
 	{
-		++env.cycles;
-		if (env.dump > 0 && env.cycles >= env.dump)
+		if (env.dump > 0 && todump++ >= env.dump)
 		{
 			print_memory(env.memory, env);
 			return ;
 		}
-		else if (env.cycles >= env.cycle_to_die)
+		else if (env.cycles++ >= env.cycle_to_die)
 		{
 			env = process_map(env, &process_live);
-			env.cycles = env.cycles % env.cycle_to_die;
+			env.cycles = 0;
 		}
 		if (process_alive(env) <= 1)
 		{
