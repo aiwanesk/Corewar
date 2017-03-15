@@ -29,7 +29,7 @@ t_env		init_core(t_options opt)
 int			winner(t_env env, t_process process)
 {
 	if (process.id == 0)
-		ft_putendl(C_MAGENTA"Match NULL");
+		ft_putendl(C_MAGENTA"Match NULL"C_NONE);
 	else
 	{
 		protocol_win(env, process);
@@ -37,7 +37,7 @@ int			winner(t_env env, t_process process)
 		ft_putnbr_uint32(process.id);
 		ft_putstr("(");
 		ft_putstr(process.name);
-		ft_putendl(") a gagne");
+		ft_putendl(") a gagne"C_NONE);
 	}
 	return (FALSE);
 }
