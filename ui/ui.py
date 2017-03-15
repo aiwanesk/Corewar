@@ -8,7 +8,7 @@ import signal
 import math
 import time
 
-DEBUG = True
+DEBUG = False
 ON_POSIX = 'posix' in sys.builtin_module_names
 
 class New_Toplevel_1(Frame):
@@ -216,6 +216,9 @@ class App():
         self.pcDict = {"1": 0};
         self.playerFrame = []
 
+        self.process = None
+        self.queue = None
+
     ## WINDOW
     def vp_start_gui(self):
         '''Starting point when module is the main routine.'''
@@ -293,6 +296,8 @@ class App():
                     print("Executable does not exists")
                 else :
                     self.setprocess_stdout()
+            else:
+                print("Executable cannot find")
         self.pcDict = {"1": 0}
 
     def enqueue_output(self, out, queue):
@@ -370,14 +375,15 @@ class App():
         self.root.mainloop()
 
     def reset(self):
+        self.championString = ""
         for index in range(len(self.array)):
             self.array[index] = 0
-        self.process.stdout.close()
         if (self.process is not None):
             self.process.kill()
         self.corewarRun = False
         self.window.reset_label_champion("Wait loading champion")
-        self.queue.queue.clear()
+        if (self.queue is not None):
+            self.queue.queue.clear()
         self.display()
 
 application = App()
