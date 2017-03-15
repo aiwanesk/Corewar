@@ -32,9 +32,19 @@ int				error_options(t_options opt)
 	return (TRUE);
 }
 
+static t_options		parse_champion(char **data, t_options opt)
+{
+	while (data[opt.nbchampions] != NULL && opt.nbchampions <= MAX_PLAYERS)
+	{
+		opt.id[opt.nbchampions] = opt.id[0] + opt.nbchampions;
+		opt.champions[opt.nbchampions] = data[opt.nbchampions];
+		opt.nbchampions++;
+	}
+	return (opt);
+}
+
 t_options		parse_options(char **data, t_options opt)
 {
-	opt.error = 0;
 	if (*data && ft_strcmp(*data, "-dump") == 0)
 	{
 		if (!test_integer(*(++data)))
@@ -42,19 +52,13 @@ t_options		parse_options(char **data, t_options opt)
 		opt.dumpcycle = ft_atoi(*data);
 	}
 	else if (*data && ft_strcmp(*data, "-n") == 0 && test_integer(*(data + 1)))
-	{
 		opt.id[0] = ft_atoi(*(++data));
-		opt.nbchampions = 0;
-		++data;
-		while (data[opt.nbchampions] != NULL && opt.nbchampions <= MAX_PLAYERS)
-		{
-			opt.id[opt.nbchampions] = opt.id[0] + opt.nbchampions;
-			opt.champions[opt.nbchampions] = data[opt.nbchampions];
-			opt.nbchampions++;
-		}
-	}
 	else if (*data && ft_strcmp(*data, "-ui") == 0)
 		opt.ui = TRUE;
+	else
+		return (parse_champion(data, opt));
+	if (opt.error == 1)
+		return (opt);
 	if (*(data + 1))
 		return (parse_options(data + 1, opt));
 	else
