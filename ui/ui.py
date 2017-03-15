@@ -8,7 +8,7 @@ import signal
 import math
 import time
 
-DEBUG = True
+DEBUG = False
 ON_POSIX = 'posix' in sys.builtin_module_names
 
 class New_Toplevel_1(Frame):
@@ -213,8 +213,11 @@ class App():
         self.size = 10
         self.array = [0 for i in range(self.memory_length)]
         self.color = {-1: "green", 0: "white", 1: "blue", 2: "red", 3: "yellow", 4: "cyan"}
-        self.pc = 0;
+        self.pcDict = {"1": 0};
         self.playerFrame = []
+
+        self.process = None
+        self.queue = None
 
     ## WINDOW
     def vp_start_gui(self):
@@ -283,11 +286,19 @@ class App():
         if (DEBUG and championString == ""):
             championString = "/Users/mbarbari/project/corewar/ui/ressources/3615sleep.cor /Users/mbarbari/project/corewar/ui/ressources/3615sleep.cor"
         if (self.corewarRun != True and championString != ""):
-            execute = "../VM//corewar -ui -n 1 " + championString
-            self.corewarRun = True
-            self.process = Popen(execute, stdout = PIPE, stderr = STDOUT, shell=True)
-            self.setprocess_stdout()
-        self.pc = 0
+            try: pathcore = os.environ["COREWAR"]
+            except : pathcore = "./"
+            if (os.path.isfile(pathcore + "/corewar") and  os.access(pathcore + "/corewar", os.X_OK)):
+                execute = pathcore + "./corewar -ui -n 1 " + championString
+                self.corewarRun = True
+                try: self.process = Popen(execute, stdout = PIPE, stderr = STDOUT, shell=True)
+                except:
+                    print("Executable does not exists")
+                else :
+                    self.setprocess_stdout()
+            else:
+                print("Executable cannot find")
+        self.pcDict = {"1": 0}
 
     def enqueue_output(self, out, queue):
         for line in iter(out.readline, b''):
@@ -296,20 +307,22 @@ class App():
             newline = line.decode("utf-8")
             if ("UI_PROTOCOL" in newline):
                 queue.put(newline)
+            else :
+                print(newline)
         out.close()
 
     def process_data(self):
         while (self.corewarRun):
             try: line = self.queue.get_nowait()
             except Empty:
-                print("")
+                pass
             else:
                 out = line.split( )
                 if (len(out) > 1 and out[0] == "UI_PROTOCOL"):
                     if (out[1] == "LMZ"): #"UI_PROTOCOL LMZ 1-0-588-0.t" give ID-StartPtr-LengthCode-Name
                         self.setprocess_lmz(out[2])
                         self.display()
-                    if (out[1] == "PC"): #"UI_PROTOCOL PC 255" give ID-PtrMemory
+                    if (out[1] == "PC"): #"UI_PROTOCOL PC 1-255" give ID-PtrMemory
                         self.setprocess_pc(out[2])
                     if (out[1] == "MEM"): #"UI_PROTOCOL MEM 1-255" give ID-PtrMemory
                         self.setprocess_memory(out[2])
@@ -341,9 +354,11 @@ class App():
         self.window.get_player_by_id(int(command))[1].set("WINNER")
 
     def setprocess_pc(self, command):
-        self.unit_display(self.pc)
-        self.pc = int(command)
-        self.unit_display(int(command), 1)
+        out = command.split("-")
+        if out[0] in self.pcDict.keys():
+            self.unit_display(self.pcDict[out[0]])
+        self.unit_display(int(out[1]), 1)
+        self.pcDict[out[0]] = int(out[1])
 
     def setprocess_memory(self, command):
         out = command.split("-")
@@ -360,14 +375,15 @@ class App():
         self.root.mainloop()
 
     def reset(self):
+        self.championString = ""
         for index in range(len(self.array)):
             self.array[index] = 0
-        self.process.stdout.close()
         if (self.process is not None):
             self.process.kill()
         self.corewarRun = False
         self.window.reset_label_champion("Wait loading champion")
-        self.queue.queue.clear()
+        if (self.queue is not None):
+            self.queue.queue.clear()
         self.display()
 
 application = App()

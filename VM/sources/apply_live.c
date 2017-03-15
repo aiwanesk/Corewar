@@ -29,5 +29,6 @@ void				apply_live(t_process *process, t_env *env)
 	}
 	process->pc += (length + 1);
 	process->nb_cycle -= 10;
+	protocol_lc(*env);
 }
 
