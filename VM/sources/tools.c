@@ -41,10 +41,7 @@ t_env		load_champion(t_env env, t_options opt, int id)
 		convert_endianness(head.prog_size))) !=	convert_endianness(head.prog_size))
 		env = (t_env){.error = 1, .s_error = "Size of program doesn't match"};
 	else
-	{
 		ft_strncpy(env.process[id].name, head.prog_name, PROG_NAME_LENGTH);
-		ft_strncpy(env.process[id].comment, head.comment, COMMENT_LENGTH);
-	}
 	protocol_lmz(env, id, convert_endianness(head.prog_size), head.prog_name);
 	close(fd);
 	return (env);

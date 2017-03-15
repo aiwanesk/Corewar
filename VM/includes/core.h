@@ -48,7 +48,6 @@ struct					s_process
 	uint32_t		alive;
 	uint32_t		nb_cycle;
 	char			name[PROG_NAME_LENGTH + 1];
-	char			comment[COMMENT_LENGTH + 1];
 	unsigned char	carry;
 	_Bool			isdead;
 	t_fork			fork;
