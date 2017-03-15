@@ -283,12 +283,16 @@ class App():
         if (DEBUG and championString == ""):
             championString = "/Users/mbarbari/project/corewar/ui/ressources/3615sleep.cor /Users/mbarbari/project/corewar/ui/ressources/3615sleep.cor"
         if (self.corewarRun != True and championString != ""):
-            pathcore = os.environ["COREWAR"]
+            try: pathcore = os.environ["COREWAR"]
+            except : pathcore = "./"
             if (os.path.isfile(pathcore + "/corewar") and  os.access(pathcore + "/corewar", os.X_OK)):
                 execute = pathcore + "./corewar -ui -n 1 " + championString
                 self.corewarRun = True
-                self.process = Popen(execute, stdout = PIPE, stderr = STDOUT, shell=True)
-                self.setprocess_stdout()
+                try: self.process = Popen(execute, stdout = PIPE, stderr = STDOUT, shell=True)
+                except:
+                    print("Executable does not exists")
+                else :
+                    self.setprocess_stdout()
         self.pcDict = {"1": 0}
 
     def enqueue_output(self, out, queue):
