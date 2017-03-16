@@ -30,10 +30,17 @@ void			apply_st(t_process *process, t_env *env)
 	reg = get_args(env->memory, pc, args[0].length);
 	pc += args[0].length;
 	addr = get_args(env->memory, pc, args[1].length);
-	if (reg > 0 && reg <= 16)
+	if (args[1].arg == REG_CODE)
 	{
-		write_memory(env->memory, process->pc + (addr % IDX_MOD), \
-					process->reg[reg - 1]);
+		if (addr > 0 && addr <= 16)
+		{
+			addr = return_value(process, env->memory, args[1], addr);
+			process->reg[reg - 1] = addr;
+		}
+	}
+	else if (reg > 0 && reg <= 16)
+	{
+		write_memory(env->memory, process->pc + (addr % IDX_MOD), process->reg[reg - 1]);
 		protocol_mem(*env, *process, process->pc + (addr % IDX_MOD));
 	}
 	process->nb_cycle -= 5;
