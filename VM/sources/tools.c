@@ -10,13 +10,13 @@
 #include "core.h"
 #include "libft.h"
 
-uint32_t	convert_endianness(unsigned int val)
+uint32_t			convert_endianness(unsigned int val)
 {
 	val = ((val << 8) & 0xFF00FF00 ) | ((val >> 8) & 0xFF00FF );
 	return (val << 16) | (val >> 16);
 }
 
-t_env		check_header(t_env env, header_t head)
+static t_env		check_header(t_env env, header_t head)
 {
 	if (convert_endianness(head.magic) != COREWAR_EXEC_MAGIC)
 		return ((t_env){.error = 1, .s_error = "File's not a corewar binary"});
@@ -25,7 +25,7 @@ t_env		check_header(t_env env, header_t head)
 	return (env);
 }
 
-t_env		load_champion(t_env env, t_options opt, int id)
+t_env				load_champion(t_env env, t_options opt, int id)
 {
 	int			fd;
 	header_t	head;
