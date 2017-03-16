@@ -24,6 +24,8 @@ typedef struct s_fork		t_fork;
 
 # define MATCH_NULL (t_process) {.id = 0 }
 
+# define PAGE_PROC 255
+
 struct					s_fork
 {
 	_Bool			isfork;
@@ -60,7 +62,8 @@ struct					s_env
 	unsigned int	cycle_to_die;
 	unsigned int	cycles;
 	unsigned int	nbprocess;
-	t_process		process[255];
+	unsigned int	maxprocess;
+	t_process		*process;
 	_Bool			error;
 	char			*s_error;
 	_Bool			run;

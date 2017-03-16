@@ -61,12 +61,14 @@ t_process	new_process(t_options opt, int id)
 
 t_env		create_process(t_env env, t_options opt)
 {
+	t_process	proc;
 	uint32_t	i;
 
 	i = 0;
 	while (i < opt.nbchampions)
 	{
-		env.process[i] = new_process(opt, i);
+		proc = new_process(opt, i);
+		ft_memcpy(&env.process[i], &proc, sizeof(t_process));
 		if ((env = load_champion(env, opt, i)).error == 1)
 			return (env);
 		++i;

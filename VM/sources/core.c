@@ -12,13 +12,21 @@ t_env		init_core(t_options opt)
 {
 	t_env		env;
 	uint32_t	i;
+	t_process	*temp;
 
 	ft_bzero(&env, sizeof(t_env));
 	env.ui = opt.ui;
 	env.dump = opt.dumpcycle;
 	env.nbprocess = opt.nbchampions;
+	env.maxprocess = PAGE_PROC;
+	temp = (t_process *)malloc(sizeof(t_process) * (env.maxprocess + 1));
 	i = 0;
-	env = create_process(env, opt);
+	env.process = temp;
+	if ((env = create_process(env, opt)).error == 1)
+	{
+		free(temp);
+		return (env);
+	}
 	while (i < opt.nbchampions)
 		env.process[i++].alive = 1;
 	env.run = TRUE;
@@ -66,21 +74,19 @@ void				core(t_env env)
 		if (env.dump > 0 && todump++ >= env.dump)
 		{
 			print_memory(env.memory, env);
-			return ;
+			break ;
 		}
 		else if (env.cycles++ >= env.cycle_to_die)
-		{
 			env = process_map(env, &process_live);
-			env.cycles = 0;
-		}
 		if (process_alive(env) <= 1)
 		{
 			winner(env, get_last_player(env));
-			exit(0);
+			break ;
 		}
 		env = process_map(env, &add_cycle);
 		env = process_map(env, &execute_cpu);
 		env = process_map(env, &create_fork);
 		protocol_sleep(env);
 	}
+	free(env.process);
 }
