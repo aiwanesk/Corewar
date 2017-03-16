@@ -115,11 +115,12 @@ uint32_t				random_uint32(void);
 void					check_random(t_process process[], int n);
 
 /*
-** tool.c file
+** tools.c file
 ** function that load champion in memory (why dont move this in memory file???
 ** and convert endianness to transform big endian PROG_SIZE and Magic NUMBER 
 ** to little endian
 */
+uint32_t				convert_endianness(unsigned int val);
 t_env					load_champion(t_env env, t_options opt, int id);
 uint32_t				convert_endianness32(uint32_t val);
 uint16_t				convert_endianness16(uint16_t val);

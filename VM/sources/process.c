@@ -51,7 +51,7 @@ t_process	new_process(t_options opt, int id)
 	process.id = opt.id[id];
 	process.pc = (MEM_SIZE / opt.nbchampions) * id;
 	ft_bzero(process.reg, sizeof(uint32_t) * 16);
-	process.reg[0] = process.id;
+	process.reg[0] = convert_endianness(process.id);
 	process.alive = 0;
 	process.nb_cycle = 0;
 	process.carry = 0;
