@@ -20,6 +20,7 @@ int				main(int argc, char **argv)
 		{
 			ft_putstr(RED);
 			ft_putendl_fd(env.s_error, STDERR);
+			ft_putstr(C_NONE);
 			return (0);
 		}
 		core(env);

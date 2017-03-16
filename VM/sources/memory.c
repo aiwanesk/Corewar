@@ -47,17 +47,6 @@ void		print_hex(uintmax_t hex, char *base)
 	write(1, str, 2);
 }
 
-uint32_t convert_endianness32(unsigned int val)
-{
-	val = ((val << 8) & 0xFF00FF00) | ((val >> 8) & 0xFF00FF00);
-	return ((val << 16) | (val >> 16));
-}
-
-uint16_t convert_endianness16(uint16_t val)
-{
-	return ((val << 8) | (val >> 8));
-}
-
 void write_memory(unsigned char *memory, uint32_t addr, uint32_t val)
 {
 	memory[(addr + 3) % MEM_SIZE] = ((val >> 24) & 0xFF);
@@ -85,4 +74,3 @@ uint32_t	read_memory(unsigned char *memory, uint32_t addr)
 	val |= tmp;
 	return (val);
 }
-

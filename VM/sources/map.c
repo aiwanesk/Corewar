@@ -40,7 +40,7 @@ t_env			process_live(t_env env, int i)
 	}
 	else
 		++env.check;
-
+	env.cycles = 0;
 	return (env);
 }
 
@@ -57,6 +57,11 @@ t_env			create_fork(t_env env, int i)
 	{
 		env.process[i].fork.isfork = FALSE;
 		++env.nbprocess;
+		if (env.nbprocess >= env.maxprocess)
+		{
+			env.maxprocess += PAGE_PROC;
+			env.process = realloc(env.process, sizeof(t_process) * (env.maxprocess + 1));
+		}
 		ft_memcpy(&env.process[env.nbprocess - 1], &env.process[i],
 														sizeof(t_process));
 		env.process[env.nbprocess - 1].pc = env.process[i].fork.pc;

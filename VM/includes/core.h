@@ -24,6 +24,8 @@ typedef struct s_fork		t_fork;
 
 # define MATCH_NULL (t_process) {.id = 0 }
 
+# define PAGE_PROC 255
+
 struct					s_fork
 {
 	_Bool			isfork;
@@ -48,7 +50,6 @@ struct					s_process
 	uint32_t		alive;
 	uint32_t		nb_cycle;
 	char			name[PROG_NAME_LENGTH + 1];
-	char			comment[COMMENT_LENGTH + 1];
 	unsigned char	carry;
 	_Bool			isdead;
 	t_fork			fork;
@@ -61,7 +62,8 @@ struct					s_env
 	unsigned int	cycle_to_die;
 	unsigned int	cycles;
 	unsigned int	nbprocess;
-	t_process		process[255];
+	unsigned int	maxprocess;
+	t_process		*process;
 	_Bool			error;
 	char			*s_error;
 	_Bool			run;
@@ -97,9 +99,9 @@ int						error_options(t_options opt);
 ** function handle memory
 */
 void					write_memory(unsigned char *memory, uint32_t addr, uint32_t val);
-void					cpy_memory(unsigned char *memory, unsigned char *cpy);
 void					print_memory(unsigned char *memory, t_env env);
 uint32_t				read_memory(unsigned char *memory, uint32_t addr);
+void					print_hex(uintmax_t hex, char *base);
 
 //TODO LUI PASSSER UN T ENV
 void				cpu(t_process *process, t_env *env);
@@ -113,16 +115,14 @@ uint32_t				random_uint32(void);
 void					check_random(t_process process[], int n);
 
 /*
-** tool.c file
+** tools.c file
 ** function that load champion in memory (why dont move this in memory file???
 ** and convert endianness to transform big endian PROG_SIZE and Magic NUMBER 
 ** to little endian
 */
+uint32_t				convert_endianness(unsigned int val);
 t_env					load_champion(t_env env, t_options opt, int id);
-uint32_t				convert_endianness32(uint32_t val);
-uint16_t				convert_endianness16(uint16_t val);
 void					ft_putnbr_uint32(uint32_t i);
-void					print_hex(uintmax_t hex, char *base);
 
 /*
 ** process.c file

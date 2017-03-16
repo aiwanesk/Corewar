@@ -27,15 +27,16 @@ void				apply_sti(t_process *process, t_env *env)
 	uint32_t	reg;
 
 	decode(args, env->memory[process->pc], env->memory[process->pc + 1]);
-	addr = process->pc + 2 + args[0].length;
+	addr = process->pc + BYPASS_ARG_ENCODE;
+	reg = get_args(env->memory, addr, args[0].length);
+	addr += args[0].length;
 	val = (int16_t)get_args(env->memory, addr, args[1].length);
-	val = return_value(process, env->memory, args[1], val);
+	if (args[1].arg != IND_CODE)
+		val = return_value(process, env->memory, args[1], val);
 	addr += args[1].length;
 	val1 = (int16_t)get_args(env->memory, addr, args[2].length);
 	val1 = return_value(process, env->memory, args[2], val1);
 	val += val1;
-	addr = process->pc + BYPASS_ARG_ENCODE;
-	reg = get_args(env->memory, addr, args[0].length);
 	if (reg > 0 && reg <= 16)
 	{
 		write_memory(env->memory, process->pc + (val % IDX_MOD), process->reg[reg - 1]);
