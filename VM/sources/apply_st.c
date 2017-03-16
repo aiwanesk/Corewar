@@ -22,14 +22,14 @@ void			apply_st(t_process *process, t_env *env)
 {
 	t_args		args[3];
 	uint32_t	reg;
-	uint32_t	addr;
+	int16_t		addr;
 	uint32_t	pc;
 
 	decode(args, env->memory[process->pc], env->memory[process->pc + 1]);
 	pc = process->pc + 2;
 	reg = get_args(env->memory, pc, args[0].length);
 	pc += args[0].length;
-	addr = get_args(env->memory, pc, args[1].length);
+	addr = (int16_t)get_args(env->memory, pc, args[1].length);
 	if (args[1].arg == REG_CODE)
 	{
 		if (addr > 0 && addr <= 16)
