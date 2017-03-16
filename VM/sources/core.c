@@ -78,7 +78,7 @@ void				core(t_env env)
 		}
 		else if (env.cycles++ >= env.cycle_to_die)
 			env = process_map(env, &process_live);
-		if (process_alive(env) <= 1)
+		if ((env.dump <= 0 || env.dump < todump ) && process_alive(env) <= 1)
 		{
 			winner(env, get_last_player(env));
 			break ;
