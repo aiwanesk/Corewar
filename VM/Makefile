@@ -6,7 +6,7 @@
 #    By: mbarbari <mbarbari@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/04/07 16:55:33 by mbarbari          #+#    #+#              #
-#    Updated: 2017/03/09 12:20:32 by mbarbari         ###   ########.fr        #
+#    Updated: 2017/03/17 15:55:57 by aiwanesk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,6 +59,8 @@ CLI_SRCS = 	$(SOURCES_FILES)/core.c \
 			$(SOURCES_FILES)/decode.c\
 			$(SOURCES_FILES)/tools_args.c\
 			$(SOURCES_FILES)/protocol_ui.c \
+			$(SOURCES_FILES)/protocol_sleep.c \
+			$(SOURCES_FILES)/norme_live.c \
 
 CLI_OBJS = $(patsubst $(SOURCES_FILES)/%.c,$(OBJECTS_FILES)/%.o,$(CLI_SRCS))
 

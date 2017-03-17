@@ -1,20 +1,25 @@
-/*
- * ****************
-** HEADER MBA
-** ****************
-*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   process.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/03/17 15:39:16 by aiwanesk          #+#    #+#             */
+/*   Updated: 2017/03/17 15:40:18 by aiwanesk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <unistd.h>
-#include <stdio.h> //TODO del
 #include "core.h"
 #include "libft.h"
 
-int				process_alive(t_env env)
+int					process_alive(t_env env)
 {
-	uint32_t		i;
-	uint32_t		nbalive;
+	uint32_t			i;
+	uint32_t			nbalive;
 	static uint32_t		id = 0;
 
 	i = 0;
@@ -34,7 +39,7 @@ int				process_alive(t_env env)
 		return (id);
 }
 
-t_process	get_process_by_id(t_env env, uint32_t id)
+t_process			get_process_by_id(t_env env, uint32_t id)
 {
 	uint32_t		i;
 
@@ -50,10 +55,10 @@ t_process	get_process_by_id(t_env env, uint32_t id)
 	return (MATCH_NULL);
 }
 
-t_process	new_process(t_options opt, int id)
+t_process			new_process(t_options opt, int id)
 {
 	t_process	process;
-	
+
 	process.id = opt.id[id];
 	process.pc = (MEM_SIZE / opt.nbchampions) * id;
 	ft_bzero(process.reg, sizeof(uint32_t) * 16);
@@ -64,7 +69,7 @@ t_process	new_process(t_options opt, int id)
 	return (process);
 }
 
-t_env		create_process(t_env env, t_options opt)
+t_env				create_process(t_env env, t_options opt)
 {
 	t_process	proc;
 	uint32_t	i;

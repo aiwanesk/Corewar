@@ -6,12 +6,19 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 15:10:55 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/10 16:11:58 by barbare          ###   ########.fr       */
+/*   Updated: 2017/03/17 15:55:08 by aiwanesk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cpu.h"
 #include "core.h"
+
+static void			norme(t_process *process, t_args args[3], uint32_t val)
+{
+	process->pc = BYPASS(args, BYPASS_ARG_ENCODE);
+	process->nb_cycle -= 50;
+	process->carry = (val == 0);
+}
 
 void				apply_lldi(t_process *process, t_env *env)
 {
@@ -39,7 +46,5 @@ void				apply_lldi(t_process *process, t_env *env)
 	}
 	else
 		process->carry = FALSE;
-	process->pc = BYPASS(args, BYPASS_ARG_ENCODE);
-	process->nb_cycle -= 50;
-	process->carry = (val == 0);
+	norme(process, args, val);
 }

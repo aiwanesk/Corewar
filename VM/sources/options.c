@@ -1,14 +1,20 @@
-/*
- * ****************
-** HEADER MBA
-** ****************
-*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   options.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/03/17 15:46:34 by aiwanesk          #+#    #+#             */
+/*   Updated: 2017/03/17 15:46:58 by aiwanesk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include <stdio.h>
 #include "libft.h"
 #include "core.h"
 
-static int		test_integer(char *str)
+static int			test_integer(char *str)
 {
 	int i;
 
@@ -22,7 +28,7 @@ static int		test_integer(char *str)
 	return (TRUE);
 }
 
-int				error_options(t_options opt)
+int					error_options(t_options opt)
 {
 	if (opt.nbchampions > MAX_PLAYERS)
 	{
@@ -32,7 +38,7 @@ int				error_options(t_options opt)
 	return (TRUE);
 }
 
-static t_options		parse_champion(char **data, t_options opt)
+static t_options	parse_champion(char **data, t_options opt)
 {
 	while (data[opt.nbchampions] != NULL && opt.nbchampions <= MAX_PLAYERS)
 	{
@@ -43,7 +49,7 @@ static t_options		parse_champion(char **data, t_options opt)
 	return (opt);
 }
 
-t_options		parse_options(char **data, t_options opt)
+t_options			parse_options(char **data, t_options opt)
 {
 	if (*data && ft_strcmp(*data, "-dump") == 0)
 	{

@@ -1,9 +1,14 @@
-/*
- * ****************
-** HEADER MBA
-** ****************
-*/
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   memory.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/03/17 15:45:01 by aiwanesk          #+#    #+#             */
+/*   Updated: 2017/03/17 15:46:19 by aiwanesk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "core.h"
 #include "libft.h"
@@ -11,8 +16,8 @@
 
 void		print_memory(unsigned char memory[MEM_SIZE], t_env env)
 {
-	int		i;
-	uint32_t a;
+	int			i;
+	uint32_t	a;
 
 	i = 0;
 	while (i < MEM_SIZE)
@@ -26,36 +31,41 @@ void		print_memory(unsigned char memory[MEM_SIZE], t_env env)
 		print_hex((uint32_t)memory[i], BASE_16);
 		ft_putstr(C_NONE);
 		++i;
-		write(1,"|", 1);
+		write(1, "|", 1);
 	}
 }
 
 void		print_hex(uintmax_t hex, char *base)
 {
-	int cmp;
-	char str[3];
-	int len;
+	int		cmp;
+	char	str[3];
+	int		len;
 
 	cmp = 0;
 	len = ft_strlen(base);
 	cmp = 2;
 	str[cmp--] = '\0';
-	while (cmp >= 0){
+	while (cmp >= 0)
+	{
 		str[cmp--] = base[(hex % len)];
 		hex /= len;
 	}
 	write(1, str, 2);
 }
 
-void write_memory(unsigned char *memory, uint32_t addr, uint32_t val)
+void		write_memory(unsigned char *memory, uint32_t addr, uint32_t val)
 {
 	int16_t		a;
 
 	a = (int16_t)addr;
-	memory[(((a < 0) ? a + MEM_SIZE: a) + 3) % MEM_SIZE] = ((val >> 24) & 0xFF);
-	memory[(((a < 0) ? a + MEM_SIZE: a) + 2) % MEM_SIZE] = ((val >> 16) & 0xFF);
-	memory[(((a < 0) ? a + MEM_SIZE: a) + 1) % MEM_SIZE] = ((val >> 8) & 0xFF);
-	memory[(((a < 0) ? a + MEM_SIZE: a) + 0) % MEM_SIZE] = ((val >> 0) & 0xFF);
+	memory[(((a < 0) ? a + MEM_SIZE : a) + 3) % MEM_SIZE] =
+		((val >> 24) & 0xFF);
+	memory[(((a < 0) ? a + MEM_SIZE : a) + 2) % MEM_SIZE] =
+		((val >> 16) & 0xFF);
+	memory[(((a < 0) ? a + MEM_SIZE : a) + 1) % MEM_SIZE] =
+		((val >> 8) & 0xFF);
+	memory[(((a < 0) ? a + MEM_SIZE : a) + 0) % MEM_SIZE] =
+		((val >> 0) & 0xFF);
 }
 
 uint32_t	read_memory(unsigned char *memory, uint32_t addr)
@@ -66,16 +76,16 @@ uint32_t	read_memory(unsigned char *memory, uint32_t addr)
 
 	a = (int16_t)addr;
 	val = 0;
-	tmp = memory[(((a < 0) ? a + MEM_SIZE: a) + 3) % MEM_SIZE];
+	tmp = memory[(((a < 0) ? a + MEM_SIZE : a) + 3) % MEM_SIZE];
 	tmp <<= 24;
 	val |= tmp;
-	tmp = memory[(((a < 0) ? a + MEM_SIZE: a) + 2) % MEM_SIZE];
+	tmp = memory[(((a < 0) ? a + MEM_SIZE : a) + 2) % MEM_SIZE];
 	tmp <<= 16;
 	val |= tmp;
-	tmp = memory[(((a < 0) ? a + MEM_SIZE: a) + 1) % MEM_SIZE];
+	tmp = memory[(((a < 0) ? a + MEM_SIZE : a) + 1) % MEM_SIZE];
 	tmp <<= 8;
 	val |= tmp;
-	tmp = memory[(((a < 0) ? a + MEM_SIZE: a) + 0) % MEM_SIZE];
+	tmp = memory[(((a < 0) ? a + MEM_SIZE : a) + 0) % MEM_SIZE];
 	val |= tmp;
 	return (val);
 }

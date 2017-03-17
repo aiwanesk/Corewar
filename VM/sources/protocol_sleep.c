@@ -1,14 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   write_memory.c                                     :+:      :+:    :+:   */
+/*   protocol_sleep.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbarbari <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/09 14:08:25 by mbarbari          #+#    #+#             */
-/*   Updated: 2017/03/09 14:17:55 by mbarbari         ###   ########.fr       */
+/*   Created: 2017/03/17 15:49:25 by aiwanesk          #+#    #+#             */
+/*   Updated: 2017/03/17 15:50:48 by aiwanesk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cpu.h"
+#include "core.h"
 
+void			protocol_sleep(t_env env)
+{
+	if (!env.ui)
+		return ;
+	usleep(1000);
+}
