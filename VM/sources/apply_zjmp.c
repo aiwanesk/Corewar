@@ -25,6 +25,8 @@ void					apply_zjmp(t_process *process, t_env *env)
 	if (process->carry == 1)
 		process->pc = (process->pc + (addr % IDX_MOD)) % MEM_SIZE;
 	else
-		process->pc += 3;
+		process->pc = (process->pc + 3) % MEM_SIZE;
+	if (process->pc < 0)
+		process->pc = (process->pc += MEM_SIZE);
 	process->nb_cycle -= 20;
 }

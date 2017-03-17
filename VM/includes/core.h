@@ -45,7 +45,7 @@ struct					s_options
 struct					s_process
 {
 	uint32_t		id;
-	uint32_t		pc;
+	int16_t			pc;
 	uint32_t		reg[16];
 	uint32_t		alive;
 	uint32_t		nb_cycle;
