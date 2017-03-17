@@ -6,15 +6,14 @@
 /*   By: mbarbari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 11:55:17 by mbarbari          #+#    #+#             */
-/*   Updated: 2017/03/10 10:38:19 by barbare          ###   ########.fr       */
+/*   Updated: 2017/03/17 16:14:35 by aiwanesk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cpu.h"
 
-int				length_label(uint32_t opcode)
+static t_op		*return_t_op(void)
 {
-	int			i;
 	static t_op		op[17] = {
 		{0x01, 4},
 		{0x02, 4},
@@ -35,6 +34,15 @@ int				length_label(uint32_t opcode)
 		{0x00, 0},
 	};
 
+	return (op);
+}
+
+int				length_label(uint32_t opcode)
+{
+	int			i;
+	t_op		*op;
+
+	op = return_t_op();
 	i = 0;
 	while (i < 17)
 	{
@@ -61,8 +69,8 @@ uint32_t		get_args(unsigned char *memory, uint32_t addr, int oct)
 	return (val);
 }
 
-uint32_t	return_value(t_process *process, unsigned char *mem, t_args args,
-													uint32_t val)
+uint32_t		return_value(t_process *process, unsigned char *mem,
+		t_args args, uint32_t val)
 {
 	if (args.arg == REG_CODE && (val > 0 && val <= 16))
 		return (process->reg[val - 1]);

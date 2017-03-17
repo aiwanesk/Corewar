@@ -6,7 +6,7 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 15:24:25 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/03 16:42:47 by aiwanesk         ###   ########.fr       */
+/*   Updated: 2017/03/17 16:18:37 by aiwanesk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ struct s_arg			parsing_request(t_process *p,
 	char			*tmp;
 
 	i = 0;
-	//TODO verfier si pas de cycle si tout va bien
 	ret.total_to_read[0] = -1;
 	op_code = mem[p->pc % MEM_SIZE];
 	if (op_code < 17 && op_code >= 0)
@@ -75,11 +74,9 @@ struct s_arg			parsing_request(t_process *p,
 		else
 		{
 			tmp = ft_strdup(get_data_from_hex(mem[(p->pc + 1) % MEM_SIZE]).val);
-			while (i < 8)
-			{
-				ret.total_to_read[i / 2] = int_to_read(tmp, i, op_code);
-				i += 2;
-			}
+			while (i < 8 && (i = i + 2))
+				ret.total_to_read[(i - 2) / 2] = int_to_read(tmp, i - 2,
+						op_code);
 			free(tmp);
 		}
 	}

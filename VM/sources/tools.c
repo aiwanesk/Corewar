@@ -1,8 +1,14 @@
-/*
- * ****************
-** HEADER MBA
-** ****************
-*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tools.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/03/17 15:58:59 by aiwanesk          #+#    #+#             */
+/*   Updated: 2017/03/17 15:59:37 by aiwanesk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include <sys/stat.h>
 #include <fcntl.h>
@@ -12,7 +18,7 @@
 
 uint32_t			convert_endianness(unsigned int val)
 {
-	val = ((val << 8) & 0xFF00FF00 ) | ((val >> 8) & 0xFF00FF );
+	val = ((val << 8) & 0xFF00FF00) | ((val >> 8) & 0xFF00FF);
 	return (val << 16) | (val >> 16);
 }
 
@@ -38,7 +44,8 @@ t_env				load_champion(t_env env, t_options opt, int id)
 	else if ((env = check_header(env, head)).error == 1)
 		return (env);
 	else if ((read(fd, &env.memory[env.process[id].pc],
-		convert_endianness(head.prog_size))) !=	convert_endianness(head.prog_size))
+		convert_endianness(head.prog_size))) !=
+			convert_endianness(head.prog_size))
 		env = (t_env){.error = 1, .s_error = "Size of program doesn't match"};
 	else
 		ft_strncpy(env.process[id].name, head.prog_name, PROG_NAME_LENGTH);
@@ -46,4 +53,3 @@ t_env				load_champion(t_env env, t_options opt, int id)
 	close(fd);
 	return (env);
 }
-

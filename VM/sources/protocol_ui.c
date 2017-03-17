@@ -1,13 +1,18 @@
-/*
- * ****************
-** HEADER MBA
-** ****************
-*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   protocol_ui.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/03/17 15:49:01 by aiwanesk          #+#    #+#             */
+/*   Updated: 2017/03/17 15:50:54 by aiwanesk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <unistd.h>
-#include <stdio.h> //TODO : del
 #include "core.h"
 #include "libft.h"
 
@@ -90,11 +95,4 @@ void		protocol_lc(t_env env)
 		ft_putnbr_uint32(env.cycles);
 		ft_putendl("");
 	}
-}
-
-void		protocol_sleep(t_env env)
-{
-	if (!env.ui)
-		return ;
-	usleep(1000);
 }

@@ -6,7 +6,7 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 15:13:03 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/09 10:41:45 by mbarbari         ###   ########.fr       */
+/*   Updated: 2017/03/17 15:42:27 by aiwanesk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,12 @@
 ** vers le second paramètre. Son opcode est 0x03. Par exemple, st r1, 42 stocke
 ** valeur de r1 à l’adresse (PC + (42 % IDX_MOD))
 */
+
+static void		norme(t_process *process, t_args args[3])
+{
+	process->nb_cycle -= 5;
+	process->pc += BYPASS_ARG_ENCODE + args[0].length + args[1].length;
+}
 
 void			apply_st(t_process *process, t_env *env)
 {
@@ -40,9 +46,9 @@ void			apply_st(t_process *process, t_env *env)
 	}
 	else if (reg > 0 && reg <= 16)
 	{
-		write_memory(env->memory, process->pc + (addr % IDX_MOD), process->reg[reg - 1]);
+		write_memory(env->memory, process->pc + (addr % IDX_MOD),
+				process->reg[reg - 1]);
 		protocol_mem(*env, *process, process->pc + (addr % IDX_MOD));
 	}
-	process->nb_cycle -= 5;
-	process->pc += BYPASS_ARG_ENCODE + args[0].length + args[1].length;
+	norme(process, args);
 }

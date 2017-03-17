@@ -6,7 +6,7 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 15:09:42 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/09 14:06:16 by mbarbari         ###   ########.fr       */
+/*   Updated: 2017/03/17 15:40:32 by aiwanesk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,3 @@ void				apply_live(t_process *process, t_env *env)
 	process->nb_cycle -= 10;
 	protocol_lc(*env);
 }
-

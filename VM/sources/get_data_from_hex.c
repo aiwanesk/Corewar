@@ -6,7 +6,7 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 15:23:18 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/03 17:36:15 by aiwanesk         ###   ########.fr       */
+/*   Updated: 2017/03/17 15:43:37 by aiwanesk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,6 @@ static void				normalize_len(struct s_data *d, int val)
 	tmp = ft_itoa(val);
 	size = 8 - ft_strlen(tmp);
 	i = 0;
-	//TODO verifier ce cas la
-	if (size < 0)
-		;
 	while (i < size)
 	{
 		d->val[i] = '0';

@@ -6,7 +6,7 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 15:15:43 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/09 15:27:10 by barbare          ###   ########.fr       */
+/*   Updated: 2017/03/17 15:42:47 by aiwanesk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ void				apply_sti(t_process *process, t_env *env)
 	val += val1;
 	if (reg > 0 && reg <= 16)
 	{
-		write_memory(env->memory, process->pc + (val % IDX_MOD), process->reg[reg - 1]);
+		write_memory(env->memory, process->pc + (val % IDX_MOD),
+				process->reg[reg - 1]);
 		protocol_mem(*env, *process, process->pc + (val % IDX_MOD));
 	}
 	process->nb_cycle -= 25;

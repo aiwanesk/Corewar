@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/03/17 15:43:47 by aiwanesk          #+#    #+#             */
+/*   Updated: 2017/03/17 15:44:06 by aiwanesk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "core.h"
 #include "libft.h"
 
@@ -8,7 +20,8 @@ int				main(int argc, char **argv)
 
 	(void)argc;
 	opts = parse_options(&argv[1],
-			(t_options){.nbchampions = 0, .id[0] = 0, .error = 0, .dumpcycle = -1, .ui = FALSE});
+			(t_options){.nbchampions = 0, .id[0] = 0, .error = 0,
+			.dumpcycle = -1, .ui = FALSE});
 	if (opts.nbchampions < 1 || opts.error == 1)
 	{
 		ft_putstr_fd("Please check option : ", STDERR);

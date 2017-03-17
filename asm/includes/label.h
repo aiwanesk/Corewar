@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   label.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/03/17 13:32:52 by aiwanesk          #+#    #+#             */
+/*   Updated: 2017/03/17 13:32:53 by aiwanesk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef LABEL_H
 # define LABEL_H
 
@@ -21,14 +33,14 @@ typedef struct		s_lab
 /*
 ** label0.c
 */
-t_lab			*lab_get(void);
-void			lab_new(t_lex *lex, unsigned int size);
-void			lab_free(void);
+t_lab				*lab_get(void);
+void				lab_new(t_lex *lex, unsigned int size);
+void				lab_free(void);
 
 /*
 ** label1.c
 */
-void			lab_check(t_lex *lex, unsigned int label);
-t_label			label_valid(t_lex *lex, int pos, unsigned int label);
+void				lab_check(t_lex *lex, unsigned int label);
+t_label				label_valid(t_lex *lex, int pos, unsigned int label);
 
 #endif

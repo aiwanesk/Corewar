@@ -1,8 +1,14 @@
-/*
- * ****************
-** HEADER MBA
-** ****************
-*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   random.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/03/17 15:58:22 by aiwanesk          #+#    #+#             */
+/*   Updated: 2017/03/17 15:58:35 by aiwanesk         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include <sys/stat.h>
 #include <fcntl.h>
@@ -31,14 +37,14 @@ void				check_random(t_process process[], int n)
 	}
 }
 
-void			ft_putnbr_uint32(uint32_t nbr)
+void				ft_putnbr_uint32(uint32_t nbr)
 {
 	if (nbr / 10 != 0)
 		ft_putnbr(nbr / 10);
 	ft_putchar('0' + (nbr % 10));
 }
 
-uint32_t		djb2(const char *str)
+uint32_t			djb2(const char *str)
 {
 	uint32_t		hash;
 	int				c;
