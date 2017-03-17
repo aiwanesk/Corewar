@@ -219,6 +219,7 @@ class App():
         self.process = None
         self.queue = None
         self.arr_file = []
+        self.championString = ""
 
         if (len(sys.argv) > 1):
             a = len(sys.argv) - 1
@@ -235,6 +236,7 @@ class App():
         self.window = New_Toplevel_1 (top=self.root, app=self)
         #Untitled_support.init(self.root, top)
         self.window.reset_label_champion("Wait loading champion")
+        self.root.protocol("WM_DELETE_WINDOW", self.on_closing)
 
     def create_New_Toplevel_1(self, root, *args, **kwargs):
         '''Starting point when module is imported by another program.'''
@@ -244,6 +246,12 @@ class App():
     def destroy_New_Toplevel_1(self):
         self.w.destroy()
         self.w = None
+
+    def on_closing(self):
+        self.corewarRun = False
+        self.reset()
+        self.root.destroy()
+
     ##END WINDOW
 
     def run(self):
@@ -401,6 +409,9 @@ class App():
             self.queue.queue.clear()
         self.display()
 
-application = App()
-application.run()
-application.loop()
+try :
+    application = App()
+    application.run()
+    application.loop()
+except :
+    pass
