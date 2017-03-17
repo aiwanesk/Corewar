@@ -15,8 +15,8 @@
 void			apply_aff(t_process *process, t_env *env)
 {
 	t_args		args[3];
-	uint32_t	pc;
-	uint32_t	reg;
+	int32_t	pc;
+	int32_t	reg;
 	char		val;
 
 	decode(args, env->memory[process->pc], env->memory[process->pc + 1]);

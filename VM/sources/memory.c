@@ -53,7 +53,7 @@ void		print_hex(uintmax_t hex, char *base)
 	write(1, str, 2);
 }
 
-void		write_memory(unsigned char *memory, uint32_t addr, uint32_t val)
+void		write_memory(unsigned char *memory, int32_t addr, int32_t val)
 {
 	int16_t		a;
 
@@ -68,10 +68,10 @@ void		write_memory(unsigned char *memory, uint32_t addr, uint32_t val)
 		((val >> 0) & 0xFF);
 }
 
-uint32_t	read_memory(unsigned char *memory, uint32_t addr)
+int32_t	read_memory(unsigned char *memory, int32_t addr)
 {
-	uint32_t	val;
-	uint32_t	tmp;
+	int32_t	val;
+	int32_t	tmp;
 	int16_t		a;
 
 	a = (int16_t)addr;

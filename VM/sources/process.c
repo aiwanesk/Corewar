@@ -18,10 +18,15 @@
 
 int					process_alive(t_env env)
 {
-	uint32_t			i;
-	uint32_t			nbalive;
-	static uint32_t		id = 0;
-
+	int32_t			i;
+	int32_t			nbalive;
+	static int32_t		id = 0;
+	static int init = 0;
+	
+	if (init == 0 && ++init)
+	{
+		id = env.process[0].id;
+	}
 	i = 0;
 	nbalive = 0;
 	while (i < MAX_PLAYERS)
@@ -39,16 +44,14 @@ int					process_alive(t_env env)
 		return (id);
 }
 
-t_process			get_process_by_id(t_env env, uint32_t id)
+t_process			get_process_by_id(t_env env, int32_t id)
 {
-	uint32_t		i;
+	int32_t		i;
 
 	i = 0;
-	if (id == 0)
-		return (MATCH_NULL);
-	while (i < env.nbprocess)
+	while (i < (int)env.nbprocess)
 	{
-		if (env.process[i].id == id)
+		if (env.process[i].id == (int)id)
 			return (env.process[i]);
 		++i;
 	}
@@ -61,7 +64,7 @@ t_process			new_process(t_options opt, int id)
 
 	process.id = opt.id[id];
 	process.pc = (MEM_SIZE / opt.nbchampions) * id;
-	ft_bzero(process.reg, sizeof(uint32_t) * 16);
+	ft_bzero(process.reg, sizeof(int32_t) * 16);
 	process.reg[0] = convert_endianness(process.id);
 	process.nb_cycle = 0;
 	process.carry = 0;
@@ -72,7 +75,7 @@ t_process			new_process(t_options opt, int id)
 t_env				create_process(t_env env, t_options opt)
 {
 	t_process	proc;
-	uint32_t	i;
+	int32_t	i;
 
 	i = 0;
 	while (i < opt.nbchampions)

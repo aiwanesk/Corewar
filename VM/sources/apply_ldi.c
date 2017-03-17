@@ -23,8 +23,8 @@
 void				apply_ldi(t_process *process, t_env *env)
 {
 	t_args		args[3];
-	uint32_t	addr;
-	uint32_t	val;
+	int32_t	addr;
+	int32_t	val;
 	int16_t		val1;
 	int16_t		val2;
 

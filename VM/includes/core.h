@@ -21,7 +21,7 @@
 #  define STDERR STDERR_FILENO
 # endif
 
-# define BASE_16 "0123456789ABCDEF"
+# define BASE_16 "0123456789abcdef"
 
 typedef struct s_options			t_options;
 typedef struct s_process			t_process;
@@ -35,13 +35,13 @@ typedef struct s_fork				t_fork;
 struct								s_fork
 {
 	_Bool							isfork;
-	uint32_t						pc;
+	int32_t						pc;
 };
 
 struct								s_options
 {
 	int								dumpcycle;
-	unsigned int					nbchampions;
+	int32_t					nbchampions;
 	char							*champions[MAX_PLAYERS + 1];
 	int								id[MAX_PLAYERS + 1];
 	_Bool							ui;
@@ -50,11 +50,11 @@ struct								s_options
 
 struct								s_process
 {
-	uint32_t						id;
+	int32_t							id;
 	int16_t							pc;
-	uint32_t						reg[16];
-	uint32_t						alive;
-	uint32_t						nb_cycle;
+	int32_t						reg[15];
+	int32_t						alive;
+	int32_t						nb_cycle;
 	char							name[PROG_NAME_LENGTH + 1];
 	unsigned char					carry;
 	_Bool							isdead;
@@ -75,8 +75,8 @@ struct								s_env
 	_Bool							error;
 	char							*s_error;
 	_Bool							run;
-	uint32_t						nblive;
-	uint32_t						check;
+	int32_t						nblive;
+	int32_t						check;
 	_Bool							ui;
 };
 
@@ -103,20 +103,20 @@ int									error_options(t_options opt);
 ** function handle memory
 */
 void								write_memory(unsigned char *memory,
-		uint32_t addr, uint32_t val);
+		int32_t addr, int32_t val);
 void								print_memory(unsigned char *memory,
 		t_env env);
-uint32_t							read_memory(unsigned char *memory,
-		uint32_t addr);
+int32_t							read_memory(unsigned char *memory,
+		int32_t addr);
 void								print_hex(uintmax_t hex, char *base);
 
 void								cpu(t_process *process, t_env *env);
 
 /*
 ** random.c file
-** function that generate or control random uint32_t for all process
+** function that generate or control random int32_t for all process
 */
-uint32_t							random_uint32(void);
+int32_t							random_uint32(void);
 void								check_random(t_process process[], int n);
 
 /*
@@ -125,10 +125,10 @@ void								check_random(t_process process[], int n);
 ** and convert endianness to transform big endian PROG_SIZE and Magic NUMBER
 ** to little endian
 */
-uint32_t							convert_endianness(unsigned int val);
+int32_t							convert_endianness(unsigned int val);
 t_env								load_champion(t_env env, t_options opt,
 		int id);
-void								ft_putnbr_uint32(uint32_t i);
+void								ft_putnbr_uint32(int32_t i);
 
 /*
 ** process.c file
@@ -136,7 +136,7 @@ void								ft_putnbr_uint32(uint32_t i);
 t_process							new_process(t_options opt, int id);
 t_env								create_process(t_env env, t_options opt);
 int									process_alive(t_env env);
-t_process							get_process_by_id(t_env env, uint32_t id);
+t_process							get_process_by_id(t_env env, int32_t id);
 
 /*
 ** map.c file
@@ -151,14 +151,14 @@ t_env								create_fork(t_env env, int i);
 /*
 ** protocol_ui.c file
 */
-void								protocol_lmz(t_env e, int id, uint32_t len,
+void								protocol_lmz(t_env e, int id, int32_t len,
 		char *str);
 void								protocol_pc(t_env env, t_process pro,
-		uint32_t addr);
+		int32_t addr);
 void								protocol_win(t_env env, t_process process);
 void								protocol_lc(t_env env);
 void								protocol_mem(t_env env, t_process proc,
-		uint32_t addr);
+		int32_t addr);
 void								protocol_sleep(t_env env);
 
 void								norme_live(t_env *env);

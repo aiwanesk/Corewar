@@ -6,13 +6,13 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/17 15:43:18 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/17 15:43:19 by aiwanesk         ###   ########.fr       */
+/*   Updated: 2017/03/17 20:13:26 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cpu.h"
 
-void			assign(uint32_t v, uint32_t **bit)
+void			assign(int32_t v, int32_t **bit)
 {
 	int			val;
 	int			i;

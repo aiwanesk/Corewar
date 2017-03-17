@@ -19,8 +19,8 @@
 
 void		apply_sub(t_process *process, t_env *env)
 {
-	uint32_t		reg[3];
-	uint32_t		val;
+	int32_t		reg[3];
+	int32_t		val;
 
 	val = 0;
 	reg[0] = get_args(env->memory, process->pc + BYPASS_ARG_ENCODE, T_REG);

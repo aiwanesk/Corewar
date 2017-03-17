@@ -20,13 +20,13 @@
 void			apply_ld(t_process *process, t_env *env)
 {
 	t_args		args[3];
-	int16_t		val;
-	uint32_t	reg;
-	uint32_t	addr;
+	int32_t		val;
+	int32_t	reg;
+	int32_t	addr;
 
 	decode(args, env->memory[process->pc], env->memory[process->pc + 1]);
 	addr = process->pc + BYPASS_ARG_ENCODE;
-	val = (int16_t)get_args(env->memory, addr, args[0].length);
+	val = (int32_t)get_args(env->memory, addr, args[0].length);
 	val = return_value(process, env->memory, args[0], val);
 	addr += args[0].length;
 	reg = get_args(env->memory, addr, T_REG);

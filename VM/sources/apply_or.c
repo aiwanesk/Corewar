@@ -21,10 +21,10 @@
 void	apply_or(t_process *process, t_env *env)
 {
 	t_args		args[3];
-	uint32_t	pc;
+	int32_t	pc;
 	int16_t		val1;
 	int16_t		val2;
-	uint32_t	reg;
+	int32_t	reg;
 
 	decode(args, env->memory[process->pc], env->memory[process->pc + 1]);
 	pc = process->pc + BYPASS_ARG_ENCODE;

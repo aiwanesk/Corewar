@@ -40,6 +40,7 @@ int					error_options(t_options opt)
 
 static t_options	parse_champion(char **data, t_options opt)
 {
+	opt.nbchampions = 0;
 	while (data[opt.nbchampions] != NULL && opt.nbchampions <= MAX_PLAYERS)
 	{
 		opt.id[opt.nbchampions] = opt.id[0] + opt.nbchampions;
