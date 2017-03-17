@@ -37,16 +37,16 @@ void				check_random(t_process process[], int n)
 	}
 }
 
-void				ft_putnbr_uint32(uint32_t nbr)
+void				ft_putnbr_uint32(int32_t nbr)
 {
 	if (nbr / 10 != 0)
 		ft_putnbr(nbr / 10);
 	ft_putchar('0' + (nbr % 10));
 }
 
-uint32_t			djb2(const char *str)
+int32_t			djb2(const char *str)
 {
-	uint32_t		hash;
+	int32_t		hash;
 	int				c;
 
 	hash = 5381;
@@ -55,7 +55,7 @@ uint32_t			djb2(const char *str)
 	return (hash);
 }
 
-uint32_t			random_uint32(void)
+int32_t			random_uint32(void)
 {
 	int			fd;
 	char		buf[255];

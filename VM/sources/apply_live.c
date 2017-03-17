@@ -14,9 +14,9 @@
 
 void				apply_live(t_process *process, t_env *env)
 {
-	uint32_t		tmp;
+	int32_t		tmp;
 	int16_t			total;
-	uint32_t		length;
+	int32_t		length;
 
 	tmp = 0;
 	length = length_label(env->memory[process->pc]);

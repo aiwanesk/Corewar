@@ -20,8 +20,8 @@ void			apply_lld(t_process *process, t_env *env)
 {
 	t_args		args[3];
 	int16_t		val;
-	uint32_t	reg;
-	uint32_t	addr;
+	int32_t	reg;
+	int32_t	addr;
 
 	decode(args, env->memory[process->pc], env->memory[process->pc + 1]);
 	addr = process->pc + BYPASS_ARG_ENCODE;

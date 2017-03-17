@@ -6,14 +6,14 @@
 /*   By: barbare <barbare@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 16:26:29 by barbare           #+#    #+#             */
-/*   Updated: 2017/03/09 16:28:32 by barbare          ###   ########.fr       */
+/*   Updated: 2017/03/17 20:12:33 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cpu.h"
 #include "libft.h"
 
-void		decode(t_args args[3], uint32_t pc, unsigned char encoding)
+void		decode(t_args args[3], int32_t pc, unsigned char encoding)
 {
 	int			i;
 	int			a;

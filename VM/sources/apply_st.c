@@ -27,22 +27,19 @@ static void		norme(t_process *process, t_args args[3])
 void			apply_st(t_process *process, t_env *env)
 {
 	t_args		args[3];
-	uint32_t	reg;
+	int32_t	reg;
 	int16_t		addr;
-	uint32_t	pc;
+	int32_t	pc;
 
 	decode(args, env->memory[process->pc], env->memory[process->pc + 1]);
 	pc = process->pc + 2;
-	reg = get_args(env->memory, pc, args[0].length);
+	reg = get_args(env->memory, pc, T_REG);
 	pc += args[0].length;
 	addr = (int16_t)get_args(env->memory, pc, args[1].length);
 	if (args[1].arg == REG_CODE)
 	{
-		if (addr > 0 && addr <= 16)
-		{
-			addr = return_value(process, env->memory, args[1], addr);
-			process->reg[reg - 1] = addr;
-		}
+			if (addr > 0 && addr <= 16 && reg > 0 && reg <= 16)
+				process->reg[addr - 1] = process->reg[reg - 1];
 	}
 	else if (reg > 0 && reg <= 16)
 	{

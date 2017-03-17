@@ -37,7 +37,7 @@ static t_op		*return_t_op(void)
 	return (op);
 }
 
-int				length_label(uint32_t opcode)
+int				length_label(int32_t opcode)
 {
 	int			i;
 	t_op		*op;
@@ -53,9 +53,9 @@ int				length_label(uint32_t opcode)
 	return (0);
 }
 
-uint32_t		get_args(unsigned char *memory, uint32_t addr, int oct)
+int32_t		get_args(unsigned char *memory, int32_t addr, int oct)
 {
-	uint32_t		val;
+	int32_t		val;
 	int				i;
 
 	val = 0;
@@ -69,8 +69,8 @@ uint32_t		get_args(unsigned char *memory, uint32_t addr, int oct)
 	return (val);
 }
 
-uint32_t		return_value(t_process *process, unsigned char *mem,
-		t_args args, uint32_t val)
+int32_t		return_value(t_process *process, unsigned char *mem,
+		t_args args, int32_t val)
 {
 	if (args.arg == REG_CODE && (val > 0 && val <= 16))
 		return (process->reg[val - 1]);

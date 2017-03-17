@@ -16,7 +16,7 @@
 #include "core.h"
 #include "libft.h"
 
-void		protocol_lmz(t_env env, int id, uint32_t size, char *str)
+void		protocol_lmz(t_env env, int id, int32_t size, char *str)
 {
 	if (!env.ui)
 		return ;
@@ -30,7 +30,7 @@ void		protocol_lmz(t_env env, int id, uint32_t size, char *str)
 	ft_putendl(str);
 }
 
-void		protocol_pc(t_env env, t_process process, uint32_t addr)
+void		protocol_pc(t_env env, t_process process, int32_t addr)
 {
 	if (!env.ui)
 		return ;
@@ -41,7 +41,7 @@ void		protocol_pc(t_env env, t_process process, uint32_t addr)
 	ft_putendl("");
 }
 
-void		protocol_mem(t_env env, t_process process, uint32_t addr)
+void		protocol_mem(t_env env, t_process process, int32_t addr)
 {
 	int16_t		a;
 

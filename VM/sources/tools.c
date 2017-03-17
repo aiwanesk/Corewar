@@ -16,7 +16,7 @@
 #include "core.h"
 #include "libft.h"
 
-uint32_t			convert_endianness(unsigned int val)
+int32_t			convert_endianness(unsigned int val)
 {
 	val = ((val << 8) & 0xFF00FF00) | ((val >> 8) & 0xFF00FF);
 	return (val << 16) | (val >> 16);

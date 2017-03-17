@@ -23,7 +23,7 @@ static void			norme(t_env *env, t_options *opt)
 t_env				init_core(t_options opt)
 {
 	t_env		env;
-	uint32_t	i;
+	int32_t	i;
 	t_process	*temp;
 
 	ft_bzero(&env, sizeof(t_env));

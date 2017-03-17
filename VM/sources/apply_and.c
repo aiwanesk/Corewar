@@ -22,8 +22,8 @@
 void				apply_and(t_process *process, t_env *env)
 {
 	t_args		args[3];
-	uint32_t	reg;
-	uint32_t	pc;
+	int32_t	reg;
+	int32_t	pc;
 	int16_t		val1;
 	int16_t		val2;
 

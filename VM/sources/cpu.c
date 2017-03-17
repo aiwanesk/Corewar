@@ -33,7 +33,7 @@ static void			fct_cpu(t_fct_cpu fct[17])
 	fct[16] = &apply_aff;
 }
 
-static void			get_cycles(uint32_t cycles[17])
+static void			get_cycles(int32_t cycles[17])
 {
 	cycles[0] = 0;
 	cycles[1] = 10;
@@ -57,9 +57,9 @@ static void			get_cycles(uint32_t cycles[17])
 void				cpu(t_process *process, t_env *env)
 {
 	static t_fct_cpu	cpu[17] = {0};
-	static uint32_t		cycles[17] = {0};
+	static int32_t		cycles[17] = {0};
 	static int			init = 0;
-	uint32_t			opcode;
+	int32_t			opcode;
 
 	if (init == 0 && ++init)
 	{

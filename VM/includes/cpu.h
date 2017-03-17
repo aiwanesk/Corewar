@@ -54,7 +54,7 @@ struct						s_args
 
 struct						s_op
 {
-	uint32_t				opcode;
+	int32_t				opcode;
 	int						length;
 };
 
@@ -89,13 +89,13 @@ void						apply_zjmp(t_process *process, t_env *env);
 */
 
 int							int_to_read(char *t, int i, int op);
-void						decode(t_args *args, uint32_t pc,
+void						decode(t_args *args, int32_t pc,
 		unsigned char encoding);
-int							length_label(uint32_t opcode);
-uint32_t					get_args(unsigned char *memory, uint32_t addr,
+int							length_label(int32_t opcode);
+int32_t					get_args(unsigned char *memory, int32_t addr,
 		int oct);
-uint32_t					return_value(t_process *p, unsigned char *me,
-												t_args arg, uint32_t val);
-void						assign(uint32_t val, uint32_t **bit);
+int32_t					return_value(t_process *p, unsigned char *me,
+												t_args arg, int32_t val);
+void						assign(int32_t val, int32_t **bit);
 
 #endif

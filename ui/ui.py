@@ -310,7 +310,7 @@ class App():
             try: pathcore = os.environ["COREWAR"]
             except : pathcore = "./"
             if (os.path.isfile(pathcore + "/corewar") and  os.access(pathcore + "/corewar", os.X_OK)):
-                execute = pathcore + "./corewar -ui -n 1 " + self.championString
+                execute = pathcore + "./corewar -ui -n 0 " + self.championString
                 self.corewarRun = True
                 try: self.process = Popen(execute, stdout = PIPE, stderr = STDOUT, shell=True)
                 except:
@@ -366,18 +366,21 @@ class App():
 
     def setprocess_lmz(self, command):
         out = command.split("-")
+        id = int(out[0]) + 1
         for index in range(len(self.array)):
             if (index >= int(out[1]) and index <= (int(out[1]) + int(out[2]))):
-                self.array[index] = int(out[0])
-        self.window.set_player_by_id(int(out[0]), out[3], "0")
+                self.array[index] = id
+        self.window.set_player_by_id(id, out[3], "0")
 
     def setprocess_win(self, command):
+        id  = int(command) + 1
         self.window.get_player_by_id(int(command))[1].set("WINNER")
         if (self.process.poll() is not None):
             self.corewarRun = False
 
     def setprocess_pc(self, command):
         out = command.split("-")
+        id = int(out[0]) + 1
         if out[0] in self.pcDict.keys():
             self.unit_display(self.pcDict[out[0]])
         self.unit_display(int(out[1]), 1)
@@ -385,14 +388,16 @@ class App():
 
     def setprocess_memory(self, command):
         out = command.split("-")
+        id = int(out[0]) + 1
         for index in range(len(self.array)):
             if (index == int(out[1])):
-                self.array[index] = int(out[0])
+                self.array[index] = id
                 self.unit_display(int(out[1]))
 
     def setprocess_life_cycle(self, command):
         out = command.split("-")
-        self.window.get_player_by_id(int(out[0]))[1].set("Life: " + out[1])
+        id = int(out[0]) + 1
+        self.window.get_player_by_id(id)[1].set("Life: " + out[1])
 
     def loop(self):
         self.root.mainloop()

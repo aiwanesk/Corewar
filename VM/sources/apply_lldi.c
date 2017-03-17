@@ -6,14 +6,14 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 15:10:55 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/17 15:55:08 by aiwanesk         ###   ########.fr       */
+/*   Updated: 2017/03/17 20:13:26 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cpu.h"
 #include "core.h"
 
-static void			norme(t_process *process, t_args args[3], uint32_t val)
+static void			norme(t_process *process, t_args args[3], int32_t val)
 {
 	process->pc = BYPASS(args, BYPASS_ARG_ENCODE);
 	process->nb_cycle -= 50;
@@ -23,8 +23,8 @@ static void			norme(t_process *process, t_args args[3], uint32_t val)
 void				apply_lldi(t_process *process, t_env *env)
 {
 	t_args		args[3];
-	uint32_t	addr;
-	uint32_t	val;
+	int32_t	addr;
+	int32_t	val;
 	int16_t		val1;
 	int16_t		val2;
 
