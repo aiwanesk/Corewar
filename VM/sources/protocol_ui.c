@@ -38,24 +38,27 @@ void		protocol_pc(t_env env, t_process process, uint32_t addr)
 
 void		protocol_mem(t_env env, t_process process, uint32_t addr)
 {
+	int16_t		a;
+
 	if (!env.ui)
 		return ;
+	a = (int16_t)addr;
 	ft_putstr("UI_PROTOCOL MEM ");
 	ft_putnbr_uint32(process.id);
 	ft_putstr("-");
-	ft_putnbr_uint32(addr);
+	ft_putnbr(((a < 0) ? a + MEM_SIZE : a));
 	ft_putstr("\nUI_PROTOCOL MEM ");
 	ft_putnbr_uint32(process.id);
 	ft_putstr("-");
-	ft_putnbr_uint32(addr + 1);
+	ft_putnbr(((a < 0) ? a + MEM_SIZE : a) + 1);
 	ft_putstr("\nUI_PROTOCOL MEM ");
 	ft_putnbr_uint32(process.id);
 	ft_putstr("-");
-	ft_putnbr_uint32(addr + 2);
+	ft_putnbr(((a < 0) ? a + MEM_SIZE : a) + 2);
 	ft_putstr("\nUI_PROTOCOL MEM ");
 	ft_putnbr_uint32(process.id);
 	ft_putstr("-");
-	ft_putnbr_uint32(addr + 3);
+	ft_putnbr(((a < 0) ? a + MEM_SIZE : a) + 3);
 	ft_putendl("");
 }
 

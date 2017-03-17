@@ -67,12 +67,12 @@ void				cpu(t_process *process, t_env *env)
 		get_cycles(cycles);
 	}
 	opcode = env->memory[process->pc];
-	if (cpu[opcode] && process->nb_cycle >= cycles[opcode])
+	if (opcode <= 16 && cpu[opcode] && process->nb_cycle >= cycles[opcode])
 	{
 		cpu[opcode](process, env);
 		protocol_pc(*env, *process, process->pc);
 	}
-	else if (!cpu[opcode])
+	else if (opcode > 16 || !cpu[opcode])
 	{
 		process->nb_cycle -= 1;
 		++process->pc;

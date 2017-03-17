@@ -21,7 +21,7 @@ void		print_memory(unsigned char memory[MEM_SIZE], t_env env)
 		if (i > 0 && (i % 64) == 0)
 			write(1, "\n", 1);
 		while (a < env.nbprocess)
-			if (env.process[a++].pc == (uint32_t)i)
+			if (env.process[a++].pc == i)
 				ft_putstr(C_MAGENTA);
 		print_hex((uint32_t)memory[i], BASE_16);
 		ft_putstr(C_NONE);
@@ -49,28 +49,33 @@ void		print_hex(uintmax_t hex, char *base)
 
 void write_memory(unsigned char *memory, uint32_t addr, uint32_t val)
 {
-	memory[(addr + 3) % MEM_SIZE] = ((val >> 24) & 0xFF);
-	memory[(addr + 2) % MEM_SIZE] = ((val >> 16) & 0xFF);
-	memory[(addr + 1) % MEM_SIZE] = ((val >> 8) & 0xFF);
-	memory[(addr + 0) % MEM_SIZE] = ((val >> 0) & 0xFF);
+	int16_t		a;
+
+	a = (int16_t)addr;
+	memory[(((a < 0) ? a + MEM_SIZE: a) + 3) % MEM_SIZE] = ((val >> 24) & 0xFF);
+	memory[(((a < 0) ? a + MEM_SIZE: a) + 2) % MEM_SIZE] = ((val >> 16) & 0xFF);
+	memory[(((a < 0) ? a + MEM_SIZE: a) + 1) % MEM_SIZE] = ((val >> 8) & 0xFF);
+	memory[(((a < 0) ? a + MEM_SIZE: a) + 0) % MEM_SIZE] = ((val >> 0) & 0xFF);
 }
 
 uint32_t	read_memory(unsigned char *memory, uint32_t addr)
 {
-	uint32_t val;
-	uint32_t tmp;
+	uint32_t	val;
+	uint32_t	tmp;
+	int16_t		a;
 
+	a = (int16_t)addr;
 	val = 0;
-	tmp = memory[(addr + 3) % MEM_SIZE];
+	tmp = memory[(((a < 0) ? a + MEM_SIZE: a) + 3) % MEM_SIZE];
 	tmp <<= 24;
 	val |= tmp;
-	tmp = memory[(addr + 2) % MEM_SIZE];
+	tmp = memory[(((a < 0) ? a + MEM_SIZE: a) + 2) % MEM_SIZE];
 	tmp <<= 16;
 	val |= tmp;
-	tmp = memory[(addr + 1) % MEM_SIZE];
+	tmp = memory[(((a < 0) ? a + MEM_SIZE: a) + 1) % MEM_SIZE];
 	tmp <<= 8;
 	val |= tmp;
-	tmp = memory[(addr + 0) % MEM_SIZE];
+	tmp = memory[(((a < 0) ? a + MEM_SIZE: a) + 0) % MEM_SIZE];
 	val |= tmp;
 	return (val);
 }

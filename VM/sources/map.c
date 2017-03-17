@@ -43,7 +43,7 @@ t_env			create_fork(t_env env, int i)
 		}
 		ft_memcpy(&env.process[env.nbprocess - 1], &env.process[i],
 														sizeof(t_process));
-		env.process[env.nbprocess - 1].pc = env.process[i].fork.pc;
+		env.process[env.nbprocess - 1].pc = env.process[i].fork.pc % MEM_SIZE;
 	}
 	return (env);
 }
