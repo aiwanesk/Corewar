@@ -60,7 +60,6 @@ CLI_SRCS = 	$(SOURCES_FILES)/core.c \
 			$(SOURCES_FILES)/tools_args.c\
 			$(SOURCES_FILES)/protocol_ui.c \
 			$(SOURCES_FILES)/protocol_sleep.c \
-			$(SOURCES_FILES)/norme_live.c \
 
 CLI_OBJS = $(patsubst $(SOURCES_FILES)/%.c,$(OBJECTS_FILES)/%.o,$(CLI_SRCS))
 
