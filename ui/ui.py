@@ -295,7 +295,10 @@ class App():
                 self.championString = ' '.join(self.window.getFile())
         if (DEBUG and self.championString == ""):
             self.championString = "/Users/mbarbari/project/corewar/ui/ressources/3615sleep.cor /Users/mbarbari/project/corewar/ui/ressources/3615sleep.cor"
-        if (self.corewarRun != True and self.championString != ""):
+        if (len(self.championString.split( )) > 4):
+            print("To many champion")
+            self.reset()
+        elif (self.corewarRun != True and self.championString != ""):
             try: pathcore = os.environ["COREWAR"]
             except : pathcore = "./"
             if (os.path.isfile(pathcore + "/corewar") and  os.access(pathcore + "/corewar", os.X_OK)):
@@ -342,9 +345,9 @@ class App():
                     if (out[1] == "WIN"): #"UI_PROTOCOL WIN 1" give ID
                         self.setprocess_win(out[2])
                         self.root.update()
-                if (self.process.poll() is not None):
-                    break ;
-        self.queue.queue.clear()
+                if (self.corewarRun == False):
+                    self.queue.queue.clear()
+                    break
 
     def setprocess_stdout(self):
         self.queue = Queue()
@@ -362,6 +365,8 @@ class App():
 
     def setprocess_win(self, command):
         self.window.get_player_by_id(int(command))[1].set("WINNER")
+        if (self.process.poll() is not None):
+            self.corewarRun = False
 
     def setprocess_pc(self, command):
         out = command.split("-")

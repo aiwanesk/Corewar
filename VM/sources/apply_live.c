@@ -24,7 +24,10 @@ void				apply_live(t_process *process, t_env *env)
 	while (tmp < MAX_PLAYERS)
 	{
 		if (env->idlive[tmp] == total)
+		{
+			process->alive++;
 			env->live[tmp]++;
+		}
 		++tmp;
 	}
 	process->pc += (length + 1);

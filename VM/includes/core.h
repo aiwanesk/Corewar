@@ -60,7 +60,7 @@ struct					s_env
 	unsigned char	memory[MEM_SIZE];
 	int				idlive[MAX_PLAYERS];
 	int				live[MAX_PLAYERS];
-	uint32_t		dump;
+	int32_t			dump;
 	unsigned int	cycle_to_die;
 	unsigned int	cycles;
 	unsigned int	nbprocess;
@@ -86,6 +86,7 @@ struct				s_test
 void					core(t_env env);
 t_env					init_core(t_options opt);
 int						winner(t_env env, t_process process);
+t_env					check_live(t_env env);
 
 /*
 ** set_options.c file
@@ -139,7 +140,7 @@ t_process				get_process_by_id(t_env env, uint32_t id);
 */
 t_env					process_map(t_env env, t_env (*fct)(t_env env, int i));
 t_env					add_cycle(t_env env, int i);
-t_env					check_live(t_env env);
+t_env					process_live(t_env env, int i);
 t_env					execute_cpu(t_env env, int i);
 t_env					create_fork(t_env env, int i);
 

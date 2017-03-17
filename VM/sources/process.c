@@ -15,14 +15,13 @@ int				process_alive(t_env env)
 {
 	uint32_t		i;
 	uint32_t		nbalive;
-	uint32_t		id;
+	static uint32_t		id = 0;
 
 	i = 0;
 	nbalive = 0;
-	id = 0;
 	while (i < MAX_PLAYERS)
 	{
-		if (env.live[i] > 0)
+		if (env.idlive[i] >= 0)
 		{
 			nbalive++;
 			id = env.idlive[i];
@@ -40,7 +39,6 @@ t_process	get_process_by_id(t_env env, uint32_t id)
 	uint32_t		i;
 
 	i = 0;
-	//TODO wut?
 	if (id == 0)
 		return (MATCH_NULL);
 	while (i < env.nbprocess)

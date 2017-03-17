@@ -66,7 +66,7 @@ void		protocol_win(t_env env, t_process process)
 {
 	if (!env.ui)
 		return ;
-	ft_putstr("UI_PROTOCOL PC ");
+	ft_putstr("UI_PROTOCOL WIN ");
 	ft_putnbr_uint32(process.id);
 	ft_putendl("");
 }
@@ -96,5 +96,5 @@ void		protocol_sleep(t_env env)
 {
 	if (!env.ui)
 		return ;
-	usleep(5000);
+	usleep(1000);
 }
