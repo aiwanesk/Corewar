@@ -9,7 +9,7 @@
 
 # include <unistd.h>
 # include <stdint.h>
-# include "../../core/op.h"
+#include "op.h"
 
 # ifndef STDERR
 #  define STDERR STDERR_FILENO
@@ -58,7 +58,9 @@ struct					s_process
 struct					s_env
 {
 	unsigned char	memory[MEM_SIZE];
-	uint32_t		dump;
+	int				idlive[MAX_PLAYERS];
+	int				live[MAX_PLAYERS];
+	int32_t			dump;
 	unsigned int	cycle_to_die;
 	unsigned int	cycles;
 	unsigned int	nbprocess;
@@ -84,6 +86,7 @@ struct				s_test
 void					core(t_env env);
 t_env					init_core(t_options opt);
 int						winner(t_env env, t_process process);
+t_env					check_live(t_env env);
 
 /*
 ** set_options.c file
@@ -129,7 +132,7 @@ void					ft_putnbr_uint32(uint32_t i);
 */
 t_process				new_process(t_options opt, int id);
 t_env					create_process(t_env env, t_options opt);
-uint32_t				process_alive(t_env env);
+int						process_alive(t_env env);
 t_process				get_process_by_id(t_env env, uint32_t id);
 
 /*
