@@ -27,6 +27,6 @@ void					apply_zjmp(t_process *process, t_env *env)
 	else
 		process->pc = (process->pc + 3) % MEM_SIZE;
 	if (process->pc < 0)
-		process->pc = (process->pc += MEM_SIZE);
+		process->pc = (process->pc + MEM_SIZE);
 	process->nb_cycle -= 20;
 }
