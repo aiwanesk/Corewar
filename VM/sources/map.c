@@ -23,27 +23,6 @@ t_env			add_cycle(t_env env, int i)
 	return (env);
 }
 
-t_env			process_live(t_env env, int i)
-{
-	if (env.process[i].alive == 0)
-		env.process[i].isdead = TRUE;
-	else
-		env.process[i].isdead = FALSE;
-	env.nblive += env.process[i].alive;
-	env.process[i].alive = 0;
-	if (env.nblive >= NBR_LIVE)
-		env.cycle_to_die -= CYCLE_DELTA;
-	else if (env.check >= MAX_CHECKS)
-	{
-		--env.cycle_to_die;
-		env.check = 0;
-	}
-	else
-		++env.check;
-	env.cycles = 0;
-	return (env);
-}
-
 t_env			execute_cpu(t_env env, int i)
 {
 	if (env.process[i].isdead == FALSE)

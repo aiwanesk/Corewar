@@ -9,7 +9,7 @@
 
 # include <unistd.h>
 # include <stdint.h>
-# include "../../core/op.h"
+#include "op.h"
 
 # ifndef STDERR
 #  define STDERR STDERR_FILENO
@@ -58,6 +58,8 @@ struct					s_process
 struct					s_env
 {
 	unsigned char	memory[MEM_SIZE];
+	int				idlive[MAX_PLAYERS];
+	int				live[MAX_PLAYERS];
 	uint32_t		dump;
 	unsigned int	cycle_to_die;
 	unsigned int	cycles;
@@ -129,7 +131,7 @@ void					ft_putnbr_uint32(uint32_t i);
 */
 t_process				new_process(t_options opt, int id);
 t_env					create_process(t_env env, t_options opt);
-uint32_t				process_alive(t_env env);
+int						process_alive(t_env env);
 t_process				get_process_by_id(t_env env, uint32_t id);
 
 /*
@@ -137,7 +139,7 @@ t_process				get_process_by_id(t_env env, uint32_t id);
 */
 t_env					process_map(t_env env, t_env (*fct)(t_env env, int i));
 t_env					add_cycle(t_env env, int i);
-t_env					process_live(t_env env, int i);
+t_env					check_live(t_env env);
 t_env					execute_cpu(t_env env, int i);
 t_env					create_fork(t_env env, int i);
 

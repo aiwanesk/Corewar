@@ -21,10 +21,10 @@ void				apply_live(t_process *process, t_env *env)
 	tmp = 0;
 	length = length_label(env->memory[process->pc]);
 	total = (int16_t)get_args(env->memory, process->pc + 1, length);
-	while (tmp < env->nbprocess)
+	while (tmp < MAX_PLAYERS)
 	{
-		if (env->process[tmp].id == (uint32_t)total)
-			++env->process[tmp].alive;
+		if (env->idlive[tmp] == total)
+			env->live[tmp]++;
 		++tmp;
 	}
 	process->pc += (length + 1);

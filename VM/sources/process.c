@@ -11,20 +11,28 @@
 #include "core.h"
 #include "libft.h"
 
-uint32_t			process_alive(t_env env)
+int				process_alive(t_env env)
 {
 	uint32_t		i;
 	uint32_t		nbalive;
+	uint32_t		id;
 
 	i = 0;
 	nbalive = 0;
-	while (i < env.nbprocess)
+	id = 0;
+	while (i < MAX_PLAYERS)
 	{
-		if (env.process[i].isdead == FALSE)
+		if (env.live[i] > 0)
+		{
 			nbalive++;
+			id = env.idlive[i];
+		}
 		++i;
 	}
-	return (nbalive);
+	if (nbalive > 1)
+		return (-1);
+	else
+		return (id);
 }
 
 t_process	get_process_by_id(t_env env, uint32_t id)
@@ -52,7 +60,6 @@ t_process	new_process(t_options opt, int id)
 	process.pc = (MEM_SIZE / opt.nbchampions) * id;
 	ft_bzero(process.reg, sizeof(uint32_t) * 16);
 	process.reg[0] = convert_endianness(process.id);
-	process.alive = 0;
 	process.nb_cycle = 0;
 	process.carry = 0;
 	process.isdead = FALSE;

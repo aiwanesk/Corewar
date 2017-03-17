@@ -70,21 +70,22 @@ void		protocol_win(t_env env, t_process process)
 
 void		protocol_lc(t_env env)
 {
-	unsigned int		i;
+	int		i;
 
 	if (!env.ui)
 		return ;
-	i = 0;
-	while (i < env.nbprocess)
+	i = -1;
+	while (++i < MAX_PLAYERS)
 	{
+		if (env.idlive[i] < 0)
+			continue ;
 		ft_putstr("UI_PROTOCOL LC ");
-		ft_putnbr_uint32(env.process[i].id);
+		ft_putnbr_uint32(env.idlive[i]);
 		ft_putstr("-");
-		ft_putnbr_uint32(env.process[i].alive);
+		ft_putnbr_uint32(env.live[i]);
 		ft_putstr("-");
 		ft_putnbr_uint32(env.cycles);
 		ft_putendl("");
-		++i;
 	}
 }
 

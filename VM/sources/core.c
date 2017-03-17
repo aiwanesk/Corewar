@@ -28,7 +28,12 @@ t_env		init_core(t_options opt)
 		return (env);
 	}
 	while (i < opt.nbchampions)
-		env.process[i++].alive = 1;
+	{
+		env.idlive[i] = env.process[i].id;
+		env.live[i++] = 1;
+	}
+	while (i < MAX_PLAYERS)
+		env.idlive[i++] = -1;
 	env.run = TRUE;
 	env.cycle_to_die = CYCLE_TO_DIE;
 	return (env);
@@ -50,23 +55,40 @@ int			winner(t_env env, t_process process)
 	return (FALSE);
 }
 
-t_process		get_last_player(t_env env)
+t_env			process_live(t_env env)
 {
-	uint32_t	i;
+	int		tmp;
 
-	i = 0;
-	while (i < env.nbprocess)
+	tmp = 0;
+	while (tmp < MAX_PLAYERS)
+		if (env.idlive[tmp] <= 0)
+			env.idlive[tmp++] = -1;
+		else
+		{
+			env.nblive += env.live[tmp];
+			env.live[tmp++] = 0;
+		}
+	if (env.nblive >= NBR_LIVE)
 	{
-		if (env.process[i].isdead == FALSE)
-			return (env.process[i]);
-		++i;
+		env.cycle_to_die -= CYCLE_DELTA;
+		env.nblive = 0;
 	}
-	return (MATCH_NULL);
+	else if (env.check >= MAX_CHECKS)
+	{
+		--env.cycle_to_die;
+		env.check = 0;
+	}
+	else
+		++env.check;
+	env.cycles = 0;
+	return (env);
 }
+
 
 void				core(t_env env)
 {
 	uint32_t		todump;
+	int				id;
 
 	todump = 0;
 	while (1)
@@ -77,10 +99,10 @@ void				core(t_env env)
 			break ;
 		}
 		else if (env.cycles++ >= env.cycle_to_die)
-			env = process_map(env, &process_live);
-		if ((env.dump <= 0 || env.dump < todump ) && process_alive(env) <= 1)
+			env = process_live(env);
+		if (env.dump <= 0 && (id = process_alive(env)) >= 0)
 		{
-			winner(env, get_last_player(env));
+			winner(env, get_process_by_id(env, id));
 			break ;
 		}
 		env = process_map(env, &add_cycle);

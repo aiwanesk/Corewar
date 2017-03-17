@@ -218,6 +218,15 @@ class App():
 
         self.process = None
         self.queue = None
+        self.arr_file = []
+
+        if (len(sys.argv) > 1):
+            a = len(sys.argv) - 1
+            while (a > 0):
+                self.arr_file.append(sys.argv[a])
+                a = a - 1
+            self.championString = ' '.join(self.arr_file)
+            print(self.championString)
 
     ## WINDOW
     def vp_start_gui(self):
@@ -282,14 +291,15 @@ class App():
         if (self.corewarRun != True):
             self.window.reset_label_champion("")
             self.window.update()
-        championString = ' '.join(self.window.getFile())
-        if (DEBUG and championString == ""):
-            championString = "/Users/mbarbari/project/corewar/ui/ressources/3615sleep.cor /Users/mbarbari/project/corewar/ui/ressources/3615sleep.cor"
-        if (self.corewarRun != True and championString != ""):
+            if self.championString == "":
+                self.championString = ' '.join(self.window.getFile())
+        if (DEBUG and self.championString == ""):
+            self.championString = "/Users/mbarbari/project/corewar/ui/ressources/3615sleep.cor /Users/mbarbari/project/corewar/ui/ressources/3615sleep.cor"
+        if (self.corewarRun != True and self.championString != ""):
             try: pathcore = os.environ["COREWAR"]
             except : pathcore = "./"
             if (os.path.isfile(pathcore + "/corewar") and  os.access(pathcore + "/corewar", os.X_OK)):
-                execute = pathcore + "./corewar -ui -n 1 " + championString
+                execute = pathcore + "./corewar -ui -n 1 " + self.championString
                 self.corewarRun = True
                 try: self.process = Popen(execute, stdout = PIPE, stderr = STDOUT, shell=True)
                 except:
