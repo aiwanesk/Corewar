@@ -68,15 +68,16 @@ t_env				check_live(t_env env)
 	while (tmp < MAX_PLAYERS)
 	{
 		if (env.idlive[tmp] >= 0 && env.live[tmp] <= 0)
-			env.idlive[tmp++] = -1;
-		else
-		{
+			env.idlive[tmp] = -1;
+		else if (env.idlive[tmp] >= 0)
 			env.nblive += env.live[tmp];
-			env.live[tmp++] = 0;
-		}
+		env.live[tmp++] = 0;
 	}
 	if (env.nblive >= NBR_LIVE)
-		norme_live(&env);
+	{
+		env.cycle_to_die -= CYCLE_DELTA;
+		env.nblive = 0;
+	}
 	else if (env.check >= MAX_CHECKS)
 	{
 		--env.cycle_to_die;
@@ -94,7 +95,7 @@ void				core(t_env env)
 
 	while (1)
 	{
-		if (env.dump != -1 && env.dump-- > 0)
+		if (env.dump != -1 && env.dump-- == 0)
 		{
 			print_memory(env.memory, env);
 			break ;
