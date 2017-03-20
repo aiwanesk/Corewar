@@ -6,7 +6,7 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/17 15:51:05 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/17 15:57:43 by aiwanesk         ###   ########.fr       */
+/*   Updated: 2017/03/20 15:16:09 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ static void			norme(t_env *env, t_options *opt)
 	env->run = TRUE;
 	env->cycle_to_die = CYCLE_TO_DIE;
 	env->dump = opt->dumpcycle;
+	env->idfork = opt->id[0] + env->nbprocess - 1;
 }
 
 t_env				init_core(t_options opt)
@@ -28,6 +29,7 @@ t_env				init_core(t_options opt)
 
 	ft_bzero(&env, sizeof(t_env));
 	env.ui = opt.ui;
+	env.dbg = opt.dbg;
 	env.nbprocess = opt.nbchampions;
 	env.maxprocess = PAGE_PROC;
 	temp = (t_process *)malloc(sizeof(t_process) * (env.maxprocess + 1));
@@ -101,8 +103,11 @@ void				core(t_env env)
 			break ;
 		}
 		else if (env.cycles++ >= env.cycle_to_die)
+		{
 			env = process_map(check_live(env), &process_live);
-		if (env.dump <= 0 && (id = process_alive(env)) >= 0)
+			env.cycles = 0;
+		}
+		if (!env.dbg && (id = process_alive(env)) >= 0)
 		{
 			winner(env, get_process_by_id(env, id));
 			break ;

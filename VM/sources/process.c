@@ -6,7 +6,7 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/17 15:39:16 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/17 15:40:18 by aiwanesk         ###   ########.fr       */
+/*   Updated: 2017/03/20 15:43:58 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,7 @@ int					process_alive(t_env env)
 	static int init = 0;
 	
 	if (init == 0 && ++init)
-	{
 		id = env.process[0].id;
-	}
 	i = 0;
 	nbalive = 0;
 	while (i < MAX_PLAYERS)
@@ -51,7 +49,7 @@ t_process			get_process_by_id(t_env env, int32_t id)
 	i = 0;
 	while (i < (int)env.nbprocess)
 	{
-		if (env.process[i].id == (int)id)
+		if (env.process[i].idlive == (int)id)
 			return (env.process[i]);
 		++i;
 	}
@@ -65,7 +63,8 @@ t_process			new_process(t_options opt, int id)
 	process.id = opt.id[id];
 	process.pc = (MEM_SIZE / opt.nbchampions) * id;
 	ft_bzero(process.reg, sizeof(int32_t) * 16);
-	process.reg[0] = convert_endianness(process.id);
+	process.reg[0] = process.id;
+	process.idlive = process.id;
 	process.nb_cycle = 0;
 	process.carry = 0;
 	process.isdead = FALSE;

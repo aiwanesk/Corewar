@@ -6,7 +6,7 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/17 15:49:25 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/17 15:50:48 by aiwanesk         ###   ########.fr       */
+/*   Updated: 2017/03/20 15:52:50 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,5 @@ void			protocol_sleep(t_env env)
 {
 	if (!env.ui)
 		return ;
-	usleep(1000);
+	usleep(500);
 }

@@ -6,7 +6,7 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 15:20:54 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/13 14:42:31 by mbarbari         ###   ########.fr       */
+/*   Updated: 2017/03/20 18:32:27 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,16 +59,21 @@ void				cpu(t_process *process, t_env *env)
 	static t_fct_cpu	cpu[17] = {0};
 	static int32_t		cycles[17] = {0};
 	static int			init = 0;
-	int32_t			opcode;
+	int32_t				opcode;
 
+	process->pc = process->pc % MEM_SIZE;
+	if (process->pc < 0)
+		process->pc += MEM_SIZE;
 	if (init == 0 && ++init)
 	{
 		fct_cpu(cpu);
 		get_cycles(cycles);
 	}
-	opcode = env->memory[process->pc];
+	opcode = env->memory[process->pc % MEM_SIZE];
 	if (opcode <= 16 && cpu[opcode] && process->nb_cycle >= cycles[opcode])
 	{
+		if (process->id == 34)
+			dprintf(1, "CPU : %#2X\n", process->pc);
 		cpu[opcode](process, env);
 		protocol_pc(*env, *process, process->pc);
 	}
