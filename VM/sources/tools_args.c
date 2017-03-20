@@ -6,7 +6,7 @@
 /*   By: mbarbari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 11:55:17 by mbarbari          #+#    #+#             */
-/*   Updated: 2017/03/17 16:14:35 by aiwanesk         ###   ########.fr       */
+/*   Updated: 2017/03/20 10:51:10 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,12 @@ int32_t		return_value(t_process *process, unsigned char *mem,
 	if (args.arg == REG_CODE && (val > 0 && val <= 16))
 		return (process->reg[val - 1]);
 	else if (args.arg == IND_CODE)
-		return (mem[(process->pc + (val % IDX_MOD)) % MEM_SIZE]);
+		return ((int16_t)mem[(process->pc + (val % IDX_MOD)) % MEM_SIZE]);
+	else if (args.arg == DIR_CODE)
+	{
+		if (args.length == 2)
+			return ((int16_t)val);
+		return (val);
+	}
 	return (val);
 }

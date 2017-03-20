@@ -6,7 +6,7 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/17 16:01:48 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/17 16:06:22 by aiwanesk         ###   ########.fr       */
+/*   Updated: 2017/03/20 15:42:01 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,20 +41,22 @@ struct								s_fork
 struct								s_options
 {
 	int								dumpcycle;
-	int32_t					nbchampions;
+	int32_t							nbchampions;
 	char							*champions[MAX_PLAYERS + 1];
-	int								id[MAX_PLAYERS + 1];
+	int32_t							id[MAX_PLAYERS + 1];
 	_Bool							ui;
+	_Bool							dbg;
 	int								error;
 };
 
 struct								s_process
 {
 	int32_t							id;
+	int32_t							idlive;
 	int16_t							pc;
-	int32_t						reg[15];
-	int32_t						alive;
-	int32_t						nb_cycle;
+	int32_t							reg[15];
+	int32_t							alive;
+	int32_t							nb_cycle;
 	char							name[PROG_NAME_LENGTH + 1];
 	unsigned char					carry;
 	_Bool							isdead;
@@ -75,9 +77,11 @@ struct								s_env
 	_Bool							error;
 	char							*s_error;
 	_Bool							run;
-	int32_t						nblive;
-	int32_t						check;
+	int32_t							nblive;
+	int32_t							check;
+	int32_t							idfork;
 	_Bool							ui;
+	_Bool							dbg;
 };
 
 /*

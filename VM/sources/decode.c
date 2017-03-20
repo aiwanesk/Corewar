@@ -6,7 +6,7 @@
 /*   By: barbare <barbare@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 16:26:29 by barbare           #+#    #+#             */
-/*   Updated: 2017/03/17 20:12:33 by mbarbari         ###   ########.fr       */
+/*   Updated: 2017/03/20 18:36:18 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@ void		decode(t_args args[3], int32_t pc, unsigned char encoding)
 
 	ft_bzero(args, sizeof(t_args) * 3);
 	a = MAX_ARGS;
+	pc = pc % MEM_SIZE;
+	if (pc < 0)
+		pc += MEM_SIZE;
 	while (a > 0)
 	{
 		i = a - 1;

@@ -6,7 +6,7 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/17 15:44:20 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/17 15:44:50 by aiwanesk         ###   ########.fr       */
+/*   Updated: 2017/03/20 16:43:19 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ t_env				process_map(t_env env, t_env (*fct)(t_env env, int i))
 
 t_env				add_cycle(t_env env, int i)
 {
+	if (env.process[i].pc < 0)
+		env.process[i].pc += MEM_SIZE;
 	env.process[i].nb_cycle++;
 	return (env);
 }
@@ -59,7 +61,11 @@ t_env				create_fork(t_env env, int i)
 		}
 		ft_memcpy(&env.process[env.nbprocess - 1], &env.process[i],
 														sizeof(t_process));
+		if (env.process[i].fork.pc < 0)
+			env.process[i].fork.pc += MEM_SIZE;
 		env.process[env.nbprocess - 1].pc = env.process[i].fork.pc % MEM_SIZE;
+		env.process[env.nbprocess - 1].id = ++env.idfork;
+		env.process[env.nbprocess - 1].alive = 1;
 	}
 	return (env);
 }

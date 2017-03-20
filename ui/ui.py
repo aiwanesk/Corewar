@@ -227,7 +227,6 @@ class App():
                 self.arr_file.append(sys.argv[a])
                 a = a - 1
             self.championString = ' '.join(self.arr_file)
-            print(self.championString)
 
     ## WINDOW
     def vp_start_gui(self):
@@ -249,6 +248,7 @@ class App():
 
     def on_closing(self):
         self.corewarRun = False
+        time.sleep(1)
         self.reset()
         self.root.destroy()
 
@@ -328,8 +328,6 @@ class App():
             newline = line.decode("utf-8")
             if ("UI_PROTOCOL" in newline):
                 queue.put(newline)
-            else :
-                print(newline)
         out.close()
 
     def process_data(self):
@@ -374,7 +372,7 @@ class App():
 
     def setprocess_win(self, command):
         id  = int(command) + 1
-        self.window.get_player_by_id(int(command))[1].set("WINNER")
+        self.window.get_player_by_id(id)[1].set("WINNER")
         if (self.process.poll() is not None):
             self.corewarRun = False
 

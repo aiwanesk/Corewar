@@ -6,7 +6,7 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/17 15:46:34 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/17 15:46:58 by aiwanesk         ###   ########.fr       */
+/*   Updated: 2017/03/20 12:57:18 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,13 @@ t_options			parse_options(char **data, t_options opt)
 			return ((t_options) {.error = 1});
 		opt.dumpcycle = ft_atoi(*data);
 	}
-	else if (*data && ft_strcmp(*data, "-n") == 0 && test_integer(*(data + 1)))
+	else if (*data && ft_strcmp(*data, "-dbg") == 0)
+		opt.dbg = TRUE;
+	else if (*data && ft_strcmp(*data, "-n") == 0)
+	{
 		opt.id[0] = ft_atoi(*(++data));
+		dprintf(1, "Lectyure du id : %jd\n", ft_atoi(*(data)));
+	}
 	else if (*data && ft_strcmp(*data, "-ui") == 0)
 		opt.ui = TRUE;
 	else
