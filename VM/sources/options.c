@@ -63,7 +63,7 @@ t_options			parse_options(char **data, t_options opt)
 	else if (*data && ft_strcmp(*data, "-n") == 0)
 	{
 		opt.id[0] = ft_atoi(*(++data));
-		dprintf(1, "Lectyure du id : %jd\n", ft_atoi(*(data)));
+//		dprintf(1, "Lectyure du id : %jd\n", ft_atoi(*(data)));
 	}
 	else if (*data && ft_strcmp(*data, "-ui") == 0)
 		opt.ui = TRUE;
