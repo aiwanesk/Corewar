@@ -6,7 +6,7 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/17 15:58:22 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/17 20:13:26 by mbarbari         ###   ########.fr       */
+/*   Updated: 2017/03/22 16:55:12 by aiwanesk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ void				ft_putnbr_uint32(int32_t nbr)
 	ft_putchar('0' + (nbr % 10));
 }
 
-int32_t			djb2(const char *str)
+int32_t				djb2(const char *str)
 {
-	int32_t		hash;
+	int32_t			hash;
 	int				c;
 
 	hash = 5381;
@@ -55,7 +55,7 @@ int32_t			djb2(const char *str)
 	return (hash);
 }
 
-int32_t			random_uint32(void)
+int32_t				random_uint32(void)
 {
 	int			fd;
 	char		buf[255];

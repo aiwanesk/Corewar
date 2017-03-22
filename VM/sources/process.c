@@ -6,7 +6,7 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/17 15:39:16 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/20 15:43:58 by mbarbari         ###   ########.fr       */
+/*   Updated: 2017/03/22 16:54:43 by aiwanesk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ int					process_alive(t_env env)
 {
 	int32_t			i;
 	int32_t			nbalive;
-	static int32_t		id = 0;
-	static int init = 0;
-	
+	static int32_t	id = 0;
+	static int		init = 0;
+
 	if (init == 0 && ++init)
 		id = env.process[0].id;
 	i = 0;
@@ -74,7 +74,7 @@ t_process			new_process(t_options opt, int id)
 t_env				create_process(t_env env, t_options opt)
 {
 	t_process	proc;
-	int32_t	i;
+	int32_t		i;
 
 	i = 0;
 	while (i < opt.nbchampions)

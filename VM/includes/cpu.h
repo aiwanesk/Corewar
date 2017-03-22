@@ -6,7 +6,7 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 14:52:48 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/17 20:14:27 by mbarbari         ###   ########.fr       */
+/*   Updated: 2017/03/22 16:50:34 by aiwanesk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ struct						s_args
 
 struct						s_op
 {
-	int32_t				opcode;
+	int32_t					opcode;
 	int						length;
 };
 
@@ -92,9 +92,9 @@ int							int_to_read(char *t, int i, int op);
 void						decode(t_args *args, int32_t pc,
 		unsigned char encoding);
 int							length_label(int32_t opcode);
-int32_t					get_args(unsigned char *memory, int32_t addr,
+int32_t						get_args(unsigned char *memory, int32_t addr,
 		int oct);
-int32_t					return_value(t_process *p, unsigned char *me,
+int32_t						return_value(t_process *p, unsigned char *me,
 												t_args arg, int32_t val);
 void						assign(int32_t val, int32_t **bit);
 

@@ -6,7 +6,7 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/17 15:51:05 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/22 17:10:43 by mbarbari         ###   ########.fr       */
+/*   Updated: 2017/03/22 17:16:59 by aiwanesk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void			norme(t_env *env, t_options *opt)
 t_env				init_core(t_options opt)
 {
 	t_env		env;
-	int32_t	i;
+	int32_t		i;
 	t_process	*temp;
 
 	ft_bzero(&env, sizeof(t_env));

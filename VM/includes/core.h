@@ -6,7 +6,7 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/17 16:01:48 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/22 11:29:50 by mbarbari         ###   ########.fr       */
+/*   Updated: 2017/03/22 16:50:03 by aiwanesk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct s_fork				t_fork;
 struct								s_fork
 {
 	_Bool							isfork;
-	int32_t						pc;
+	int32_t							pc;
 };
 
 struct								s_options
@@ -110,7 +110,7 @@ void								write_memory(unsigned char *memory,
 		int32_t addr, int32_t val);
 void								print_memory(unsigned char *memory,
 		t_env env);
-int32_t							read_memory(unsigned char *memory,
+int32_t								read_memory(unsigned char *memory,
 		int32_t addr);
 void								print_hex(uintmax_t hex, char *base);
 
@@ -120,7 +120,7 @@ void								cpu(t_process *process, t_env *env);
 ** random.c file
 ** function that generate or control random int32_t for all process
 */
-int32_t							random_uint32(void);
+int32_t								random_uint32(void);
 void								check_random(t_process process[], int n);
 
 /*
@@ -129,7 +129,7 @@ void								check_random(t_process process[], int n);
 ** and convert endianness to transform big endian PROG_SIZE and Magic NUMBER
 ** to little endian
 */
-int32_t							convert_endianness(unsigned int val);
+int32_t								convert_endianness(unsigned int val);
 t_env								load_champion(t_env env, t_options opt,
 		int id);
 void								ft_putnbr_uint32(int32_t i);

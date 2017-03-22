@@ -6,7 +6,7 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/17 15:45:01 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/20 18:35:15 by mbarbari         ###   ########.fr       */
+/*   Updated: 2017/03/22 16:53:09 by aiwanesk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,10 @@ void		write_memory(unsigned char *memory, int32_t addr, int32_t val)
 		((val >> 24) & 0xFF);
 }
 
-int32_t	read_memory(unsigned char *memory, int32_t addr)
+int32_t		read_memory(unsigned char *memory, int32_t addr)
 {
-	int32_t	val;
-	int32_t	tmp;
+	int32_t		val;
+	int32_t		tmp;
 	int16_t		a;
 
 	a = (int16_t)addr;

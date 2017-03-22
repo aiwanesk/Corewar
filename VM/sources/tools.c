@@ -6,7 +6,7 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/17 15:58:59 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/17 20:13:26 by mbarbari         ###   ########.fr       */
+/*   Updated: 2017/03/22 16:55:25 by aiwanesk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "core.h"
 #include "libft.h"
 
-int32_t			convert_endianness(unsigned int val)
+int32_t				convert_endianness(unsigned int val)
 {
 	val = ((val << 8) & 0xFF00FF00) | ((val >> 8) & 0xFF00FF);
 	return (val << 16) | (val >> 16);

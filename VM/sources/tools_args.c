@@ -6,13 +6,13 @@
 /*   By: mbarbari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 11:55:17 by mbarbari          #+#    #+#             */
-/*   Updated: 2017/03/20 10:51:10 by mbarbari         ###   ########.fr       */
+/*   Updated: 2017/03/22 16:56:16 by aiwanesk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cpu.h"
 
-static t_op		*return_t_op(void)
+static t_op			*return_t_op(void)
 {
 	static t_op		op[17] = {
 		{0x01, 4},
@@ -37,7 +37,7 @@ static t_op		*return_t_op(void)
 	return (op);
 }
 
-int				length_label(int32_t opcode)
+int					length_label(int32_t opcode)
 {
 	int			i;
 	t_op		*op;
@@ -53,9 +53,9 @@ int				length_label(int32_t opcode)
 	return (0);
 }
 
-int32_t		get_args(unsigned char *memory, int32_t addr, int oct)
+int32_t				get_args(unsigned char *memory, int32_t addr, int oct)
 {
-	int32_t		val;
+	int32_t			val;
 	int				i;
 
 	val = 0;
@@ -69,7 +69,7 @@ int32_t		get_args(unsigned char *memory, int32_t addr, int oct)
 	return (val);
 }
 
-int32_t		return_value(t_process *process, unsigned char *mem,
+int32_t				return_value(t_process *process, unsigned char *mem,
 		t_args args, int32_t val)
 {
 	if (args.arg == REG_CODE && (val > 0 && val <= 16))
