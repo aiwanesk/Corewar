@@ -6,7 +6,7 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/17 16:01:48 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/20 15:42:01 by mbarbari         ###   ########.fr       */
+/*   Updated: 2017/03/22 11:29:50 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,6 +160,7 @@ void								protocol_lmz(t_env e, int id, int32_t len,
 void								protocol_pc(t_env env, t_process pro,
 		int32_t addr);
 void								protocol_win(t_env env, t_process process);
+void								protocol_end(t_env env);
 void								protocol_lc(t_env env);
 void								protocol_mem(t_env env, t_process proc,
 		int32_t addr);

@@ -6,7 +6,7 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/17 15:43:47 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/17 15:44:06 by aiwanesk         ###   ########.fr       */
+/*   Updated: 2017/03/22 11:30:08 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int				main(int argc, char **argv)
 			return (0);
 		}
 		core(env);
+		protocol_end(env);
 	}
 	return (0);
 }
