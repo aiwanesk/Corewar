@@ -6,7 +6,7 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 15:18:38 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/20 18:38:22 by mbarbari         ###   ########.fr       */
+/*   Updated: 2017/03/22 16:48:35 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void		dbg(t_process *proc, int32_t val1, int32_t isok)
 	ft_putstr(C_NONE);
 }
 
-void					apply_zjmp(t_process *process, t_env *env)
+void			apply_zjmp(t_process *process, t_env *env)
 {
 	int16_t			addr;
 

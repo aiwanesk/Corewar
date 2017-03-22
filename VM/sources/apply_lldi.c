@@ -6,7 +6,7 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 15:10:55 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/20 17:51:53 by mbarbari         ###   ########.fr       */
+/*   Updated: 2017/03/22 16:46:40 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void		dbg(t_process *proc, int32_t val1, int32_t val2, int32_t val3)
 	ft_putstr(C_NONE);
 }
 
-static void			norme(t_process *process, t_args args[3])
+static void		norme(t_process *process, t_args args[3])
 {
 	process->pc = BYPASS(args, BYPASS_ARG_ENCODE);
 	process->pc %= MEM_SIZE;
@@ -39,7 +39,7 @@ static void			norme(t_process *process, t_args args[3])
 	process->nb_cycle -= 50;
 }
 
-void				apply_lldi(t_process *process, t_env *env)
+void			apply_lldi(t_process *process, t_env *env)
 {
 	t_args		args[3];
 	int32_t		addr;
