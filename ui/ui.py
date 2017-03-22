@@ -21,6 +21,7 @@ class New_Toplevel_1(Frame):
 
         self.top = top
         self.arr_file = []
+        self.exe_file = ""
         self.app = app
 
         self.top.geometry("880x747")
@@ -153,6 +154,7 @@ class New_Toplevel_1(Frame):
         top.config(menu=self.menubar)
 
         self.fileMenu = Menu(self.menubar)
+        self.fileMenu.add_command(label="Add executable", command = self.onOpenExe)
         self.fileMenu.add_command(label="Add champion file", command = self.onOpen)
         self.fileMenu.add_command(label="Reset VM", command = self.onReset)
         self.menubar.add_cascade(label="Core", menu=self.fileMenu)
@@ -160,12 +162,18 @@ class New_Toplevel_1(Frame):
     def onOpen(self):
         self.arr_file.append(fdialog.askopenfilename(initialdir = ".", title = "Select file", filetypes = (("CORE files","*.cor"),("all files","*.*"))))
 
+    def onOpenExe(self):
+        self.exe_file = fdialog.askopenfilename(initialdir = ".", title = "Select file")
+
     def onReset(self):
         self.arr_file = []
         self.app.reset()
 
     def getFile(self):
         return self.arr_file
+
+    def getExe(self):
+        return self.exe_file
 
     def get_Canvas(self):
         return self.Canvas1
@@ -220,6 +228,7 @@ class App():
         self.queue = None
         self.arr_file = []
         self.championString = ""
+        self.isStop = False
 
         if (len(sys.argv) > 1):
             a = len(sys.argv) - 1
@@ -248,6 +257,7 @@ class App():
 
     def on_closing(self):
         self.corewarRun = False
+        self.isStop = True
         time.sleep(1)
         self.reset()
         self.root.destroy()
@@ -259,6 +269,8 @@ class App():
         self.window.get_RunButton().configure(command=self.run_vm)
 
     def display(self):
+        if self.isStop == True:
+            return
         canvasx = int(self.window.get_Canvas().cget("width")) / self.nbline
         canvasy = int(self.window.get_Canvas().cget("height")) / int((len(self.array) / self.nbline))
         canvas_ceil_x = canvasx - 0.4
@@ -275,6 +287,8 @@ class App():
         self.root.update()
 
     def unit_display(self, a, color=0):
+        if self.isStop == True:
+            return
         canvasx = int(self.window.get_Canvas().cget("width")) / self.nbline
         canvasy = int(self.window.get_Canvas().cget("height")) / int((len(self.array) / self.nbline))
         canvas_ceil_x = canvasx - 0.4
@@ -294,6 +308,7 @@ class App():
         self.root.update()
 
     def run_vm(self):
+        error = False
         if (self.corewarRun == True):
             return
         if (self.corewarRun != True):
@@ -301,24 +316,33 @@ class App():
             self.window.update()
             if self.championString == "":
                 self.championString = ' '.join(self.window.getFile())
-        if (DEBUG and self.championString == ""):
-            self.championString = "/Users/mbarbari/project/corewar/ui/ressources/3615sleep.cor /Users/mbarbari/project/corewar/ui/ressources/3615sleep.cor"
         if (len(self.championString.split( )) > 4):
             print("To many champion")
             self.reset()
-        elif (self.corewarRun != True and self.championString != ""):
-            try: pathcore = os.environ["COREWAR"]
-            except : pathcore = "./"
-            if (os.path.isfile(pathcore + "/corewar") and  os.access(pathcore + "/corewar", os.X_OK)):
-                execute = pathcore + "./corewar -ui -n 0 " + self.championString
-                self.corewarRun = True
-                try: self.process = Popen(execute, stdout = PIPE, stderr = STDOUT, shell=True)
-                except:
-                    print("Executable does not exists")
-                else :
-                    self.setprocess_stdout()
+            error = True
+        testchampion = self.championString.split( )
+        for string in testchampion:
+            if (os.path.isfile(string) is None):
+                print("Champion file cannot find")
+                error = True
+        if (error == False and self.corewarRun != True and self.championString != ""):
+            exefile = self.window.getExe()
+            try: 
+                if (exefile == ""):
+                    exefile = os.environ["COREWAR_PATH"] + "/corewar"
+            except:
+                print("Environement COREWAR_PATH cannot find")
             else:
-                print("Executable cannot find")
+                if (os.path.isfile(exefile) and  os.access(exefile, os.X_OK)):
+                    execute = exefile + " -ui -n 0 " + self.championString
+                    self.corewarRun = True
+                    try: self.process = Popen(execute, stdout = PIPE, stderr = STDOUT, shell=True)
+                    except:
+                        print("Executable does not exists")
+                    else :
+                        self.setprocess_stdout()
+                else:
+                    print("Executable cannot find")
         self.pcDict = {"1": 0}
 
     def enqueue_output(self, out, queue):
@@ -338,6 +362,8 @@ class App():
             else:
                 out = line.split( )
                 if (len(out) > 1 and out[0] == "UI_PROTOCOL"):
+                    if (out[1] == "END"): #"UI_PROTOCOL WIN 1" give ID
+                        self.corewarRun = False
                     if (out[1] == "LMZ"): #"UI_PROTOCOL LMZ 1-0-588-0.t" give ID-StartPtr-LengthCode-Name
                         self.setprocess_lmz(out[2])
                         self.display()
