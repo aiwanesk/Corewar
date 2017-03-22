@@ -6,7 +6,7 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 15:04:19 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/20 17:44:21 by mbarbari         ###   ########.fr       */
+/*   Updated: 2017/03/22 16:44:23 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ static void		dbg(t_process *proc, int32_t val1)
 void			apply_aff(t_process *process, t_env *env)
 {
 	t_args		args[3];
-	int32_t	pc;
-	int32_t	reg;
+	int32_t		pc;
+	int32_t		reg;
 	char		val;
 
 	decode(args, env->memory[process->pc], env->memory[process->pc + 1]);

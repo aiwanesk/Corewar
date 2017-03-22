@@ -6,7 +6,7 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 15:06:24 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/20 18:35:35 by mbarbari         ###   ########.fr       */
+/*   Updated: 2017/03/22 16:44:49 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ void			apply_ld(t_process *process, t_env *env)
 {
 	t_args		args[3];
 	int32_t		val;
-	int32_t	reg;
-	int32_t	addr;
+	int32_t		reg;
+	int32_t		addr;
 
 	decode(args, env->memory[process->pc], env->memory[process->pc + 1]);
 	addr = process->pc + BYPASS_ARG_ENCODE;

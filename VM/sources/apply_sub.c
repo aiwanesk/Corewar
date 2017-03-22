@@ -6,7 +6,7 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 15:16:56 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/20 17:49:03 by mbarbari         ###   ########.fr       */
+/*   Updated: 2017/03/22 16:47:07 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void		dbg(t_process *proc, int32_t val1, int32_t val2, int32_t val3)
 	ft_putstr(C_NONE);
 }
 
-void		apply_sub(t_process *process, t_env *env)
+void			apply_sub(t_process *process, t_env *env)
 {
 	int32_t		reg[3];
 	int32_t		val;

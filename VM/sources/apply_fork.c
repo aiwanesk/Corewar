@@ -6,7 +6,7 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/03 15:05:51 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/20 17:43:38 by mbarbari         ###   ########.fr       */
+/*   Updated: 2017/03/22 16:45:54 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void		dbg(t_process *proc, int32_t val1)
 	ft_putstr(C_NONE);
 }
 
-void						apply_fork(t_process *process, t_env *env)
+void			apply_fork(t_process *process, t_env *env)
 {
 	int32_t			val;
 
