@@ -6,7 +6,7 @@
 /*   By: aiwanesk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/17 15:51:05 by aiwanesk          #+#    #+#             */
-/*   Updated: 2017/03/20 15:16:09 by mbarbari         ###   ########.fr       */
+/*   Updated: 2017/03/22 17:10:43 by mbarbari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,12 @@ t_env				init_core(t_options opt)
 		free(temp);
 		return (env);
 	}
-	while (i < opt.nbchampions)
-	{
-		env.idlive[i] = env.process[i].id;
-		env.live[i++] = 1;
-	}
 	while (i < MAX_PLAYERS)
-		env.idlive[i++] = -1;
+	{
+		env.idlive[i] = i < opt.nbchampions ? env.process[i].id : -1;
+		env.live[i] = i < opt.nbchampions ? 1 : -1;
+		++i;
+	}
 	norme(&env, &opt);
 	return (env);
 }
